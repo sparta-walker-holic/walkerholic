@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Form = () => {
   // 지도 API 불러오기
@@ -6,12 +6,34 @@ const Form = () => {
     const mapContainer = document.getElementById('map');
     const mapOption = {
       // 지도 중심 좌표
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
+      center: new kakao.maps.LatLng(37.55468604177569, 126.97058654356819),
       // 지도의 확대 레벨
       level: 3,
     };
 
+    // 지도 생성
     const map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 클릭한 위치에 마커 표시
+    const marker = new kakao.maps.Marker({
+      // 지도 중심 좌표에 마커 생성
+      position: map.getCenter(),
+    });
+    // 지도에 마커 표시
+    marker.setMap(map);
+
+    // 지도에 클릭 이벤트 등록
+    kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+      // 클릭한 곳의 위도, 경도 정보를 가져옴
+      const latlng = mouseEvent.latLng;
+
+      // 마커를 클릭한 위치로 이동
+      marker.setPosition(latlng);
+
+      console.log('위도, 경도 => ', latlng.getLat(), latlng.getLng());
+    });
+
+    //
   }, []);
 
   return (
