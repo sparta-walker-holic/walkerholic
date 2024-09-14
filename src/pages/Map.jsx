@@ -39,7 +39,7 @@ const Map = () => {
   };
 
   return (
-    <div className='grid grid-rows-[100px_auto]'>
+    <div className='flex flex-col h-full'>
       <div
         className='grid px-5 gap-x-3 py-3 gap-y-1'
         style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
@@ -75,7 +75,7 @@ const Map = () => {
             })
           : null}
       </div>
-      <div className='min-h-[calc(100vh-100px)] flex justify-center items-center'>
+      <div className='flex-grow h-full w-full flex justify-center items-center'>
         <div
           id='map'
           className='w-11/12 h-full'
