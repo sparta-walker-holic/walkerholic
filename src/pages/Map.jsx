@@ -24,7 +24,7 @@ const Map = () => {
   const handleSelectRegion = (region) => {
     const { lat, lng } = region;
     const moveLatLng = new kakao.maps.LatLng(lat, lng);
-    mapRef.current.setCenter(moveLatLng);
+    mapRef.current.panTo(moveLatLng);
     mapRef.current.setLevel(10);
 
     setMode('cities');
@@ -34,15 +34,17 @@ const Map = () => {
   const handleBackToRegionSelection = () => {
     setMode('regions');
     setSelectedRegion(null);
-    mapRef.current.setCenter(INITIAL_MAP_OPTIONS.center);
+    mapRef.current.panTo(INITIAL_MAP_OPTIONS.center);
     mapRef.current.setLevel(INITIAL_MAP_OPTIONS.level);
   };
 
   const handleSelectCity = (city) => {
+    console.log('handleSelectCity ~ city: ', city);
     const { lat, lng } = city;
+    console.log('lat, lng: ', lat, lng);
     const moveLatLng = new kakao.maps.LatLng(lat, lng);
     mapRef.current.setCenter(moveLatLng);
-    mapRef.current.setLevel(5);
+    mapRef.current.setLevel(5, { animate: true });
   };
 
   return (
