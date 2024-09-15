@@ -1,6 +1,25 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const Form = () => {
+  // const [clickLatLng, setClickLatLng] = useState({ lat: '', lng: '' });
+  const API_URL = 'http://localhost:4000';
+
+  const [posts, setPosts] = useState(null);
+  const [post, setPost] = useState({
+    title: '',
+    description: '',
+    img_url: '',
+    created_at: null,
+    author_id: '',
+    author_nickname: '',
+    tag: [],
+    position: {
+      lat: 0,
+      lng: 0,
+    },
+  });
+
   // 지도 API 불러오기
   useEffect(() => {
     const mapContainer = document.getElementById('map');
@@ -31,21 +50,56 @@ const Form = () => {
       marker.setPosition(latlng);
 
       console.log('위도, 경도 => ', latlng.getLat(), latlng.getLng());
-    });
 
-    //
+      setPost((prevPost) => ({
+        ...prevPost,
+        position: coordinate,
+      }));
+
+      const coordinate = {
+        lat: latlng.getLat(),
+        lng: latlng.getLng(),
+      };
+    });
   }, []);
+
+  // 데이터 요청
+  useEffect(() => {
+    const fetchPost = async () => {
+      const { data } = await axios.get(`${API_URL}/posts`);
+      setPosts(data);
+    };
+    fetchPost();
+  }, []);
+
+  console.log('posts', posts);
+
+  // 데이터 추가
+  // TODO: 새로고침해야 데이터 들어가는 것 수정
+  const onSubmitHandler = async (post) => {
+    await axios.post(`${API_URL}/posts`, post);
+  };
 
   return (
     <>
       <h1 className='text-center text-3xl font-bold'>게시글 작성</h1>
       <div>
-        <form className='my-8 grid place-items-center'>
+        <form
+          className='my-8 grid place-items-center'
+          onSubmit={(e) => {
+            e.preventDefault();
+            // alert('test');
+            onSubmitHandler(post);
+          }}
+        >
           <input
-            required
+            // required
             className='w-[500px] py-2 my-2 border p-2'
             placeholder='제목을 입력해주세요.'
             type='text'
+            onChange={(e) => {
+              setPost({ ...post, title: e.target.value });
+            }}
           />
           <p>아래 지도에서 원하는 위치를 클릭해주세요!</p>
           <div
@@ -54,14 +108,20 @@ const Form = () => {
           ></div>
           {/* TODO: 태그 입력 부분 수정 */}
           <input
-            required
+            // required
             className='w-[500px] py-2 my-2 border p-2'
             placeholder='태그를 입력해주세요.'
+            onChange={(e) => {
+              setPost({ ...post, tag: e.target.value });
+            }}
           />
           <textarea
-            required
+            // required
             className='w-[500px] h-48 py-2 my-2 border p-2'
             placeholder='내용을 입력해주세요.'
+            onChange={(e) => {
+              setPost({ ...post, description: e.target.value });
+            }}
           />
           <input
             className='w-[500px] py-2 my-2'
@@ -69,7 +129,13 @@ const Form = () => {
           />
           <div className='w-[500px] flex justify-between'>
             <button className='w-20 border'>이전</button>
-            <button className='w-20 border'>등록</button>
+            <button
+              className='w-20 border'
+              type='submit'
+            >
+              {' '}
+              등록
+            </button>
           </div>
         </form>
       </div>
