@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import regions from '../data/regions.js';
 import cities from '../data/cities.js';
+import mockData from '../data/mockData.js';
 
 const { kakao } = window;
 const KOREA_LATLNG_CENTER = { lat: 36.2683, lng: 127.6358 };
@@ -17,14 +18,45 @@ const Map = () => {
 
   useEffect(() => {
     const container = document.getElementById('map');
-
     mapRef.current = new kakao.maps.Map(container, INITIAL_MAP_OPTIONS);
+
+    const markers = mockData.posts.map((post, index) => {
+      const { id, title, position } = post;
+      const marker = new kakao.maps.Marker({
+        title: title,
+        position: new kakao.maps.LatLng(position.lat, position.lng),
+      });
+
+      marker.postId = id;
+      marker.index = index;
+
+      kakao.maps.event.addListener(marker, 'click', () => {
+        console.log(post.title + ': ' + post.description);
+      });
+      return marker;
+    });
+
+    const clusterer = new kakao.maps.MarkerClusterer({
+      map: mapRef.current,
+      averageCenter: true,
+      minLevel: 3,
+      markers: markers,
+      disableClickZoom: true,
+    });
+
+    kakao.maps.event.addListener(clusterer, 'clusterclick', (cluster) => {
+      cluster.getMarkers().forEach((marker) => {
+        const postIndex = marker.index;
+        const { title, description } = mockData.posts[postIndex];
+        console.log(title + ': ' + description);
+      });
+    });
   }, []);
 
   const handleSelectRegion = (region) => {
     const { lat, lng } = region;
     const moveLatLng = new kakao.maps.LatLng(lat, lng);
-    mapRef.current.panTo(moveLatLng);
+    mapRef.current.setCenter(moveLatLng);
     mapRef.current.setLevel(10);
 
     setMode('cities');
@@ -34,14 +66,12 @@ const Map = () => {
   const handleBackToRegionSelection = () => {
     setMode('regions');
     setSelectedRegion(null);
-    mapRef.current.panTo(INITIAL_MAP_OPTIONS.center);
-    mapRef.current.setLevel(INITIAL_MAP_OPTIONS.level);
+    mapRef.current.setCenter(INITIAL_MAP_OPTIONS.center);
+    mapRef.current.setLevel(INITIAL_MAP_OPTIONS.level, { animate: true });
   };
 
   const handleSelectCity = (city) => {
-    console.log('handleSelectCity ~ city: ', city);
     const { lat, lng } = city;
-    console.log('lat, lng: ', lat, lng);
     const moveLatLng = new kakao.maps.LatLng(lat, lng);
     mapRef.current.setCenter(moveLatLng);
     mapRef.current.setLevel(5, { animate: true });
