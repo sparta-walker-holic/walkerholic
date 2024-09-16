@@ -1,45 +1,59 @@
 {
   "posts": [
     {
-      "id": "0838",
-      "title": "테스트",
-      "description": "ㅎㅎㅎ",
+      "id": "6180",
+      "title": "ㅜㅜ",
+      "description": "ㅠㅠ",
       "img_url": "",
-      "created_at": "",
       "author_id": "",
       "author_nickname": "",
-      "tag": "ㅎㅎ",
+      "tag": "ㅡㅡ",
       "position": {
-        "lat": 37.555010551577965,
-        "lng": 126.9711975485757
-      }
+        "lat": 0,
+        "lng": 0
+      },
+      "created_at": "2024-9-16"
     },
     {
-      "id": "922f",
-      "title": "테스트ㅇㅇ",
-      "description": "ㅎㅎㅎㅇㅇ",
+      "id": "7aa6",
+      "title": "테스트",
+      "description": "ㅠㅠㅠ",
+      "img_url": "",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": "ㅠㅠ",
+      "position": {
+        "lat": 37.55383936685664,
+        "lng": 126.97166200010422
+      },
+      "created_at": "2024-9-16"
+    },
+    {
+      "id": "9f20",
+      "title": "ㅌㅌ",
+      "description": "ㅌㅌ",
       "img_url": "",
       "created_at": "2024-9-16",
       "author_id": "",
       "author_nickname": "",
-      "tag": "ㅎㅎㅇㅇ",
+      "tag": "ㅌㅌ",
       "position": {
-        "lat": 37.555010551577965,
-        "lng": 126.9711975485757
+        "lat": 37.55503717271672,
+        "lng": 126.96956785095006
       }
     },
     {
-      "id": "b661",
-      "title": "gg",
-      "description": "ggg",
+      "id": "5452",
+      "title": "ㅎㅎㅎ",
+      "description": "ㅎㅎㅎ",
       "img_url": "",
-      "created_at": "",
+      "created_at": "2024-9-16",
       "author_id": "",
       "author_nickname": "",
-      "tag": "g",
+      "tag": "ㅎㅎ",
       "position": {
-        "lat": 37.55351489813534,
-        "lng": 126.9712094412308
+        "lat": 37.5554703283337,
+        "lng": 126.97231778818134
       }
     }
   ]

@@ -77,17 +77,23 @@ const Form = () => {
   // 데이터 추가
   // TODO: 새로고침해야 데이터 들어가는 것 수정
   const onSubmitHandler = async (post) => {
-    await axios.post(`${API_URL}/posts`, post);
-
     const date = new Date();
     const dateStr = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    console.log(dateStr);
     setPost((prevPost) => ({
       ...prevPost,
       created_at: dateStr,
     }));
+    console.log('post=> ', post);
+    // await axios.post(`${API_URL}/posts`, post);
+
+    try {
+      await axios.post(`${API_URL}/posts`, { ...post, created_at: dateStr });
+    } catch (error) {
+      console.log(error);
+    }
     // setPost({ ...post, created_at: dateStr });
   };
-
   return (
     <>
       <h1 className='text-center text-3xl font-bold'>게시글 작성</h1>
