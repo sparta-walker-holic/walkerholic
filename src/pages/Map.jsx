@@ -68,6 +68,7 @@ const Map = () => {
   const handleBackToRegionSelection = () => {
     setMode('regions');
     setSelectedRegion(null);
+    setPostsOnPostBar([]);
     mapRef.current.setCenter(INITIAL_MAP_OPTIONS.center);
     mapRef.current.setLevel(INITIAL_MAP_OPTIONS.level, { animate: true });
   };
@@ -80,62 +81,64 @@ const Map = () => {
   };
 
   return (
-    <div className='flex flex-col h-full'>
-      {mode === 'regions' ? (
-        <div
-          className='grid px-5 gap-x-3 py-3 gap-y-1'
-          style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
-        >
-          {regions.map((region, index) => {
-            return (
-              <button
-                key={index}
-                className='rounded-xl border border-gray-800'
-                onClick={() => {
-                  handleSelectRegion(region);
-                }}
-              >
-                {region.region}
-              </button>
-            );
-          })}
-        </div>
-      ) : null}
-      {mode === 'cities' ? (
-        <div className='flex flex-col px-5 my-5 gap-2'>
-          <h3
-            className='font-bold hover:cursor-pointer'
-            onClick={handleBackToRegionSelection}
-          >
-            {'< ' + selectedRegion}
-          </h3>
+    <div className='flex h-full'>
+      <div className={`flex flex-col h-full ${postsOnPostBar.length > 0 ? 'w-[calc(100vw-230px)]' : 'w-full'}`}>
+        {mode === 'regions' ? (
           <div
-            className='grid gap-x-3 gap-y-1'
+            className='grid px-5 gap-x-3 py-3 gap-y-1'
             style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
           >
-            {cities[selectedRegion].map((city, index) => {
+            {regions.map((region, index) => {
               return (
                 <button
                   key={index}
                   className='rounded-xl border border-gray-800'
                   onClick={() => {
-                    handleSelectCity(city);
+                    handleSelectRegion(region);
                   }}
                 >
-                  {city.city}
+                  {region.region}
                 </button>
               );
             })}
           </div>
+        ) : null}
+        {mode === 'cities' ? (
+          <div className='flex flex-col px-5 my-5 gap-2'>
+            <h3
+              className='font-bold hover:cursor-pointer'
+              onClick={handleBackToRegionSelection}
+            >
+              {'< ' + selectedRegion}
+            </h3>
+            <div
+              className='grid gap-x-3 gap-y-1'
+              style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
+            >
+              {cities[selectedRegion].map((city, index) => {
+                return (
+                  <button
+                    key={index}
+                    className='rounded-xl border border-gray-800'
+                    onClick={() => {
+                      handleSelectCity(city);
+                    }}
+                  >
+                    {city.city}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ) : null}
+        <div className='flex-grow h-full w-full flex justify-center items-center'>
+          <div
+            id='map'
+            className='w-11/12 h-full'
+          ></div>
         </div>
-      ) : null}
-      <div className='flex-grow h-full w-full flex justify-center items-center'>
-        <div
-          id='map'
-          className='w-11/12 h-full'
-        ></div>
+        {postsOnPostBar.length > 0 ? <PostListSideBar posts={postsOnPostBar} /> : null}
       </div>
-      {postsOnPostBar.length > 0 ? <PostListSideBar posts={postsOnPostBar} /> : null}
     </div>
   );
 };
