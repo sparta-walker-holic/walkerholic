@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import regions from '../data/regions.js';
 import cities from '../data/cities.js';
 import mockData from '../data/mockData.js';
+import PostListSideBar from '../components/map/PostListSideBar.jsx';
 
 const { kakao } = window;
 const KOREA_LATLNG_CENTER = { lat: 36.2683, lng: 127.6358 };
@@ -15,12 +16,13 @@ const Map = () => {
 
   const [mode, setMode] = useState('regions');
   const [selectedRegion, setSelectedRegion] = useState(null);
+  const [postsOnPostBar, setPostsOnPostBar] = useState([]);
 
   useEffect(() => {
     const container = document.getElementById('map');
     mapRef.current = new kakao.maps.Map(container, INITIAL_MAP_OPTIONS);
 
-    const markers = mockData.posts.map((post, index) => {
+    const markers = mockData.posts.map((post) => {
       const { id, title, position } = post;
       const marker = new kakao.maps.Marker({
         title: title,
@@ -28,10 +30,9 @@ const Map = () => {
       });
 
       marker.postId = id;
-      marker.index = index;
 
       kakao.maps.event.addListener(marker, 'click', () => {
-        console.log(post.title + ': ' + post.description);
+        setPostsOnPostBar([id]);
       });
       return marker;
     });
@@ -45,11 +46,12 @@ const Map = () => {
     });
 
     kakao.maps.event.addListener(clusterer, 'clusterclick', (cluster) => {
+      const newPostsOnPostBar = [];
       cluster.getMarkers().forEach((marker) => {
-        const postIndex = marker.index;
-        const { title, description } = mockData.posts[postIndex];
-        console.log(title + ': ' + description);
+        newPostsOnPostBar.push(marker.postId);
       });
+
+      setPostsOnPostBar(newPostsOnPostBar);
     });
   }, []);
 
@@ -133,6 +135,7 @@ const Map = () => {
           className='w-11/12 h-full'
         ></div>
       </div>
+      {postsOnPostBar.length > 0 ? <PostListSideBar posts={postsOnPostBar} /> : null}
     </div>
   );
 };
