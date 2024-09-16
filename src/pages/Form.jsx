@@ -10,7 +10,7 @@ const Form = () => {
     title: '',
     description: '',
     img_url: '',
-    created_at: null,
+    created_at: '',
     author_id: '',
     author_nickname: '',
     tag: [],
@@ -78,6 +78,14 @@ const Form = () => {
   // TODO: 새로고침해야 데이터 들어가는 것 수정
   const onSubmitHandler = async (post) => {
     await axios.post(`${API_URL}/posts`, post);
+
+    const date = new Date();
+    const dateStr = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    setPost((prevPost) => ({
+      ...prevPost,
+      created_at: dateStr,
+    }));
+    // setPost({ ...post, created_at: dateStr });
   };
 
   return (

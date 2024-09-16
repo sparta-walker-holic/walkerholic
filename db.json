@@ -1,59 +1,45 @@
 {
   "posts": [
     {
-      "id": "ecc3",
+      "id": "0838",
       "title": "테스트",
-      "description": "테스트",
-      "img_url": "",
-      "created_at": null,
-      "author_id": "",
-      "author_nickname": "",
-      "tag": [],
-      "position": {
-        "lat": 37.554622994459606,
-        "lng": 126.97067710603442
-      }
-    },
-    {
-      "id": "c5e6",
-      "title": "",
-      "description": "",
-      "img_url": "",
-      "created_at": null,
-      "author_id": "",
-      "author_nickname": "",
-      "tag": [],
-      "position": {
-        "lat": 37.55358722990212,
-        "lng": 126.97226189945017
-      }
-    },
-    {
-      "id": "bc13",
-      "title": "제목",
-      "description": "내용",
-      "img_url": "",
-      "created_at": null,
-      "author_id": "",
-      "author_nickname": "",
-      "tag": "태그",
-      "position": {
-        "lat": 37.555893381312075,
-        "lng": 126.97059738643557
-      }
-    },
-    {
-      "id": "44fa",
-      "title": "ㅎㅎ",
       "description": "ㅎㅎㅎ",
       "img_url": "",
-      "created_at": null,
+      "created_at": "",
       "author_id": "",
       "author_nickname": "",
-      "tag": [],
+      "tag": "ㅎㅎ",
       "position": {
-        "lat": 37.55368622974704,
-        "lng": 126.9717978629197
+        "lat": 37.555010551577965,
+        "lng": 126.9711975485757
+      }
+    },
+    {
+      "id": "922f",
+      "title": "테스트ㅇㅇ",
+      "description": "ㅎㅎㅎㅇㅇ",
+      "img_url": "",
+      "created_at": "2024-9-16",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": "ㅎㅎㅇㅇ",
+      "position": {
+        "lat": 37.555010551577965,
+        "lng": 126.9711975485757
+      }
+    },
+    {
+      "id": "b661",
+      "title": "gg",
+      "description": "ggg",
+      "img_url": "",
+      "created_at": "",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": "g",
+      "position": {
+        "lat": 37.55351489813534,
+        "lng": 126.9712094412308
       }
     }
   ]
