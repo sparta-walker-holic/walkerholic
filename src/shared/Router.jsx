@@ -41,7 +41,7 @@ const Router = () => {
             element={<Form />}
           />
           <Route
-            path='/detail'
+            path='/detail/:postId'
             element={<Detail />}
           />
         </Route>

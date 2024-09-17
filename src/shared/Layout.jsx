@@ -2,9 +2,9 @@ import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
   return (
-    <div>
+    <div className='h-full'>
       <header />
-      <main>
+      <main className='h-full'>
         <Outlet />
       </main>
       <footer />
