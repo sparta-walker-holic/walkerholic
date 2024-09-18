@@ -19,6 +19,7 @@ const Form = () => {
       lng: 0,
     },
   });
+  const [previewUrl, setPreviewUrl] = useState('');
 
   // 지도 API 불러오기
   useEffect(() => {
@@ -94,6 +95,28 @@ const Form = () => {
     }
     // setPost({ ...post, created_at: dateStr });
   };
+
+  const onChangeImageUpload = (e) => {
+    // const file = e.target.files[0];
+    // const imageUrl = URL.createObjectURL(file);
+    // setUploadImgUrl(imageUrl);
+    // setPost({ ...post, img_url: imageUrl });
+
+    const reader = new FileReader();
+    const file = e.target.files[0];
+
+    // TODO: Base64 데이터 최적화하기 => 가독성 너무 안 좋음
+    reader.onloadend = (e) => {
+      const base64Img = e.target.result;
+      setPost({ ...post, img_url: base64Img });
+      console.log(file);
+      console.log(e.target.result);
+    };
+    reader.readAsDataURL(file);
+    // setPreviewUrl(reader.result);
+    console.log(reader);
+  };
+
   return (
     <>
       <h1 className='text-center text-3xl font-bold'>게시글 작성</h1>
@@ -140,7 +163,10 @@ const Form = () => {
           <input
             className='w-[500px] py-2 my-2'
             type='file'
+            accept='image/jpg, image/png, image/jpeg, image/gif'
+            onChange={onChangeImageUpload}
           />
+          <div>{previewUrl}</div>
           <div className='w-[500px] flex justify-between'>
             <button className='w-20 border'>이전</button>
             <button
