@@ -1,10 +1,10 @@
+import { useParams } from 'react-router-dom';
 import mockData from '../mock';
 
 const Detail = () => {
-  const [Params] = useParams();
-  const postId = Params.get('postId');
-  const post = mockData.find((item) => item.id === postId);
-
+  const { postId } = useParams();
+  const post = mockData.posts.find((item) => item.id === postId.toString());
+  console.log(post.title);
   return (
     <div className='bg-neutral-200  w-6/12 h-full flex mx-auto my-5 flex-col py-5 px-10 gap-5'>
       <div className='flex justify-between'>
@@ -16,7 +16,10 @@ const Detail = () => {
           <h1 className='font-bold text-xl '>{post.title}</h1>
           <p>닉네임:{post.author_nickname}</p>
           <p>설명:{post.description}</p>
-          <p>장소:{post.position}</p>
+          <p>
+            장소:{post.position.lat}
+            {post.position.lng}
+          </p>
         </div>
         <img
           className='bg-neutral-400 w-2/6 h-80'
