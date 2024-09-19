@@ -1,4 +1,4 @@
-import mockData from '../../data/mockData.js';
+import mockData from '../../data/mockData';
 import { useNavigate } from 'react-router-dom';
 
 const MiniPostCard = ({ postId }) => {
