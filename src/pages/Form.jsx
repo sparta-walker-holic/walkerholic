@@ -20,8 +20,8 @@ const Form = () => {
   });
   const [previewUrl, setPreviewUrl] = useState('');
 
-  // 지도 API 불러오기
   useEffect(() => {
+    // 지도 API 불러오기
     const mapContainer = document.getElementById('map');
     const mapOption = {
       // 지도 중심 좌표
@@ -78,13 +78,7 @@ const Form = () => {
     const dateStr = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     console.log(dateStr);
 
-    // setPost((prevPost) => ({
-    //   ...prevPost,
-    //   created_at: dateStr,
-    // }));
-    // console.log('post=> ', post);
-
-    // TODO: user 정보 입력
+    // TODO: created_at 뒤에 user 정보 입력
     try {
       await axios.post(`${API_URL}/posts`, { ...post, created_at: dateStr });
     } catch (error) {
@@ -116,12 +110,10 @@ const Form = () => {
       return item.trim();
     });
 
-    // TODO: tagArr.map => trim()
     console.log(tagArr);
     setPost({ ...post, tag: tagArr });
     // e.target.value = '';
   };
-  // console.log('post.tag => ', post.tag);
 
   return (
     <>
@@ -148,7 +140,6 @@ const Form = () => {
             id='map'
             style={{ width: '500px', height: '400px' }}
           ></div>
-          {/* TODO: 태그 입력 부분 수정 + 배열로 넘기기 */}
           <div>
             {post.tag.map((tagStr, idx) => {
               <div key={idx}>
