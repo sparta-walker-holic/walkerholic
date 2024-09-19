@@ -19,6 +19,8 @@ const Form = () => {
       lat: 0,
       lng: 0,
     },
+    address: '',
+    like: 0,
   });
   const [previewUrl, setPreviewUrl] = useState('');
   const navigate = useNavigate();
@@ -49,20 +51,40 @@ const Form = () => {
       // 클릭한 곳의 위도, 경도 정보를 가져옴
       const latlng = mouseEvent.latLng;
 
-      // 마커를 클릭한 위치로 이동
-      marker.setPosition(latlng);
+      // 클릭한 곳의 주소 정보를 가져옴
+      // TODO: 주소가 화면에 노출되면 좋을 듯
+      searchDetailAddrFromCoords(latlng, function (result, status) {
+        console.log(result, status);
 
-      setPost((prevPost) => ({
-        ...prevPost,
-        position: coordinate,
-      }));
+        if (status === kakao.maps.services.Status.OK) {
+          console.log(result[0].address.address_name);
 
-      const coordinate = {
-        lat: latlng.getLat(),
-        lng: latlng.getLng(),
-      };
+          const address = result[0].address.address_name;
+          // 마커를 클릭한 위치로 이동
+          marker.setPosition(latlng);
+
+          const coordinate = {
+            lat: latlng.getLat(),
+            lng: latlng.getLng(),
+          };
+
+          setPost((prevPost) => ({
+            ...prevPost,
+            position: coordinate,
+            address: address,
+          }));
+        }
+      });
     });
   }, []);
+
+  // 주소-좌표 변환
+  const geocoder = new kakao.maps.services.Geocoder();
+
+  function searchDetailAddrFromCoords(coords, callback) {
+    // 좌표로 법정동 상세 주소 정보를 요청합니다
+    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+  }
 
   // 데이터 추가
   const onSubmitHandler = async (post) => {
@@ -128,14 +150,6 @@ const Form = () => {
               setPost({ ...post, title: e.target.value });
             }}
           />
-          <input className='w-[500px] py-2 my-2 border p-2' />
-          <button
-            className='w-20 border '
-            type='button'
-            onClick={onSearchHandler}
-          >
-            검색하기
-          </button>
           <p>아래 지도에서 원하는 위치를 클릭해주세요!</p>
           <div
             id='map'
