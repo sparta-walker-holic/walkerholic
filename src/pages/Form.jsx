@@ -62,13 +62,6 @@ const Form = () => {
         lng: latlng.getLng(),
       };
     });
-
-    // 데이터 요청
-    const fetchPost = async () => {
-      const { data } = await axios.get(`${API_URL}/posts`);
-      setPosts(data);
-    };
-    fetchPost();
   }, []);
 
   // 데이터 추가
@@ -110,6 +103,11 @@ const Form = () => {
     setPost({ ...post, tag: tagArr });
   };
 
+  // 주소 검색하기
+  const onSearchHandler = () => {
+    alert('연결 확인');
+  };
+
   return (
     <>
       <h1 className='text-3xl font-bold text-center'>게시글 작성</h1>
@@ -130,6 +128,14 @@ const Form = () => {
               setPost({ ...post, title: e.target.value });
             }}
           />
+          <input className='w-[500px] py-2 my-2 border p-2' />
+          <button
+            className='w-20 border '
+            type='button'
+            onClick={onSearchHandler}
+          >
+            검색하기
+          </button>
           <p>아래 지도에서 원하는 위치를 클릭해주세요!</p>
           <div
             id='map'
@@ -150,7 +156,6 @@ const Form = () => {
               onChange={handleKeyDown}
             />
           </div>
-
           <textarea
             required
             className='w-[500px] h-48 py-2 my-2 border p-2'
@@ -176,7 +181,6 @@ const Form = () => {
             </button>
           </div>
         </form>
-        <button className='w-20 border'>이전</button>
       </div>
     </>
   );
