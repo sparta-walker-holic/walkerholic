@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import regions from '../data/regions.js';
 import cities from '../data/cities.js';
-import mockData from '../data/mockData.js';
 import PostListSideBar from '../components/map/PostListSideBar.jsx';
+import { useGetPosts } from '../query/postQuery.js';
+import { useNavigate } from 'react-router-dom';
 
 const { kakao } = window;
 const KOREA_LATLNG_CENTER = { lat: 36.2683, lng: 127.6358 };
@@ -13,16 +14,18 @@ const INITIAL_MAP_OPTIONS = {
 
 const Map = () => {
   const mapRef = useRef(null);
+  const { data: posts, isSuccess, isError } = useGetPosts();
+  if (isError) {
+    // TODO: 에러처리 추가
+    // useEffect가 경우에따라 실행되지 않으니 오류가 생기는데 보통 어떻게 처리하는지?!
+    // if (confirm('오류가 발생했습니다. 메인으로 이동합니다.')) {
+    // return <Link to='/' />;
+    // navigate('/');
+    // }
+  }
 
-  const [mode, setMode] = useState('regions');
-  const [selectedRegion, setSelectedRegion] = useState(null);
-  const [postsOnPostBar, setPostsOnPostBar] = useState([]);
-
-  useEffect(() => {
-    const container = document.getElementById('map');
-    mapRef.current = new kakao.maps.Map(container, INITIAL_MAP_OPTIONS);
-
-    const markers = mockData.posts.map((post) => {
+  const setMarkers = () => {
+    const markers = posts.map((post) => {
       const { id, title, position } = post;
       const marker = new kakao.maps.Marker({
         title: title,
@@ -34,6 +37,7 @@ const Map = () => {
       kakao.maps.event.addListener(marker, 'click', () => {
         setPostsOnPostBar([id]);
       });
+
       return marker;
     });
 
@@ -53,6 +57,19 @@ const Map = () => {
 
       setPostsOnPostBar(newPostsOnPostBar);
     });
+  };
+
+  if (isSuccess) {
+    setMarkers();
+  }
+
+  const [mode, setMode] = useState('regions');
+  const [selectedRegion, setSelectedRegion] = useState(null);
+  const [postsOnPostBar, setPostsOnPostBar] = useState([]);
+
+  useEffect(() => {
+    const container = document.getElementById('map');
+    mapRef.current = new kakao.maps.Map(container, INITIAL_MAP_OPTIONS);
   }, []);
 
   const handleSelectRegion = (region) => {
