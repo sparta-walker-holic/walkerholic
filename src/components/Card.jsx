@@ -61,7 +61,7 @@ const Card = ({ searchTag, type }) => {
                     </div>
 
                     <div className='flex flex-wrap items-center mt-2 '>
-                      <div className='inline-flex items-center text-indigo-300 md:mb-2 lg:mb-0'>
+                      <div className='inline-flex items-center -text--secondary-green md:mb-2 lg:mb-0'>
                         {post.author_nickname}
                       </div>
                       <div className='inline-flex items-center ml-auto mr-3 text-gray-400 lg:ml-auto md:ml-0'>
