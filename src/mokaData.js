@@ -9,6 +9,7 @@ export const mockData = {
       author_nickname: '테스트닉네임',
       tag: ['상쾌한', '즐거운'],
       position: { lat: 37.52697434165539, lng: 126.93476484149424 },
+      likes: '5',
     },
     {
       title: '운동인가 산책인가',
@@ -19,6 +20,7 @@ export const mockData = {
       author_nickname: '테스트닉네임',
       tag: ['상쾌한', '힘든'],
       position: { lat: 37.55134802413595, lng: 126.98824805727442 },
+      likes: '7',
     },
     {
       title: '골목구경하기 좋은 곳',
@@ -29,6 +31,7 @@ export const mockData = {
       author_nickname: '테스트닉네임',
       tag: ['여유로운', '옛스러운'],
       position: { lat: 37.58283092380956, lng: 126.98352750019338 },
+      likes: '1',
     },
     {
       title: '서울숲에서 여유를',
@@ -40,6 +43,7 @@ export const mockData = {
       author_nickname: '다른사람',
       tag: ['여유로운'],
       position: { lat: 37.54429064417875, lng: 127.03730108502602 },
+      likes: '8',
     },
     {
       title: '여의도 한강공원에서 자전거 타기',
@@ -50,6 +54,7 @@ export const mockData = {
       author_nickname: '다른사람',
       tag: ['상쾌한', '활동적인'],
       position: { lat: 37.52775543045666, lng: 126.9338123653617 },
+      likes: '1',
     },
     {
       title: '동네 편의점에서 간단한 야식',
@@ -60,6 +65,7 @@ export const mockData = {
       author_nickname: '테스트닉네임',
       tag: ['일상적인', '편안한'],
       position: { lat: 37.54998574017331, lng: 126.95465244119305 },
+      likes: '12',
     },
   ],
 };
