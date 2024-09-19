@@ -70,8 +70,6 @@ const Form = () => {
     fetchPost();
   }, []);
 
-  console.log('posts', posts);
-
   // 데이터 추가
   const onSubmitHandler = async (post) => {
     const date = new Date();
@@ -94,12 +92,12 @@ const Form = () => {
     reader.onloadend = (e) => {
       const base64Img = e.target.result;
       setPost({ ...post, img_url: base64Img });
-      console.log(file);
-      console.log(e.target.result);
+      // console.log(file);
+      // console.log(e.target.result);
     };
     reader.readAsDataURL(file);
     // setPreviewUrl(reader.result);
-    console.log(reader);
+    // console.log(reader);
   };
 
   // 태그 입력
@@ -127,7 +125,7 @@ const Form = () => {
           }}
         >
           <input
-            // required
+            required
             className='w-[500px] py-2 my-2 border p-2'
             placeholder='제목을 입력해주세요.'
             type='text'
@@ -148,7 +146,7 @@ const Form = () => {
               </div>;
             })}
             <input
-              // required
+              required
               className='w-[500px] py-2 my-2 border p-2'
               name='tag[]'
               placeholder='태그를 입력해주세요.'
@@ -158,7 +156,7 @@ const Form = () => {
           </div>
 
           <textarea
-            // required
+            required
             className='w-[500px] h-48 py-2 my-2 border p-2'
             placeholder='내용을 입력해주세요.'
             onChange={(e) => {
