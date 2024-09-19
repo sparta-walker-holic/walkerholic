@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from './layout';
+import Layout from './Layout';
 import Login from './../pages/Login';
 import Main from './../pages/Main';
 import Map from './../pages/Map';
@@ -41,7 +41,7 @@ const Router = () => {
             element={<Form />}
           />
           <Route
-            path='/detail'
+            path='/detail/:postId'
             element={<Detail />}
           />
         </Route>

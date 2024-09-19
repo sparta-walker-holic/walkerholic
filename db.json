@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": "e7da",
+      "user_id": "testaccount1",
+      "nickname": "testnickname",
+      "profile_img_url": "",
+      "favorite_posts": [],
+      "my_posts": []
+    }
+  ]
+}

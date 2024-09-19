@@ -3,9 +3,9 @@ import Navibar from '../components/Navibar';
 
 const Layout = () => {
   return (
-    <div>
+    <div className='h-full'>
       <Navibar />
-      <main className='mt-[100px]'>
+      <main className='h-full mt-[100px]'>
         <Outlet />
       </main>
       <footer />
