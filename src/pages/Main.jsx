@@ -14,17 +14,17 @@ const Main = () => {
     <>
       <div>
         <div className='grid place-items-center'>
-          <div className='  mt-[150px] space-x-5 ml-[65px]'>
+          <div className='  mt-[150px] space-x-[65px] ml-[65px]'>
             <button
-              className='  w-[230px] h-[80px] rounded-lg  border border-slate-300 hover:border-indigo-300 '
+              className='  w-[300px] h-[100px] rounded-lg  border -border--primary-green hover:-border--secondary-green '
               onClick={() => {
                 navigate('/map');
               }}
             >
-              <div className='flex place-items-center ml-[52px]'>
+              <div className='flex place-items-center ml-[80px]'>
                 <a href='https://imgbb.com/'>
                   <img
-                    className='w-[60px]'
+                    className='w-[65px]'
                     src='https://i.ibb.co/JQ4ZwCJ/image.png'
                     alt='image'
                   />
@@ -33,15 +33,15 @@ const Main = () => {
               </div>
             </button>
             <button
-              className=' w-[230px] h-[80px]  rounded-lg border border-slate-300 hover:border-indigo-300'
+              className=' w-[300px] h-[100px]  rounded-lg border -border--primary-green hover:-border--secondary-green'
               onClick={() => {
                 navigate('/form');
               }}
             >
-              <div className='flex place-items-center ml-[45px]'>
+              <div className='flex place-items-center ml-[85px] '>
                 <a href='https://imgbb.com/'>
                   <img
-                    className='w-10'
+                    className='w-[38px]'
                     src='https://i.ibb.co/bRxpBp3/image.png'
                     alt='image'
                   />
@@ -53,40 +53,40 @@ const Main = () => {
           <div>
             <div className='mt-5 ml-[70px] '>
               <input
-                className=' text-center w-[500px] h-[60px] rounded-full border border-slate-300 hover:border-indigo-300'
+                className=' text-center w-[800px] h-[60px] rounded-full border -border--primary-green hover:-border--secondary-green'
                 type='text'
                 placeholder='태그를 입력해주세요'
                 value={searchTag}
                 onChange={(e) => setSearchTag(e.target.value)}
               />
             </div>
-            <div className='mt-3 ml-[90px] space-x-4'>
+            <div className='mt-3 ml-[230px] space-x-4'>
               <button
-                className='p-1 rounded-lg bg-slate-200 hover:bg-slate-300'
+                className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
                 onClick={() => handleTagClick('상쾌한')}
               >
                 #상쾌한
               </button>
               <button
-                className='p-1 rounded-lg bg-slate-200 hover:bg-slate-300'
+                className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
                 onClick={() => handleTagClick('즐거운')}
               >
                 #즐거운
               </button>
               <button
-                className='p-1 rounded-lg bg-slate-200 hover:bg-slate-300'
+                className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
                 onClick={() => handleTagClick('일상적인')}
               >
                 #일상적인
               </button>
               <button
-                className='p-1 rounded-lg bg-slate-200 hover:bg-slate-300'
+                className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
                 onClick={() => handleTagClick('여유로운')}
               >
                 #여유로운
               </button>
               <button
-                className='p-1 rounded-lg bg-slate-200 hover:bg-slate-300'
+                className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
                 onClick={() => handleTagClick('활동적인')}
               >
                 #활동적인
@@ -95,7 +95,10 @@ const Main = () => {
           </div>
         </div>
         <div className='mt-[220px]  ml-20'>
-          <Card searchTag={searchTag} />
+          <Card
+            type={'MAIN'}
+            searchTag={searchTag}
+          />
         </div>
       </div>
     </>

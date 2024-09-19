@@ -85,14 +85,14 @@ const Map = () => {
       <div className={`flex flex-col h-full ${postsOnPostBar.length > 0 ? 'w-[calc(100vw-230px)]' : 'w-full'}`}>
         {mode === 'regions' ? (
           <div
-            className='grid px-5 gap-x-3 py-3 gap-y-1'
+            className='grid px-5 py-3 gap-x-3 gap-y-1'
             style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
           >
             {regions.map((region, index) => {
               return (
                 <button
                   key={index}
-                  className='rounded-xl border border-gray-800'
+                  className='border border-gray-800 rounded-xl'
                   onClick={() => {
                     handleSelectRegion(region);
                   }}
@@ -104,7 +104,7 @@ const Map = () => {
           </div>
         ) : null}
         {mode === 'cities' ? (
-          <div className='flex flex-col px-5 my-5 gap-2'>
+          <div className='flex flex-col gap-2 px-5 my-5'>
             <h3
               className='font-bold hover:cursor-pointer'
               onClick={handleBackToRegionSelection}
@@ -119,7 +119,7 @@ const Map = () => {
                 return (
                   <button
                     key={index}
-                    className='rounded-xl border border-gray-800'
+                    className='border border-gray-800 rounded-xl'
                     onClick={() => {
                       handleSelectCity(city);
                     }}
@@ -131,7 +131,7 @@ const Map = () => {
             </div>
           </div>
         ) : null}
-        <div className='flex-grow h-full w-full flex justify-center items-center'>
+        <div className='flex items-center justify-center flex-grow w-full h-full'>
           <div
             id='map'
             className='w-11/12 h-full'
