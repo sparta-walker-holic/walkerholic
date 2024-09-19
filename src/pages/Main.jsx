@@ -14,22 +14,20 @@ const Main = () => {
     <>
       <div>
         <div className='grid place-items-center'>
-          <div className='  mt-[150px] space-x-[65px] ml-[65px]'>
+          <div className='  mt-[150px] space-x-[30px] ml-[65px]'>
             <button
               className='  w-[300px] h-[100px] rounded-lg  border -border--primary-green hover:-border--secondary-green '
               onClick={() => {
                 navigate('/map');
               }}
             >
-              <div className='flex place-items-center ml-[80px]'>
-                <a href='https://imgbb.com/'>
-                  <img
-                    className='w-[65px]'
-                    src='https://i.ibb.co/JQ4ZwCJ/image.png'
-                    alt='image'
-                  />
-                </a>
-                <p>지도보기</p>
+              <div className='flex place-items-center ml-[70px]'>
+                <img
+                  className='w-[65px] mr-4 '
+                  src='https://i.ibb.co/JQ4ZwCJ/image.png'
+                  alt='image'
+                />
+                <p className='text-[20px]'>지도보기</p>
               </div>
             </button>
             <button
@@ -38,20 +36,18 @@ const Main = () => {
                 navigate('/form');
               }}
             >
-              <div className='flex place-items-center ml-[85px] '>
-                <a href='https://imgbb.com/'>
-                  <img
-                    className='w-[38px]'
-                    src='https://i.ibb.co/bRxpBp3/image.png'
-                    alt='image'
-                  />
-                </a>
-                <p>장소추천하기</p>
+              <div className='flex place-items-center ml-[65px] '>
+                <img
+                  className='w-[38px] mr-4 '
+                  src='https://i.ibb.co/bRxpBp3/image.png'
+                  alt='image'
+                />
+                <p className='text-[20px]'>장소추천하기</p>
               </div>
             </button>
           </div>
           <div>
-            <div className='mt-5 ml-[70px] '>
+            <div className='mt-[100px] ml-[70px] '>
               <input
                 className=' text-center w-[800px] h-[60px] rounded-full border -border--primary-green hover:-border--secondary-green'
                 type='text'
@@ -60,7 +56,7 @@ const Main = () => {
                 onChange={(e) => setSearchTag(e.target.value)}
               />
             </div>
-            <div className='mt-3 ml-[230px] space-x-4'>
+            <div className='mt-[35px] ml-[230px] space-x-4'>
               <button
                 className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
                 onClick={() => handleTagClick('상쾌한')}

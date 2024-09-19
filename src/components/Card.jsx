@@ -95,15 +95,15 @@ const Card = ({ searchTag, type }) => {
                     src={post.img_url}
                     alt='blog'
                   />
-                  <div className='p-6 transition duration-300 ease-in hover:bg-indigo-600 hover:text-white'>
+                  <div className='p-6 transition duration-300 ease-in hover:-bg--primary-green hover:text-white'>
                     <h1 className='mb-3 text-2xl font-semibold h-[64px]'>{post.title}</h1>
                     <p className='mb-3 leading-relaxed h-[52px]'>{post.description}</p>
-                    <div className='flex flex-wrap items-center mt-6 text-indigo-300'>
+                    <div className='flex flex-wrap items-center mt-6 -text--secondary-green'>
                       {new Date(post.created_at).toLocaleDateString()}
                       <div className='text-gray-600 ml-[130px]'>❤️ {post.likes}</div>
                     </div>
                     <div className='flex flex-wrap items-center mt-2 '>
-                      <div className='inline-flex items-center text-indigo-300 md:mb-2 lg:mb-0'>
+                      <div className='inline-flex items-center -text--secondary-green md:mb-2 lg:mb-0'>
                         {post.author_nickname}
                       </div>
                       <div className='inline-flex items-center ml-auto mr-3 text-gray-400 lg:ml-auto md:ml-0'>
@@ -128,8 +128,9 @@ const NextArrow = (props) => {
     <div
       className={className}
       style={{
-        background: 'gray',
+        background: 'rgba(159, 159, 159, 0.5)',
         borderRadius: '100%',
+        pauseOnHover: true,
       }}
       onClick={onClick}
     />
@@ -143,10 +144,9 @@ const PrevArrow = (props) => {
       className={className}
       style={{
         ...style,
-        background: 'rgba(128, 128, 128, 0.5)',
-        borderRadius: '50%',
-        width: '50px',
-        height: '50px',
+        background: 'rgba(159, 159, 159, 0.5)',
+        borderRadius: '100%',
+        pauseOnHover: true,
       }}
       onClick={onClick}
     />
