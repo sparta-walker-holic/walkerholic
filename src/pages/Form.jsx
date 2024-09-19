@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
   const API_URL = 'http://localhost:4000';
-
+  const { kakao } = window;
   const [posts, setPosts] = useState(null);
   const [post, setPost] = useState({
     title: '',
