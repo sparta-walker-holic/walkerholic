@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const Form = () => {
-  // const [clickLatLng, setClickLatLng] = useState({ lat: '', lng: '' });
   const API_URL = 'http://localhost:4000';
 
   const [posts, setPosts] = useState(null);
@@ -76,7 +75,6 @@ const Form = () => {
   console.log('posts', posts);
 
   // 데이터 추가
-  // TODO: 새로고침해야 데이터 들어가는 것 수정
   const onSubmitHandler = async (post) => {
     const date = new Date();
     const dateStr = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
@@ -86,26 +84,19 @@ const Form = () => {
       created_at: dateStr,
     }));
     console.log('post=> ', post);
-    // await axios.post(`${API_URL}/posts`, post);
 
     try {
       await axios.post(`${API_URL}/posts`, { ...post, created_at: dateStr });
     } catch (error) {
       console.log(error);
     }
-    // setPost({ ...post, created_at: dateStr });
   };
 
+  // 이미지 업로드
   const onChangeImageUpload = (e) => {
-    // const file = e.target.files[0];
-    // const imageUrl = URL.createObjectURL(file);
-    // setUploadImgUrl(imageUrl);
-    // setPost({ ...post, img_url: imageUrl });
-
     const reader = new FileReader();
     const file = e.target.files[0];
 
-    // TODO: Base64 데이터 최적화하기 => 가독성 너무 안 좋음
     reader.onloadend = (e) => {
       const base64Img = e.target.result;
       setPost({ ...post, img_url: base64Img });
@@ -125,7 +116,6 @@ const Form = () => {
           className='my-8 grid place-items-center'
           onSubmit={(e) => {
             e.preventDefault();
-            // alert('test');
             onSubmitHandler(post);
           }}
         >
@@ -143,7 +133,7 @@ const Form = () => {
             id='map'
             style={{ width: '500px', height: '400px' }}
           ></div>
-          {/* TODO: 태그 입력 부분 수정 */}
+          {/* TODO: 태그 입력 부분 수정 + 배열로 넘기기 */}
           <input
             // required
             className='w-[500px] py-2 my-2 border p-2'
