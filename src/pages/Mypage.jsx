@@ -1,7 +1,12 @@
+import mockData from '../mock';
+
 const Mypage = () => {
+  const post = mockData.posts;
+
+  //포스트 맥돌리기
+
   return (
     <div className='flex flex-col h-full'>
-      <div className='bg-neutral-200 h-16'>레이아웃헤더</div>
       {/* 열받앙 헤이트가 비율로 적용이안됨.  */}
       <body className='flex flex-col p-10 justify-between'>
         <div className=' bg-neutral-200 w-7/12 h-48 mx-auto flex flex-col gap-5 justify-center items-center rounded-lg'>
@@ -16,44 +21,48 @@ const Mypage = () => {
         </div>
         <div className='flex flex-col gap-5'>
           <p className='text-lg'>내장소</p>
-          <div className=''>
-            {/* 왜 콜럼은 되는데 로우로하면 찌그러짐? */}
-            <div className='border-black'>
-              {/* //보더컬러 왜 적용안됨? 열받 */}
-              <div className='flex w-1/6 bg-neutral-200 h-20 rounded-t-lg'>게시물 사진</div>
-              <div className='flex  flex-col w-1/6 bg-neutral-200 h-20 rounded-b-lg'>
-                <p className='pl-2'>지역</p>
-                <p className='pl-2'>구</p>
-                <div className='flex justify-around'>
-                  <div>키워드</div>
-                  <button className='bg-blue-950 text-white w-12 rounded-md'>삭제</button>
+          <div className='flex gap-5'>
+            {post.map((item) => (
+              <div
+                className='flex w-1/6 flex-col'
+                key={item.id}
+              >
+                <img
+                  className=' bg-neutral-200 h-28 rounded-t-lg'
+                  src={item.img_url}
+                />
+                <div className=' bg-neutral-200 h-20 rounded-b-lg'>
+                  <p className='pl-2'>지역</p>
+                  <p className='pl-2'>구</p>
+                  <div className='flex justify-around'>
+                    <div>{item.tag}</div>
+                    <button className='bg-blue-950 text-white w-12 rounded-md'>삭제</button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className='border-black'>
-              {/* //보더컬러 왜 적용안됨? 열받 */}
-              <div className='flex w-1/6 bg-neutral-200 h-20 rounded-t-lg'>게시물 사진</div>
-              <div className='flex  flex-col w-1/6 bg-neutral-200 h-20 rounded-b-lg'>
-                <p className='pl-2'>지역</p>
-                <p className='pl-2'>구</p>
-                <div className='flex justify-around'>
-                  <div>키워드</div>
-                  <button className='bg-blue-950 text-white w-12 rounded-md'>삭제</button>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
           <p className='text-lg'>좋아요한 장소</p>
-          <div>
-            <div className='flex w-1/6 bg-neutral-200 h-20 rounded-t-lg'>게시물 사진</div>
-            <div className='flex flex-col w-1/6 bg-neutral-200 h-20 rounded-b-lg'>
-              <p className='pl-2'>지역</p>
-              <p className='pl-2'>구</p>
-              <div className='flex justify-around'>
-                <div>키워드</div>
-                <button className='bg-blue-950 text-white w-12 rounded-md'>삭제</button>
+          <div className='flex gap-5'>
+            {post.map((item) => (
+              <div
+                className='flex w-1/6 flex-col'
+                key={item.id}
+              >
+                <img
+                  className=' bg-neutral-200 h-28 rounded-t-lg'
+                  src={item.img_url}
+                />
+                <div className=' bg-neutral-200 h-20 rounded-b-lg'>
+                  <p className='pl-2'>지역</p>
+                  <p className='pl-2'>구</p>
+                  <div className='flex justify-around'>
+                    <div>{item.tag}</div>
+                    <button className='bg-blue-950 text-white w-12 rounded-md'>삭제</button>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </body>
