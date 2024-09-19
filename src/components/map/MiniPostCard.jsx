@@ -6,7 +6,7 @@ const MiniPostCard = ({ postId }) => {
   const { title, author_nickname } = post;
   const navigate = useNavigate();
   const handleMoveToDetail = () => {
-    navigate(`details/${postId}`);
+    navigate(`detail/${postId}`);
   };
 
   return (
