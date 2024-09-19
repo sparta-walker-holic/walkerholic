@@ -30,6 +30,7 @@ const Main = () => {
                 <p className='text-[20px]'>지도보기</p>
               </div>
             </button>
+
             <button
               className=' w-[300px] h-[100px]  rounded-lg border -border--primary-green hover:-border--secondary-green'
               onClick={() => {
