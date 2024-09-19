@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
-  const { kakao } = window;
   const API_URL = 'http://localhost:4000';
   const { kakao } = window;
   const [posts, setPosts] = useState(null);
