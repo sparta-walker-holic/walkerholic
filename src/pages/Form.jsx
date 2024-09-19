@@ -61,10 +61,8 @@ const Form = () => {
         lng: latlng.getLng(),
       };
     });
-  }, []);
 
-  // 데이터 요청
-  useEffect(() => {
+    // 데이터 요청
     const fetchPost = async () => {
       const { data } = await axios.get(`${API_URL}/posts`);
       setPosts(data);
@@ -79,12 +77,14 @@ const Form = () => {
     const date = new Date();
     const dateStr = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     console.log(dateStr);
-    setPost((prevPost) => ({
-      ...prevPost,
-      created_at: dateStr,
-    }));
-    console.log('post=> ', post);
 
+    // setPost((prevPost) => ({
+    //   ...prevPost,
+    //   created_at: dateStr,
+    // }));
+    // console.log('post=> ', post);
+
+    // TODO: user 정보 입력
     try {
       await axios.post(`${API_URL}/posts`, { ...post, created_at: dateStr });
     } catch (error) {
@@ -107,6 +107,21 @@ const Form = () => {
     // setPreviewUrl(reader.result);
     console.log(reader);
   };
+
+  // 태그 입력
+  const handleKeyDown = (e) => {
+    // if (e.key != 'Enter') return;
+    const value = e.target.value;
+    const tagArr = value.split(',').map((item) => {
+      return item.trim();
+    });
+
+    // TODO: tagArr.map => trim()
+    console.log(tagArr);
+    setPost({ ...post, tag: tagArr });
+    // e.target.value = '';
+  };
+  // console.log('post.tag => ', post.tag);
 
   return (
     <>
@@ -134,14 +149,23 @@ const Form = () => {
             style={{ width: '500px', height: '400px' }}
           ></div>
           {/* TODO: 태그 입력 부분 수정 + 배열로 넘기기 */}
-          <input
-            // required
-            className='w-[500px] py-2 my-2 border p-2'
-            placeholder='태그를 입력해주세요.'
-            onChange={(e) => {
-              setPost({ ...post, tag: e.target.value });
-            }}
-          />
+          <div>
+            {post.tag.map((tagStr, idx) => {
+              <div key={idx}>
+                <sapn>{tagStr}</sapn>
+                <span>&times;</span>
+              </div>;
+            })}
+            <input
+              // required
+              className='w-[500px] py-2 my-2 border p-2'
+              name='tag[]'
+              placeholder='태그를 입력해주세요.'
+              onChange={handleKeyDown}
+              // onKeyDown={handleKeyDown}
+            />
+          </div>
+
           <textarea
             // required
             className='w-[500px] h-48 py-2 my-2 border p-2'

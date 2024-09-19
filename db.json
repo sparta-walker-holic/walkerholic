@@ -1,17 +1,232 @@
 {
   "posts": [
     {
-      "id": "b538",
+      "id": "3201",
       "title": "",
       "description": "",
       "img_url": "",
       "created_at": "2024-9-19",
       "author_id": "",
       "author_nickname": "",
-      "tag": [],
+      "tag": [
+        "ㅠㅠ"
+      ],
       "position": {
         "lat": 0,
         "lng": 0
+      }
+    },
+    {
+      "id": "83e8",
+      "title": "",
+      "description": "",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅠㅠ"
+      ],
+      "position": {
+        "lat": 0,
+        "lng": 0
+      }
+    },
+    {
+      "id": "8f30",
+      "title": "",
+      "description": "",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅠㅠ, ㅎㅎ"
+      ],
+      "position": {
+        "lat": 0,
+        "lng": 0
+      }
+    },
+    {
+      "id": "bc58",
+      "title": "",
+      "description": "",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅠㅠ, ㅎㅎ"
+      ],
+      "position": {
+        "lat": 0,
+        "lng": 0
+      }
+    },
+    {
+      "id": "0128",
+      "title": "",
+      "description": "",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅠㅠ, ㅎㅎ"
+      ],
+      "position": {
+        "lat": 0,
+        "lng": 0
+      }
+    },
+    {
+      "id": "ae83",
+      "title": "",
+      "description": "",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅠㅠ, ㅎㅎ"
+      ],
+      "position": {
+        "lat": 0,
+        "lng": 0
+      }
+    },
+    {
+      "id": "4194",
+      "title": "",
+      "description": "",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅎㅎ, ㅠㅠ"
+      ],
+      "position": {
+        "lat": 0,
+        "lng": 0
+      }
+    },
+    {
+      "id": "7be0",
+      "title": "제목",
+      "description": "ㅠㅠㅠ",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [],
+      "position": {
+        "lat": 37.5542899036498,
+        "lng": 126.9718202697543
+      }
+    },
+    {
+      "id": "efd8",
+      "title": "제목",
+      "description": "ㅠㅠㅠ",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [],
+      "position": {
+        "lat": 37.5542899036498,
+        "lng": 126.9718202697543
+      }
+    },
+    {
+      "id": "fca4",
+      "title": "ㅎㅎㅎㅎ",
+      "description": "",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅠㅠ",
+        " ㅎㅎ"
+      ],
+      "position": {
+        "lat": 0,
+        "lng": 0
+      }
+    },
+    {
+      "id": "31ce",
+      "title": "ㅎㅎ",
+      "description": "ㅠㅠㅠㅠㅠㅠㅠ",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅠㅠ",
+        " ㅠㅠ",
+        " ㅠㅠㅎ"
+      ],
+      "position": {
+        "lat": 37.55399271866661,
+        "lng": 126.97243150589631
+      }
+    },
+    {
+      "id": "f2c1",
+      "title": "ㅠㅠ",
+      "description": "휴ㅠㅠㅠ",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅠ",
+        " ㅠㅠ",
+        " ㅠㅠㅠ"
+      ],
+      "position": {
+        "lat": 37.55570381403747,
+        "lng": 126.96919410650676
+      }
+    },
+    {
+      "id": "6247",
+      "title": "ㅎㅎ",
+      "description": "ㅠㅠㅠㅠ",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅠㅠ",
+        "ㅂ",
+        "ㄹㄹㄹㄴ"
+      ],
+      "position": {
+        "lat": 37.55542442767518,
+        "lng": 126.9688999708839
+      }
+    },
+    {
+      "id": "afb1",
+      "title": "ㅠㅠ",
+      "description": "ㅠㅠㅠ",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅠㅠ",
+        "ㅠㅠ",
+        "ㅠㅠㅎ"
+      ],
+      "position": {
+        "lat": 37.55510001172722,
+        "lng": 126.96868507732728
       }
     }
   ]
