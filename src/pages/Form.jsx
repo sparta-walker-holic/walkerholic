@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
   const API_URL = 'http://localhost:4000';
@@ -19,6 +20,7 @@ const Form = () => {
     },
   });
   const [previewUrl, setPreviewUrl] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 지도 API 불러오기
@@ -79,6 +81,8 @@ const Form = () => {
     // TODO: created_at 뒤에 user 정보 입력
     try {
       await axios.post(`${API_URL}/posts`, { ...post, created_at: dateStr });
+      alert('게시글이 등록되었습니다!');
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
@@ -170,10 +174,10 @@ const Form = () => {
             onChange={onChangeImageUpload}
           />
           <div>{previewUrl}</div>
-          <div className='w-[500px] flex justify-between'>
-            <button className='w-20 border'>이전</button>
+          <div>
+            {/* <button className='w-20 border'>이전</button> */}
             <button
-              className='w-20 border'
+              className='w-20 border '
               type='submit'
             >
               {' '}
@@ -181,6 +185,7 @@ const Form = () => {
             </button>
           </div>
         </form>
+        <button className='w-20 border'>이전</button>
       </div>
     </>
   );
