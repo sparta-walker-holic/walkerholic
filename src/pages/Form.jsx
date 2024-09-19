@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
+  const { kakao } = window;
   const API_URL = 'http://localhost:4000';
 
   const [posts, setPosts] = useState(null);
@@ -111,10 +112,10 @@ const Form = () => {
 
   return (
     <>
-      <h1 className='text-center text-3xl font-bold'>게시글 작성</h1>
+      <h1 className='text-3xl font-bold text-center'>게시글 작성</h1>
       <div>
         <form
-          className='my-8 grid place-items-center'
+          className='grid my-8 place-items-center'
           onSubmit={(e) => {
             e.preventDefault();
             onSubmitHandler(post);
