@@ -2,8 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import regions from '../data/regions.js';
 import cities from '../data/cities.js';
 import PostListSideBar from '../components/map/PostListSideBar.jsx';
-import { useGetPosts } from '../query/postQuery.js';
-import { useNavigate } from 'react-router-dom';
+import { useGetPostsByLikes } from '../query/postQuery.js';
 
 const { kakao } = window;
 const KOREA_LATLNG_CENTER = { lat: 36.2683, lng: 127.6358 };
@@ -14,7 +13,7 @@ const INITIAL_MAP_OPTIONS = {
 
 const Map = () => {
   const mapRef = useRef(null);
-  const { data: posts, isSuccess, isError } = useGetPosts();
+  const { data: posts, isSuccess, isError } = useGetPostsByLikes();
   if (isError) {
     // TODO: 에러처리 추가
     // useEffect가 경우에따라 실행되지 않으니 오류가 생기는데 보통 어떻게 처리하는지?!

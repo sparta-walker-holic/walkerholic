@@ -10,3 +10,21 @@ export const getPosts = async () => {
     return error.response.data;
   }
 };
+
+export const getPostsByDate = async () => {
+  try {
+    const response = await axios.get(`${API_URL}?_sort=-created_at`);
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+export const getPostsByLikes = async () => {
+  try {
+    const response = await axios.get(`${API_URL}?_sort=-likes`);
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};

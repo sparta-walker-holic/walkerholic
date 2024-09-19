@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { useGetPosts } from '../../query/postQuery.js';
+import { useGetPosts, useGetPostsByLikes } from '../../query/postQuery.js';
 
 const MiniPostCard = ({ postId }) => {
-  const { data: posts } = useGetPosts();
+  const { data: posts } = useGetPostsByLikes();
   const post = posts?.find((post) => post.id === postId);
   const { title, author_nickname } = post;
   const navigate = useNavigate();
