@@ -1,6 +1,7 @@
 export const mockData = {
   posts: [
     {
+      id: 0,
       title: '친구들이랑 피맥하기 좋은 곳',
       description: '돗자리깔고 맛있는 거 시켜서 친구들이랑 놀면 너무 좋아요',
       img_url: 'https://lh5.googleusercontent.com/p/AF1QipN11Fc3rZ2Lvx7_I6m2O6xvhbv9Kao8-uhtSbOh=w408-h306-k-no',
@@ -13,6 +14,7 @@ export const mockData = {
       likes: '5',
     },
     {
+      id: 1,
       title: '운동인가 산책인가',
       description: '정상에 도착하면 너무 기분 좋지만 걸어올라가면 세미등산 가능',
       img_url: 'https://lh5.googleusercontent.com/p/AF1QipNJ9LsLugH0jgBwMPETbXV8_qtXYPZt2M2UKQ3V=w408-h544-k-no',
@@ -25,6 +27,7 @@ export const mockData = {
       likes: '7',
     },
     {
+      id: 2,
       title: '골목구경하기 좋은 곳',
       description: '예쁜 주택들이 많다!',
       img_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq4Odko4cZbcLYxUSJXwKF_gNBkNW6QBiocQ&s',
@@ -37,6 +40,7 @@ export const mockData = {
       likes: '1',
     },
     {
+      id: 3,
       title: '서울숲에서 여유를',
       description: '서울 한가운데서 자연과 여유를 느낄 수 있는 곳',
       img_url:
@@ -50,6 +54,7 @@ export const mockData = {
       likes: '8',
     },
     {
+      id: 4,
       title: '여의도 한강공원에서 자전거 타기',
       description: '한강을 따라 자전거를 타며 바람을 맞는 기분이 최고!',
       img_url: 'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201511/06/htm_2015110615452242106.JPG',
@@ -62,6 +67,7 @@ export const mockData = {
       likes: '1',
     },
     {
+      id: 5,
       title: '동네 편의점에서 간단한 야식',
       description: '동네 산책하다가 편의점 들려서 야식까지 먹어주기',
       img_url: 'https://m.imaeil.com/photos/2021/08/10/2021081018064388822_l.jpg',

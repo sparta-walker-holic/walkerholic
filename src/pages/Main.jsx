@@ -1,4 +1,4 @@
-import Card from '../components/card';
+import Card from '../components/Card';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
