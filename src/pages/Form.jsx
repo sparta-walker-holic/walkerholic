@@ -51,8 +51,6 @@ const Form = () => {
       // 마커를 클릭한 위치로 이동
       marker.setPosition(latlng);
 
-      console.log('위도, 경도 => ', latlng.getLat(), latlng.getLng());
-
       setPost((prevPost) => ({
         ...prevPost,
         position: coordinate,
@@ -96,17 +94,12 @@ const Form = () => {
     reader.onloadend = (e) => {
       const base64Img = e.target.result;
       setPost({ ...post, img_url: base64Img });
-      // console.log(file);
-      // console.log(e.target.result);
     };
     reader.readAsDataURL(file);
-    // setPreviewUrl(reader.result);
-    // console.log(reader);
   };
 
   // 태그 입력
   const handleKeyDown = (e) => {
-    // if (e.key != 'Enter') return;
     const value = e.target.value;
     const tagArr = value.split(',').map((item) => {
       return item.trim();
@@ -114,7 +107,6 @@ const Form = () => {
 
     console.log(tagArr);
     setPost({ ...post, tag: tagArr });
-    // e.target.value = '';
   };
 
   return (
@@ -155,7 +147,6 @@ const Form = () => {
               name='tag[]'
               placeholder='태그를 입력해주세요.'
               onChange={handleKeyDown}
-              // onKeyDown={handleKeyDown}
             />
           </div>
 
@@ -175,7 +166,6 @@ const Form = () => {
           />
           <div>{previewUrl}</div>
           <div>
-            {/* <button className='w-20 border'>이전</button> */}
             <button
               className='w-20 border '
               type='submit'
