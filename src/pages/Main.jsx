@@ -1,4 +1,4 @@
-import Card from '../components/card';
+import Card from '../components/Card';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -22,13 +22,11 @@ const Main = () => {
               }}
             >
               <div className='flex place-items-center ml-[80px]'>
-                <a href='https://imgbb.com/'>
-                  <img
-                    className='w-[65px]'
-                    src='https://i.ibb.co/JQ4ZwCJ/image.png'
-                    alt='image'
-                  />
-                </a>
+                <img
+                  className='w-[65px]'
+                  src='https://i.ibb.co/JQ4ZwCJ/image.png'
+                  alt='image'
+                />
                 <p>지도보기</p>
               </div>
             </button>
@@ -39,13 +37,11 @@ const Main = () => {
               }}
             >
               <div className='flex place-items-center ml-[85px] '>
-                <a href='https://imgbb.com/'>
-                  <img
-                    className='w-[38px]'
-                    src='https://i.ibb.co/bRxpBp3/image.png'
-                    alt='image'
-                  />
-                </a>
+                <img
+                  className='w-[38px]'
+                  src='https://i.ibb.co/bRxpBp3/image.png'
+                  alt='image'
+                />
                 <p>장소추천하기</p>
               </div>
             </button>
