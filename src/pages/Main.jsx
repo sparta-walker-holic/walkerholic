@@ -1,4 +1,3 @@
-import Layout from '../shared/layout';
 import Card from '../components/card';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -13,8 +12,6 @@ const Main = () => {
 
   return (
     <>
-      <Layout />
-
       <div>
         <div className='grid place-items-center'>
           <div className='  mt-[150px] space-x-5 ml-[65px]'>
