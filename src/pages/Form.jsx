@@ -145,7 +145,7 @@ const Form = () => {
               required
               className='w-[500px] py-2 my-2 border p-2'
               name='tag[]'
-              placeholder='태그를 입력해주세요.'
+              placeholder='태그를 입력해주세요. ex) 활기찬, 생동감있는'
               onChange={handleKeyDown}
             />
           </div>

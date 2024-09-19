@@ -8,7 +8,10 @@
       "created_at": "2024-9-19",
       "author_id": "",
       "author_nickname": "",
-      "tag": ["힐링되는", "활기찬"],
+      "tag": [
+        "힐링되는",
+        "활기찬"
+      ],
       "position": {
         "lat": 37.55881973159923,
         "lng": 126.92539276502924
@@ -22,10 +25,46 @@
       "created_at": "2024-9-19",
       "author_id": "",
       "author_nickname": "",
-      "tag": ["활기찬", "활동적인", "경치좋은"],
+      "tag": [
+        "활기찬",
+        "활동적인",
+        "경치좋은"
+      ],
       "position": {
         "lat": 37.55245473071194,
         "lng": 126.98913579199511
+      }
+    },
+    {
+      "id": "6ca4",
+      "title": "ㄹㄹ",
+      "description": "ㄹ",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㄹㄹ"
+      ],
+      "position": {
+        "lat": 37.55459569554444,
+        "lng": 126.96961329930056
+      }
+    },
+    {
+      "id": "299e",
+      "title": "ㅎ",
+      "description": "ㅎ",
+      "img_url": "",
+      "created_at": "2024-9-19",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": [
+        "ㅎ"
+      ],
+      "position": {
+        "lat": 0,
+        "lng": 0
       }
     }
   ]
