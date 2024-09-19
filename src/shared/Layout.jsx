@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom';
+import Navibar from '../components/Navibar';
 
 const Layout = () => {
   return (
     <div className='h-full'>
-      <header />
-      <main className='h-full'>
+      <Navibar />
+      <main className='h-full mt-[100px]'>
         <Outlet />
       </main>
       <footer />
