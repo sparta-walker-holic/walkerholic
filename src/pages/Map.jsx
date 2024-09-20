@@ -3,7 +3,9 @@ import regions from '../data/regions.js';
 import cities from '../data/cities.js';
 import PostListSideBar from '../components/map/PostListSideBar.jsx';
 import { useGetPostsByLikes } from '../query/postQuery.js';
+import { Navigate } from 'react-router-dom';
 
+// TODO: 커스텀훅으로 분리해보기 -> 다정님 페이지랑 통합해서 쓸 수 있는지?
 const { kakao } = window;
 const KOREA_LATLNG_CENTER = { lat: 36.2683, lng: 127.6358 };
 const INITIAL_MAP_OPTIONS = {
@@ -12,22 +14,28 @@ const INITIAL_MAP_OPTIONS = {
 };
 
 const Map = () => {
-  console.log('Map Rerendering');
   const mapRef = useRef(null);
   const { data: posts, isSuccess, isError } = useGetPostsByLikes();
+
+  const [mode, setMode] = useState('regions');
+  const [selectedRegion, setSelectedRegion] = useState(null);
+  const [postsOnPostBar, setPostsOnPostBar] = useState([]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      const container = document.getElementById('map');
+      mapRef.current = new kakao.maps.Map(container, INITIAL_MAP_OPTIONS);
+      setMarkers();
+    }
+  }, [isSuccess]);
+
   if (isError) {
-    // TODO: 에러처리 추가
-    // useEffect가 경우에따라 실행되지 않으니 오류가 생기는데 보통 어떻게 처리하는지?!
-    // if (confirm('오류가 발생했습니다. 메인으로 이동합니다.')) {
-    // return <Navigate to='/' />;
-    // navigate('/');
-    // }
+    if (confirm('오류가 발생했습니다. 메인으로 이동합니다.')) {
+      return <Navigate to='/' />;
+    }
   }
 
-  // 헐 네 isPending으로 하면 요청 가는 중만 true인데 400번 에러가 나도 isPending이 끝남 그래서 그거보다는 isSuccess로 데이터가 다 불러와졌는지 확인하는게 좋음
-
   const setMarkers = () => {
-    console.log('setMarkers 진입');
     const markers = posts.map((post) => {
       const { id, title, position } = post;
       const marker = new kakao.maps.Marker({
@@ -61,26 +69,6 @@ const Map = () => {
       setPostsOnPostBar(newPostsOnPostBar);
     });
   };
-
-  if (isSuccess) {
-    setMarkers();
-  }
-
-  const [mode, setMode] = useState('regions');
-  const [selectedRegion, setSelectedRegion] = useState(null);
-  const [postsOnPostBar, setPostsOnPostBar] = useState([]);
-
-  useEffect(() => {
-    console.log('useEffect 진입');
-    const container = document.getElementById('map');
-    mapRef.current = new kakao.maps.Map(container, INITIAL_MAP_OPTIONS);
-
-    if (isSuccess) {
-      setMarkers();
-    }
-  }, []);
-
-  // 의존성뱅열 다른 useEffect를 하나 더 해서 맵이 먼저 생성됐다는 걸 보장받은 상태를 하거나, 콜백함수를 하거나
 
   const handleSelectRegion = (region) => {
     const { lat, lng } = region;
