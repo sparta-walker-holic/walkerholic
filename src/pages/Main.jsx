@@ -12,14 +12,6 @@ const Main = () => {
     setSearchTag(tag);
   };
 
-  // const filteredPosts = searchTag
-  //   ? posts?.filter((post) =>
-  //       post.tag.some((tag) => {
-  //         return tag.includes(searchTag);
-  //       }),
-  //     )
-  //   : posts;
-
   if (isPending) {
     return <p>Loading..</p>;
   }
@@ -32,8 +24,9 @@ const Main = () => {
     <>
       <div>
         <div className='grid place-items-center'>
+          <h1 className='text-[100px] text--bg--primary-green ml-[70px] mt-[150px]'>Walker-holic</h1>
           <div>
-            <div className='mt-[200px] ml-[70px] '>
+            <div className='mt-[100px] ml-[70px] '>
               <input
                 className=' text-center w-[800px] h-[60px] rounded-full border -border--primary-green hover:-border--secondary-green'
                 type='text'
@@ -113,15 +106,10 @@ const Main = () => {
           </div>
         </div>
         <div className='mt-[220px]  ml-20'>
-          {/* {isSuccess && filteredPosts.length > 0 ? ( */}
           <Card
             type={'MAIN'}
             searchTag={searchTag}
-            // data={filteredPosts}
           />
-          {/* ) : (
-            <p>not found</p>
-          )} */}
         </div>
       </div>
     </>

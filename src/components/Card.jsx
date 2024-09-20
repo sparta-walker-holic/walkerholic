@@ -18,7 +18,6 @@ const Card = ({ type, searchTag }) => {
         }),
       )
     : latestPosts;
-  console.log(filteredLatestPosts);
 
   const filteredMostLikedPosts = searchTag
     ? mostLikedPosts?.filter((post) =>
