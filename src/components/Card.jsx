@@ -3,25 +3,42 @@ import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+import { useGetPostsByDate, useGetPostsByLikes } from '../query/postQuery';
 
-const Card = ({ searchTag, type }) => {
+const Card = ({ type }) => {
   const navigate = useNavigate();
 
   // 태그필터링
-  const filteredPosts = mockData.posts.filter((post) => post.tag.some((tag) => tag.includes(searchTag)));
-  // 최신순 정렬
-  const latestPosts = [...filteredPosts].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-  // 좋아요 많은 순 정렬
-  const mostLikedPosts = [...filteredPosts].sort((a, b) => b.likes - a.likes);
+  const { data: latestPosts, isSuccess: isLatestSuccess } = useGetPostsByDate();
+  const { data: mostLikedPosts, isSuccess: isMostLikedSuccess } = useGetPostsByLikes();
+  const infinite = () => {
+    if (isLatestSuccess) {
+      return latestPosts > 4 || type === 'MAIN' ? true : false;
+    } else {
+      return true;
+    }
+  };
+  const arrows = () => {
+    if (isLatestSuccess) {
+      return latestPosts > 4 || type === 'MAIN' ? true : false;
+    } else {
+      return true;
+    }
+  };
+  // const filteredPosts = useGetPostsByDate.posts.filter((post) => post.tag.some((tag) => tag.includes(searchTag)));
+  // // 최신순 정렬
+  // const latestPosts = [...filteredPosts].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  // // 좋아요 많은 순 정렬
+  // const mostLikedPosts = [...filteredPosts].sort((a, b) => b.likes - a.likes);
 
   //Slick 설정.
   const settings = {
     dots: true, // 슬라이드 아래 점 표시
-    infinite: filteredPosts > 4 || type === 'MAIN' ? true : false, // 무한 슬라이드
+    infinite, // 무한 슬라이드
     speed: 2000, // 슬라이드 속도
     slidesToShow: 4, // 개씩 보여줌
     slidesToScroll: 1, // 한번에 하나의 슬라이드만 넘김
-    arrows: filteredPosts > 4 || type === 'MAIN' ? true : false, // 좌우 화살표
+    arrows, // 좌우 화살표
     autoplay: true,
     autoplaySpeed: 3000,
     nextArrow: <NextArrow />,
@@ -35,86 +52,90 @@ const Card = ({ searchTag, type }) => {
         <h2 className='mt-5 ml-20 text-xl font-bold'> 최신장소 </h2>
 
         <Slider {...settings}>
-          {latestPosts.map((post, index) => (
-            <div
-              key={index}
-              className='snap-center shrink-0  h-[600px]: w-full min-w-[100%] max-w-[100%] p-4 '
-            >
-              <div className='p-4 min-w-[100%] '>
+          {isLatestSuccess
+            ? latestPosts.map((post, index) => (
                 <div
-                  className='h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60'
-                  onClick={() => {
-                    navigate(`/detail/${post.id}`);
-                  }}
+                  key={index}
+                  className='snap-center shrink-0  h-[600px]: w-full min-w-[100%] max-w-[100%] p-4 '
                 >
-                  <img
-                    className='object-cover object-center w-full h-[300px] '
-                    src={post.img_url}
-                    alt='blog'
-                  />
-                  <div className='p-6 transition duration-300 ease-in hover:-bg--primary-green hover:text-white'>
-                    <h1 className='mb-3 text-2xl font-semibold w-[100%] h-[64px] '>{post.title}</h1>
-                    <p className='mb-3 leading-relaxed h-[52px]'>{post.description}</p>
-                    <div className='flex flex-wrap items-center mt-6 -text--secondary-green'>
-                      {new Date(post.created_at).toLocaleDateString()}
-                      <div className='text-gray-600 ml-[130px]'>❤️ {post.likes}</div>
-                    </div>
+                  <div className='p-4 min-w-[100%] '>
+                    <div
+                      className='h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60'
+                      onClick={() => {
+                        navigate(`/detail/${post.id}`);
+                      }}
+                    >
+                      <img
+                        className='object-cover object-center w-full h-[300px] '
+                        src={post.img_url}
+                        alt='blog'
+                      />
+                      <div className='p-6 transition duration-300 ease-in hover:-bg--primary-green hover:text-white'>
+                        <h1 className='mb-3 text-2xl font-semibold w-[100%] h-[64px] '>{post.title}</h1>
+                        <p className='mb-3 leading-relaxed h-[52px]'>{post.description}</p>
+                        <div className='flex flex-wrap items-center mt-6 -text--secondary-green'>
+                          {new Date(post.created_at).toLocaleDateString()}
+                          <div className='text-gray-600 ml-[130px]'>❤️ {post.likes}</div>
+                        </div>
 
-                    <div className='flex flex-wrap items-center mt-2 '>
-                      <div className='inline-flex items-center -text--secondary-green md:mb-2 lg:mb-0'>
-                        {post.author_nickname}
-                      </div>
-                      <div className='inline-flex items-center ml-auto mr-3 text-gray-400 lg:ml-auto md:ml-0'>
-                        #{post.tag.join(', #')}
+                        <div className='flex flex-wrap items-center mt-2 '>
+                          <div className='inline-flex items-center -text--secondary-green md:mb-2 lg:mb-0'>
+                            {post.author_nickname}
+                          </div>
+                          <div className='inline-flex items-center ml-auto mr-3 text-gray-400 lg:ml-auto md:ml-0'>
+                            #{post.tag.join(', #')}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              ))
+            : null}
         </Slider>
 
         {/* 좋아요 많은순 */}
         <h2 className='mt-5 ml-20 text-xl font-bold'> 좋아요 많은 장소 </h2>
         <Slider {...settings}>
-          {mostLikedPosts.map((post, index) => (
-            <div
-              key={index}
-              className='snap-center shrink-0 w-[500px] p-4 '
-            >
-              <div className='p-4 '>
+          {isMostLikedSuccess
+            ? mostLikedPosts.map((post, index) => (
                 <div
-                  className='h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60'
-                  onClick={() => {
-                    navigate(`/detail/${post.id}`);
-                  }}
+                  key={index}
+                  className='snap-center shrink-0 w-[500px] p-4 '
                 >
-                  <img
-                    className='object-cover object-center w-full lg:h-72 md:h-48'
-                    src={post.img_url}
-                    alt='blog'
-                  />
-                  <div className='p-6 transition duration-300 ease-in hover:-bg--primary-green hover:text-white'>
-                    <h1 className='mb-3 text-2xl font-semibold h-[64px]'>{post.title}</h1>
-                    <p className='mb-3 leading-relaxed h-[52px]'>{post.description}</p>
-                    <div className='flex flex-wrap items-center mt-6 -text--secondary-green'>
-                      {new Date(post.created_at).toLocaleDateString()}
-                      <div className='text-gray-600 ml-[130px]'>❤️ {post.likes}</div>
-                    </div>
-                    <div className='flex flex-wrap items-center mt-2 '>
-                      <div className='inline-flex items-center -text--secondary-green md:mb-2 lg:mb-0'>
-                        {post.author_nickname}
-                      </div>
-                      <div className='inline-flex items-center ml-auto mr-3 text-gray-400 lg:ml-auto md:ml-0'>
-                        #{post.tag.join(', #')}
+                  <div className='p-4 '>
+                    <div
+                      className='h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60'
+                      onClick={() => {
+                        navigate(`/detail/${post.id}`);
+                      }}
+                    >
+                      <img
+                        className='object-cover object-center w-full lg:h-72 md:h-48'
+                        src={post.img_url}
+                        alt='blog'
+                      />
+                      <div className='p-6 transition duration-300 ease-in hover:-bg--primary-green hover:text-white'>
+                        <h1 className='mb-3 text-2xl font-semibold h-[64px]'>{post.title}</h1>
+                        <p className='mb-3 leading-relaxed h-[52px]'>{post.description}</p>
+                        <div className='flex flex-wrap items-center mt-6 -text--secondary-green'>
+                          {new Date(post.created_at).toLocaleDateString()}
+                          <div className='text-gray-600 ml-[130px]'>❤️ {post.likes}</div>
+                        </div>
+                        <div className='flex flex-wrap items-center mt-2 '>
+                          <div className='inline-flex items-center -text--secondary-green md:mb-2 lg:mb-0'>
+                            {post.author_nickname}
+                          </div>
+                          <div className='inline-flex items-center ml-auto mr-3 text-gray-400 lg:ml-auto md:ml-0'>
+                            #{post.tag.join(', #')}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              ))
+            : null}
         </Slider>
       </div>
     </>
