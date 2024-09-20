@@ -7,7 +7,6 @@ const Form = () => {
   const { kakao } = window;
   const API_URL = 'http://localhost:4000';
   const { user_id, nickname } = useUserStore((state) => state.user);
-  console.log(user_id, nickname);
 
   const [posts, setPosts] = useState(null);
   const [post, setPost] = useState({
@@ -25,7 +24,7 @@ const Form = () => {
     address: '',
     like: 0,
   });
-  const [previewUrl, setPreviewUrl] = useState('');
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,11 +56,7 @@ const Form = () => {
       // 클릭한 곳의 주소 정보를 가져옴
       // TODO: 주소가 화면에 노출되면 좋을 듯
       searchDetailAddrFromCoords(latlng, function (result, status) {
-        console.log(result, status);
-
         if (status === kakao.maps.services.Status.OK) {
-          console.log(result[0].address.address_name);
-
           const address = result[0].address.address_name;
           // 마커를 클릭한 위치로 이동
           marker.setPosition(latlng);
@@ -93,9 +88,7 @@ const Form = () => {
   const onSubmitHandler = async (post) => {
     const date = new Date();
     const dateStr = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-    console.log(dateStr);
 
-    // TODO: created_at 뒤에 user 정보 입력
     try {
       await axios.post(`${API_URL}/posts`, {
         ...post,
@@ -129,7 +122,6 @@ const Form = () => {
       return item.trim();
     });
 
-    console.log(tagArr);
     setPost({ ...post, tag: tagArr });
   };
 
