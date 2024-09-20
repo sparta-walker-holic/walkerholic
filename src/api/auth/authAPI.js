@@ -41,7 +41,7 @@ export const verifyJwtToken = async (token) => {
     return response.data;
   } catch (error) {
     console.log('verifyJwtToken', error);
-    // TODO: 토큰 인증기간 만료시, 알럿 노출
+    // alert(error.response.data.message);
   }
 };
 
