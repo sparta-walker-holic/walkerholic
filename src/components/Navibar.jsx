@@ -8,6 +8,7 @@ const Navibar = () => {
   const [isLoading, setLoading] = useState(true);
   const { isAuthenticated } = useUserStore((state) => state.user);
   const update = useUserStore((state) => state.update);
+  const login = useUserStore((state) => state.login);
   const logout = useUserStore((state) => state.logout);
   const { getItem, removeItem } = useAuthStorage();
   const navigate = useNavigate();
@@ -19,12 +20,13 @@ const Navibar = () => {
 
       if (!token) {
         setLoading(false);
+        update();
         return; // 토큰이 없으면 함수 종료
       }
 
       const { id } = await verifyJwtToken(token);
       const userInfo = await getUser(id);
-      update(userInfo);
+      login(userInfo);
 
       setLoading(false);
     };
@@ -53,7 +55,9 @@ const Navibar = () => {
       <div className='centeredDiv flex-row gap-[20px]'>
         {isAuthenticated ? (
           <>
-            <button onClick={() => navigate('/mypage')}>마이페이지</button>
+            <Link to='/mypage'>
+              <button>마이페이지</button>
+            </Link>
             <button onClick={handleLogOut}>로그아웃</button>
           </>
         ) : (
