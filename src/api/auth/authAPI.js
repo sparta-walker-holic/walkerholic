@@ -70,7 +70,7 @@ export const getUser = async (userId) => {
       throw new Error('계정을 불러오는데 오류가 발생하였습니다.');
     }
 
-    return response.data;
+    return response.data[0];
   } catch (error) {
     console.log('getUser', error);
     alert(error.message);
