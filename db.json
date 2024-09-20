@@ -7,6 +7,14 @@
       "profile_img_url": "",
       "favorite_posts": [],
       "my_posts": []
+    },
+    {
+      "id": "25d7",
+      "user_id": "xogms0130",
+      "nickname": "01300130tea",
+      "profile_img_url": "",
+      "favorite_posts": [],
+      "my_posts": []
     }
   ],
   "posts": [
@@ -18,10 +26,7 @@
       "created_at": "2024-9-19",
       "author_id": "test123",
       "author_nickname": "냉정핑",
-      "tag": [
-        "힐링되는",
-        "활기찬"
-      ],
+      "tag": ["힐링되는", "활기찬"],
       "position": {
         "lat": 37.55881973159923,
         "lng": 126.92539276502924
@@ -36,11 +41,7 @@
       "created_at": "2024-9-19",
       "author_id": "test123",
       "author_nickname": "냉정핑",
-      "tag": [
-        "활기찬",
-        "활동적인",
-        "경치좋은"
-      ],
+      "tag": ["활기찬", "활동적인", "경치좋은"],
       "position": {
         "lat": 37.55245473071194,
         "lng": 126.98913579199511
@@ -55,14 +56,27 @@
       "created_at": "2024-9-19",
       "author_id": "test123",
       "author_nickname": "냉정핑",
-      "tag": [
-        "시원한"
-      ],
+      "tag": ["시원한"],
       "position": {
         "lat": 37.55602844018812,
         "lng": 126.97023517582213
       },
       "likes": 10
+    },
+    {
+      "id": "e2af",
+      "title": "나사리 해수욕장",
+      "description": "무더운 여름 나사해수욕장에서 시원하게 여름 보내세요!",
+      "img_url": "data:image/jpeg;base64,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",
+      "created_at": "2024-9-20",
+      "author_id": "",
+      "author_nickname": "",
+      "tag": ["시원한"],
+      "likes": "9",
+      "position": {
+        "lat": 35.35553639027719,
+        "lng": 129.34248658118514
+      }
     }
   ]
 }

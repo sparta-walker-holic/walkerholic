@@ -1,14 +1,32 @@
 import Card from '../components/Card';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useGetPosts } from '../query/postQuery';
 
 const Main = () => {
   const navigate = useNavigate();
   const [searchTag, setSearchTag] = useState('');
+  const { isPending, isError } = useGetPosts();
 
   const handleTagClick = (tag) => {
     setSearchTag(tag);
   };
+
+  // const filteredPosts = searchTag
+  //   ? posts?.filter((post) =>
+  //       post.tag.some((tag) => {
+  //         return tag.includes(searchTag);
+  //       }),
+  //     )
+  //   : posts;
+
+  if (isPending) {
+    return <p>Loading..</p>;
+  }
+
+  if (isError) {
+    return <p> Error </p>;
+  }
 
   return (
     <>
@@ -54,15 +72,17 @@ const Main = () => {
                 type='text'
                 placeholder='태그를 입력해주세요'
                 value={searchTag}
-                onChange={(e) => setSearchTag(e.target.value)}
+                onChange={(e) => {
+                  setSearchTag(e.target.value);
+                }}
               />
             </div>
             <div className='mt-[35px] ml-[230px] space-x-4'>
               <button
                 className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
-                onClick={() => handleTagClick('상쾌한')}
+                onClick={() => handleTagClick('시원한')}
               >
-                #상쾌한
+                #시원한
               </button>
               <button
                 className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
@@ -92,10 +112,15 @@ const Main = () => {
           </div>
         </div>
         <div className='mt-[220px]  ml-20'>
+          {/* {isSuccess && filteredPosts.length > 0 ? ( */}
           <Card
             type={'MAIN'}
             searchTag={searchTag}
+            // data={filteredPosts}
           />
+          {/* ) : (
+            <p>not found</p>
+          )} */}
         </div>
       </div>
     </>

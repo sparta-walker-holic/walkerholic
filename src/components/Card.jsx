@@ -1,16 +1,33 @@
-import mockData from '../data/mockData';
 import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { useGetPostsByDate, useGetPostsByLikes } from '../query/postQuery';
 
-const Card = ({ type }) => {
+const Card = ({ type, searchTag }) => {
   const navigate = useNavigate();
 
   // 태그필터링
   const { data: latestPosts, isSuccess: isLatestSuccess } = useGetPostsByDate();
   const { data: mostLikedPosts, isSuccess: isMostLikedSuccess } = useGetPostsByLikes();
+
+  const filteredLatestPosts = searchTag
+    ? latestPosts?.filter((post) =>
+        post.tag.some((tag) => {
+          return tag.includes(searchTag);
+        }),
+      )
+    : latestPosts;
+  console.log(filteredLatestPosts);
+
+  const filteredMostLikedPosts = searchTag
+    ? mostLikedPosts?.filter((post) =>
+        post.tag.some((tag) => {
+          return tag.includes(searchTag);
+        }),
+      )
+    : mostLikedPosts;
+
   const infinite = () => {
     if (isLatestSuccess) {
       return latestPosts > 4 || type === 'MAIN' ? true : false;
@@ -25,22 +42,16 @@ const Card = ({ type }) => {
       return true;
     }
   };
-  // const filteredPosts = useGetPostsByDate.posts.filter((post) => post.tag.some((tag) => tag.includes(searchTag)));
-  // // 최신순 정렬
-  // const latestPosts = [...filteredPosts].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-  // // 좋아요 많은 순 정렬
-  // const mostLikedPosts = [...filteredPosts].sort((a, b) => b.likes - a.likes);
-
   //Slick 설정.
   const settings = {
     dots: true, // 슬라이드 아래 점 표시
     infinite, // 무한 슬라이드
-    speed: 2000, // 슬라이드 속도
-    slidesToShow: 4, // 개씩 보여줌
+    speed: 1500, // 슬라이드 속도
+    slidesToShow: 4 > filteredLatestPosts?.length ? filteredLatestPosts?.length : 4, // 개씩 보여줌
     slidesToScroll: 1, // 한번에 하나의 슬라이드만 넘김
     arrows, // 좌우 화살표
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5000,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
@@ -53,10 +64,10 @@ const Card = ({ type }) => {
 
         <Slider {...settings}>
           {isLatestSuccess
-            ? latestPosts.map((post, index) => (
+            ? filteredLatestPosts.map((post, index) => (
                 <div
                   key={index}
-                  className='snap-center shrink-0  h-[600px]: w-full min-w-[100%] max-w-[100%] p-4 '
+                  className='snap-center shrink-0  h-[600px]:  min-w-[100%] max-w-[100%]   '
                 >
                   <div className='p-4 min-w-[100%] '>
                     <div
@@ -72,17 +83,17 @@ const Card = ({ type }) => {
                       />
                       <div className='p-6 transition duration-300 ease-in hover:-bg--primary-green hover:text-white'>
                         <h1 className='mb-3 text-2xl font-semibold w-[100%] h-[64px] '>{post.title}</h1>
-                        <p className='mb-3 leading-relaxed h-[52px]'>{post.description}</p>
+                        <p className='mb-3 leading-relaxed h-[65px]'>{post.description}</p>
                         <div className='flex flex-wrap items-center mt-6 -text--secondary-green'>
                           {new Date(post.created_at).toLocaleDateString()}
-                          <div className='text-gray-600 ml-[130px]'>❤️ {post.likes}</div>
+                          <div className=' text-[15px]  text-gray-600 ml-[170px]'>❤️ {post.likes}</div>
                         </div>
 
                         <div className='flex flex-wrap items-center mt-2 '>
                           <div className='inline-flex items-center -text--secondary-green md:mb-2 lg:mb-0'>
                             {post.author_nickname}
                           </div>
-                          <div className='inline-flex items-center ml-auto mr-3 text-gray-400 lg:ml-auto md:ml-0'>
+                          <div className='text-[12px] inline-flex items-center ml-auto mr-3 text-gray-400 lg:ml-auto md:ml-0'>
                             #{post.tag.join(', #')}
                           </div>
                         </div>
@@ -95,15 +106,15 @@ const Card = ({ type }) => {
         </Slider>
 
         {/* 좋아요 많은순 */}
-        <h2 className='mt-5 ml-20 text-xl font-bold'> 좋아요 많은 장소 </h2>
+        <h2 className='mt-[80px] ml-20 text-xl font-bold'> 좋아요 많은 장소 </h2>
         <Slider {...settings}>
           {isMostLikedSuccess
-            ? mostLikedPosts.map((post, index) => (
+            ? filteredMostLikedPosts.map((post, index) => (
                 <div
                   key={index}
-                  className='snap-center shrink-0 w-[500px] p-4 '
+                  className='snap-center shrink-0  h-[600px]:  min-w-[100%] max-w-[100%]   '
                 >
-                  <div className='p-4 '>
+                  <div className='p-4 min-w-[100%]'>
                     <div
                       className='h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60'
                       onClick={() => {
@@ -120,7 +131,7 @@ const Card = ({ type }) => {
                         <p className='mb-3 leading-relaxed h-[52px]'>{post.description}</p>
                         <div className='flex flex-wrap items-center mt-6 -text--secondary-green'>
                           {new Date(post.created_at).toLocaleDateString()}
-                          <div className='text-gray-600 ml-[130px]'>❤️ {post.likes}</div>
+                          <div className='text-gray-600 ml-[170px]'>❤️ {post.likes}</div>
                         </div>
                         <div className='flex flex-wrap items-center mt-2 '>
                           <div className='inline-flex items-center -text--secondary-green md:mb-2 lg:mb-0'>
