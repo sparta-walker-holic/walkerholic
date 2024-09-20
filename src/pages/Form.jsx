@@ -6,6 +6,7 @@ import useUserStore from '../stores/useUserStore';
 const Form = () => {
   const { kakao } = window;
   const API_URL = 'http://localhost:4000';
+  const { user_id, nickname } = useUserStore((state) => state.user);
 
   const { user_id, nickname } = useUserStore((state) => state.user);
   const [posts, setPosts] = useState(null);
@@ -21,8 +22,10 @@ const Form = () => {
       lat: 0,
       lng: 0,
     },
+    address: '',
+    like: 0,
   });
-  const [previewUrl, setPreviewUrl] = useState('');
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,37 +54,49 @@ const Form = () => {
       // 클릭한 곳의 위도, 경도 정보를 가져옴
       const latlng = mouseEvent.latLng;
 
-      // 마커를 클릭한 위치로 이동
-      marker.setPosition(latlng);
+      // 클릭한 곳의 주소 정보를 가져옴
+      // TODO: 주소가 화면에 노출되면 좋을 듯
+      searchDetailAddrFromCoords(latlng, function (result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+          const address = result[0].address.address_name;
+          // 마커를 클릭한 위치로 이동
+          marker.setPosition(latlng);
 
-      setPost((prevPost) => ({
-        ...prevPost,
-        position: coordinate,
-      }));
+          const coordinate = {
+            lat: latlng.getLat(),
+            lng: latlng.getLng(),
+          };
 
-      const coordinate = {
-        lat: latlng.getLat(),
-        lng: latlng.getLng(),
-      };
+          setPost((prevPost) => ({
+            ...prevPost,
+            position: coordinate,
+            address: address,
+          }));
+        }
+      });
     });
-
-    // 데이터 요청
-    const fetchPost = async () => {
-      const { data } = await axios.get(`${API_URL}/posts`);
-      setPosts(data);
-    };
-    fetchPost();
   }, []);
+
+  // 주소-좌표 변환
+  const geocoder = new kakao.maps.services.Geocoder();
+
+  function searchDetailAddrFromCoords(coords, callback) {
+    // 좌표로 법정동 상세 주소 정보를 요청합니다
+    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+  }
 
   // 데이터 추가
   const onSubmitHandler = async (post) => {
     const date = new Date();
     const dateStr = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-    console.log(dateStr);
 
-    // TODO: created_at 뒤에 user 정보 입력
     try {
-      await axios.post(`${API_URL}/posts`, { ...post, created_at: dateStr });
+      await axios.post(`${API_URL}/posts`, {
+        ...post,
+        created_at: dateStr,
+        author_id: user_id,
+        author_nickname: nickname,
+      });
       alert('게시글이 등록되었습니다!');
       navigate('/');
     } catch (error) {
@@ -108,7 +123,6 @@ const Form = () => {
       return item.trim();
     });
 
-    console.log(tagArr);
     setPost({ ...post, tag: tagArr });
   };
 
@@ -148,11 +162,10 @@ const Form = () => {
               required
               className='w-[500px] py-2 my-2 border p-2'
               name='tag[]'
-              placeholder='태그를 입력해주세요.'
+              placeholder='태그를 입력해주세요. ex) 활기찬, 생동감있는'
               onChange={handleKeyDown}
             />
           </div>
-
           <textarea
             required
             className='w-[500px] h-48 py-2 my-2 border p-2'
@@ -167,7 +180,6 @@ const Form = () => {
             accept='image/jpg, image/png, image/jpeg, image/gif'
             onChange={onChangeImageUpload}
           />
-          <div>{previewUrl}</div>
           <div>
             <button
               className='w-20 border '
@@ -178,7 +190,6 @@ const Form = () => {
             </button>
           </div>
         </form>
-        <button className='w-20 border'>이전</button>
       </div>
     </>
   );
