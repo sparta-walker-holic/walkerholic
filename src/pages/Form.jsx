@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import useUserStore from '../stores/useUserStore';
 const Form = () => {
   const { kakao } = window;
   const API_URL = 'http://localhost:4000';
+  const { user_id, nickname } = useUserStore((state) => state.user);
+  console.log('유저 아이디, 닉네임 => ', user_id, nickname);
 
   const [posts, setPosts] = useState(null);
   const [post, setPost] = useState({
@@ -94,7 +96,12 @@ const Form = () => {
 
     // TODO: created_at 뒤에 user 정보 입력
     try {
-      await axios.post(`${API_URL}/posts`, { ...post, created_at: dateStr });
+      await axios.post(`${API_URL}/posts`, {
+        ...post,
+        created_at: dateStr,
+        author_id: user_id,
+        author_nickname: nickname,
+      });
       alert('게시글이 등록되었습니다!');
       navigate('/');
     } catch (error) {
@@ -123,11 +130,6 @@ const Form = () => {
 
     console.log(tagArr);
     setPost({ ...post, tag: tagArr });
-  };
-
-  // 주소 검색하기
-  const onSearchHandler = () => {
-    alert('연결 확인');
   };
 
   return (
