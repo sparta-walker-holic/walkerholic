@@ -102,10 +102,10 @@ const Map = () => {
 
   return (
     <div className='flex h-full'>
-      <div className={`flex flex-col h-full ${postsOnPostBar.length > 0 ? 'w-[calc(100vw-230px)]' : 'w-full'}`}>
+      <div className='flex flex-col items-center h-full w-full'>
         {mode === 'regions' ? (
           <div
-            className='grid px-5 py-3 gap-x-3 gap-y-1'
+            className='grid w-11/12 py-3 gap-x-3 gap-y-1'
             style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
           >
             {regions.map((region, index) => {
@@ -124,16 +124,16 @@ const Map = () => {
           </div>
         ) : null}
         {mode === 'cities' ? (
-          <div className='flex flex-col gap-5 px-5 my-5'>
+          <div className='flex flex-col w-full items-center gap-2 px-5 my-3'>
             <div
-              className='flex items-center gap-2 text-xl font-bold hover:cursor-pointer'
+              className='flex items-center gap-2 w-11/12 text-xl font-bold hover:cursor-pointer'
               onClick={handleBackToRegionSelection}
             >
               <ChevronLeft />
               {selectedRegion}
             </div>
             <div
-              className='grid gap-x-3 gap-y-1'
+              className='grid w-11/12 py-3 gap-x-3 gap-y-1'
               style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
             >
               {cities[selectedRegion].map((city, index) => {
@@ -156,9 +156,10 @@ const Map = () => {
           <div
             id='map'
             className='w-11/12 h-full'
-          ></div>
+          >
+            <PostListSideBar posts={postsOnPostBar} />
+          </div>
         </div>
-        {postsOnPostBar.length > 0 ? <PostListSideBar posts={postsOnPostBar} /> : null}
       </div>
     </div>
   );
