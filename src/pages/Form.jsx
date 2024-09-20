@@ -127,8 +127,8 @@ const Form = () => {
 
   return (
     <>
-      <h1 className='text-3xl font-bold text-center'>게시글 작성</h1>
-      <div>
+      <h1 className='text-3xl font-bold text-center'>좋아하는 장소를 추천해주세요!</h1>
+      <div className='rid my-8 place-items-center'>
         <form
           className='grid my-8 place-items-center'
           onSubmit={(e) => {
@@ -136,6 +136,7 @@ const Form = () => {
             onSubmitHandler(post);
           }}
         >
+          <labe>제목</labe>
           <input
             required
             className='w-[500px] py-2 my-2 border p-2'
@@ -148,23 +149,18 @@ const Form = () => {
           <p>아래 지도에서 원하는 위치를 클릭해주세요!</p>
           <div
             id='map'
-            style={{ width: '500px', height: '400px' }}
+            style={{ width: '1200px', height: '400px' }}
           ></div>
-          <div>
-            {post.tag.map((tagStr, idx) => {
-              <div key={idx}>
-                <sapn>{tagStr}</sapn>
-                <span>&times;</span>
-              </div>;
-            })}
-            <input
-              required
-              className='w-[500px] py-2 my-2 border p-2'
-              name='tag[]'
-              placeholder='태그를 입력해주세요. ex) 활기찬, 생동감있는'
-              onChange={handleKeyDown}
-            />
-          </div>
+
+          <label>태그</label>
+          <input
+            required
+            className='w-[500px] py-2 my-2 border p-2'
+            name='tag[]'
+            placeholder='ex) 활기찬, 생동감있는'
+            onChange={handleKeyDown}
+          />
+          <label>내용</label>
           <textarea
             required
             className='w-[500px] h-48 py-2 my-2 border p-2'
@@ -181,7 +177,7 @@ const Form = () => {
           />
           <div>
             <button
-              className='w-20 border '
+              className='w-[500px] border h-14 -bg--primary-green text-white mb-10'
               type='submit'
             >
               {' '}
