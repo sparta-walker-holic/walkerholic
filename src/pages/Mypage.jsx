@@ -1,8 +1,9 @@
 import mockData from '../mock';
 
 const Mypage = () => {
-  const post = mockData.posts;
+  const { user } = useUserStore((state) => state.user);
 
+  const post = mockData.posts;
   //포스트 맥돌리기
 
   return (

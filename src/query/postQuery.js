@@ -36,4 +36,3 @@ export const useGetPostById = (postId) => {
 
   return { data, isPending, isError, isSuccess };
 };
-// 쿼리키, stale time, cache time -> 이 아이디로 가녀왔으면 계속 쿼리키에 캐싱해둠 qeuryKey가 기준인데
