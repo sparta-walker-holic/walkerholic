@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 const useUserStore = create((set) => ({
   user: {
-    isAuthenticated: false,
+    isAuthenticated: null,
     id: '',
     user_id: '',
     nickname: '',
@@ -11,11 +11,11 @@ const useUserStore = create((set) => ({
     my_posts: [],
   },
 
-  update: (userInfo) =>
+  update: () =>
     set((state) => ({
       user: {
-        isAuthenticated: true,
-        ...userInfo,
+        ...state.user,
+        isAuthenticated: false,
       },
     })),
 
@@ -29,6 +29,14 @@ const useUserStore = create((set) => ({
         profile_img_url: '',
         favorite_posts: [],
         my_posts: [],
+      },
+    })),
+
+  login: (userInfo) =>
+    set((state) => ({
+      user: {
+        isAuthenticated: true,
+        ...userInfo,
       },
     })),
 }));
