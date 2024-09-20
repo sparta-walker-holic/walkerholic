@@ -52,7 +52,6 @@ export const createUser = async (userId, _nickname) => {
       nickname: _nickname,
       profile_img_url: '',
       favorite_posts: [],
-      my_posts: [],
     };
 
     await jsonserverInstance.post('/users', userInfo);
