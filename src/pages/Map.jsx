@@ -19,6 +19,7 @@ const Map = () => {
 
   const [mode, setMode] = useState('regions');
   const [selectedRegion, setSelectedRegion] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
   const [postsOnPostBar, setPostsOnPostBar] = useState([]);
 
   useEffect(() => {
@@ -83,12 +84,15 @@ const Map = () => {
   const handleBackToRegionSelection = () => {
     setMode('regions');
     setSelectedRegion(null);
+    setSelectedCity(null);
     setPostsOnPostBar([]);
     mapRef.current.setCenter(INITIAL_MAP_OPTIONS.center);
     mapRef.current.setLevel(INITIAL_MAP_OPTIONS.level, { animate: true });
   };
 
   const handleSelectCity = (city) => {
+    setSelectedCity(city);
+
     const { lat, lng } = city;
     const moveLatLng = new kakao.maps.LatLng(lat, lng);
     mapRef.current.setCenter(moveLatLng);
@@ -134,7 +138,7 @@ const Map = () => {
                 return (
                   <button
                     key={index}
-                    className='border border-gray-800 rounded-xl'
+                    className={`border border-gray-800 rounded-xl ${selectedCity === city ? '-bg--primary-green text-white' : 'bg-white text-black'}`}
                     onClick={() => {
                       handleSelectCity(city);
                     }}
