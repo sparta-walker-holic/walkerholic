@@ -32,9 +32,55 @@ const Main = () => {
     <>
       <div>
         <div className='grid place-items-center'>
-          <div className='  mt-[150px] space-x-[30px] ml-[65px]'>
+          <div>
+            <div className='mt-[200px] ml-[70px] '>
+              <input
+                className=' text-center w-[800px] h-[60px] rounded-full border -border--primary-green hover:-border--secondary-green'
+                type='text'
+                placeholder='태그를 입력해주세요'
+                value={searchTag}
+                onChange={(e) => {
+                  setSearchTag(e.target.value);
+                }}
+              />
+            </div>
+            <div className='mt-[35px] ml-[230px] space-x-4'>
+              <button
+                className='p-2 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
+                onClick={() => handleTagClick('시원한')}
+              >
+                #시원한
+              </button>
+              <button
+                className='p-2 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
+                onClick={() => handleTagClick('즐거운')}
+              >
+                #즐거운
+              </button>
+              <button
+                className='p-2 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
+                onClick={() => handleTagClick('일상적인')}
+              >
+                #일상적인
+              </button>
+              <button
+                className='p-2 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
+                onClick={() => handleTagClick('여유로운')}
+              >
+                #여유로운
+              </button>
+              <button
+                className='p-2 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
+                onClick={() => handleTagClick('활동적인')}
+              >
+                #활동적인
+              </button>
+            </div>
+          </div>
+
+          <div className='  mt-[150px] space-x-[80px] ml-[65px]'>
             <button
-              className='  w-[300px] h-[100px] rounded-lg  border -border--primary-green hover:-border--secondary-green '
+              className=' hover:text-white hover:-bg--primary-green w-[300px] h-[200px] rounded-md  border -border--primary-green hover:-border--secondary-green '
               onClick={() => {
                 navigate('/map');
               }}
@@ -50,7 +96,7 @@ const Main = () => {
             </button>
 
             <button
-              className=' w-[300px] h-[100px]  rounded-lg border -border--primary-green hover:-border--secondary-green'
+              className=' hover:text-white hover:-bg--primary-green w-[300px] h-[200px]  rounded-md border -border--primary-green hover:-border--secondary-green'
               onClick={() => {
                 navigate('/form');
               }}
@@ -64,51 +110,6 @@ const Main = () => {
                 <p className='text-[20px]'>장소추천하기</p>
               </div>
             </button>
-          </div>
-          <div>
-            <div className='mt-[100px] ml-[70px] '>
-              <input
-                className=' text-center w-[800px] h-[60px] rounded-full border -border--primary-green hover:-border--secondary-green'
-                type='text'
-                placeholder='태그를 입력해주세요'
-                value={searchTag}
-                onChange={(e) => {
-                  setSearchTag(e.target.value);
-                }}
-              />
-            </div>
-            <div className='mt-[35px] ml-[230px] space-x-4'>
-              <button
-                className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
-                onClick={() => handleTagClick('시원한')}
-              >
-                #시원한
-              </button>
-              <button
-                className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
-                onClick={() => handleTagClick('즐거운')}
-              >
-                #즐거운
-              </button>
-              <button
-                className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
-                onClick={() => handleTagClick('일상적인')}
-              >
-                #일상적인
-              </button>
-              <button
-                className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
-                onClick={() => handleTagClick('여유로운')}
-              >
-                #여유로운
-              </button>
-              <button
-                className='p-1 text-white rounded-lg -bg--primary-green hover:-bg--secondary-green'
-                onClick={() => handleTagClick('활동적인')}
-              >
-                #활동적인
-              </button>
-            </div>
           </div>
         </div>
         <div className='mt-[220px]  ml-20'>
