@@ -1,9 +1,11 @@
 import { useParams } from 'react-router-dom';
 import mockData from '../mock';
 import { useEffect } from 'react';
+import useUserStore from '../stores/useUserStore';
 
 const Detail = () => {
   const { postId } = useParams();
+  const { user } = useUserStore((state) => state.user);
   const post = mockData.posts.find((item) => item.id === postId.toString());
 
   useEffect(() => {

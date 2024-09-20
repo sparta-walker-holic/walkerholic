@@ -5,8 +5,8 @@
       "user_id": "testaccount1",
       "nickname": "testnickname",
       "profile_img_url": "",
-      "favorite_posts": [],
-      "my_posts": []
+      "favorite_posts": ["6a93"],
+      "my_posts": ["6a93"]
     }
   ],
   "posts": [
@@ -18,10 +18,7 @@
       "created_at": "2024-9-19",
       "author_id": "test123",
       "author_nickname": "냉정핑",
-      "tag": [
-        "힐링되는",
-        "활기찬"
-      ],
+      "tag": ["힐링되는", "활기찬"],
       "position": {
         "lat": 37.55881973159923,
         "lng": 126.92539276502924
@@ -36,11 +33,7 @@
       "created_at": "2024-9-19",
       "author_id": "test123",
       "author_nickname": "냉정핑",
-      "tag": [
-        "활기찬",
-        "활동적인",
-        "경치좋은"
-      ],
+      "tag": ["활기찬", "활동적인", "경치좋은"],
       "position": {
         "lat": 37.55245473071194,
         "lng": 126.98913579199511
@@ -55,9 +48,7 @@
       "created_at": "2024-9-19",
       "author_id": "test123",
       "author_nickname": "냉정핑",
-      "tag": [
-        "시원한"
-      ],
+      "tag": ["시원한"],
       "position": {
         "lat": 37.55602844018812,
         "lng": 126.97023517582213
