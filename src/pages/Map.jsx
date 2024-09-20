@@ -5,6 +5,8 @@ import PostListSideBar from '../components/map/PostListSideBar.jsx';
 import { useGetPostsByLikes } from '../query/postQuery.js';
 import { Navigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
+import RegionButton from '../components/map/RegionButton.jsx';
+import CitiyButton from '../components/map/CitiyButton.jsx';
 
 // TODO: 커스텀훅으로 분리해보기 -> 다정님 페이지랑 통합해서 쓸 수 있는지?
 const { kakao } = window;
@@ -105,26 +107,25 @@ const Map = () => {
       <div className='flex flex-col items-center h-full w-full'>
         {mode === 'regions' ? (
           <div
-            className='grid w-11/12 py-3 gap-x-3 gap-y-1'
+            className='grid items-center w-11/12 h-[150px] py-3 gap-x-3 gap-y-1'
             style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
           >
             {regions.map((region, index) => {
               return (
-                <button
+                <RegionButton
                   key={index}
-                  className='border border-gray-800 rounded-xl'
                   onClick={() => {
                     handleSelectRegion(region);
                   }}
                 >
                   {region.region}
-                </button>
+                </RegionButton>
               );
             })}
           </div>
         ) : null}
         {mode === 'cities' ? (
-          <div className='flex flex-col w-full items-center gap-2 px-5 my-3'>
+          <div className='flex flex-col w-full h-[150px] justify-center items-center gap-2 px-5'>
             <div
               className='flex items-center gap-2 w-11/12 text-xl font-bold hover:cursor-pointer'
               onClick={handleBackToRegionSelection}
@@ -133,20 +134,19 @@ const Map = () => {
               {selectedRegion}
             </div>
             <div
-              className='grid w-11/12 py-3 gap-x-3 gap-y-1'
+              className='grid items-center w-11/12 py-3 gap-x-3 gap-y-1'
               style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
             >
               {cities[selectedRegion].map((city, index) => {
                 return (
-                  <button
+                  <CitiyButton
                     key={index}
-                    className={`border border-gray-800 rounded-xl ${selectedCity === city ? '-bg--primary-green text-white' : 'bg-white text-black'}`}
+                    city={city}
+                    selectedCity={selectedCity}
                     onClick={() => {
                       handleSelectCity(city);
                     }}
-                  >
-                    {city.city}
-                  </button>
+                  />
                 );
               })}
             </div>
