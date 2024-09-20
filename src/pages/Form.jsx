@@ -8,7 +8,6 @@ const Form = () => {
   const API_URL = 'http://localhost:4000';
   const { user_id, nickname } = useUserStore((state) => state.user);
 
-  const [posts, setPosts] = useState(null);
   const [post, setPost] = useState({
     title: '',
     description: '',

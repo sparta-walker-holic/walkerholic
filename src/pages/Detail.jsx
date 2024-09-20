@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
-import mockData from '../mock';
 import { useEffect } from 'react';
 import useUserStore from '../stores/useUserStore';
 
 const Detail = () => {
   const { postId } = useParams();
-  const { user } = useUserStore((state) => state.user);
-  const post = mockData.posts.find((item) => item.id === postId.toString());
+  const { user } = useUserStore((state) => state.user); //좋아요한 사용자 구별위해
+  const { data } = useQuery('posts');
+  const post = () => data === postId.toString();
 
   useEffect(() => {
     const { kakao } = window;
