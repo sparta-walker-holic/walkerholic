@@ -4,6 +4,7 @@ import cities from '../data/cities.js';
 import PostListSideBar from '../components/map/PostListSideBar.jsx';
 import { useGetPostsByLikes } from '../query/postQuery.js';
 import { Navigate } from 'react-router-dom';
+import { ChevronLeft } from 'lucide-react';
 
 // TODO: 커스텀훅으로 분리해보기 -> 다정님 페이지랑 통합해서 쓸 수 있는지?
 const { kakao } = window;
@@ -123,13 +124,14 @@ const Map = () => {
           </div>
         ) : null}
         {mode === 'cities' ? (
-          <div className='flex flex-col gap-2 px-5 my-5'>
-            <h3
-              className='font-bold hover:cursor-pointer'
+          <div className='flex flex-col gap-5 px-5 my-5'>
+            <div
+              className='flex items-center gap-2 text-xl font-bold hover:cursor-pointer'
               onClick={handleBackToRegionSelection}
             >
-              {'< ' + selectedRegion}
-            </h3>
+              <ChevronLeft />
+              {selectedRegion}
+            </div>
             <div
               className='grid gap-x-3 gap-y-1'
               style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
