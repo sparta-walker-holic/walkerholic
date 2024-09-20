@@ -179,7 +179,6 @@ const Form = () => {
             accept='image/jpg, image/png, image/jpeg, image/gif'
             onChange={onChangeImageUpload}
           />
-          <div>{previewUrl}</div>
           <div>
             <button
               className='w-20 border '
