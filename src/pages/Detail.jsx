@@ -14,7 +14,6 @@ const Detail = () => {
   if (isError) {
     console.log('에러');
   }
-  33.450701, 126.570667;
 
   useEffect(() => {
     const { kakao } = window;
