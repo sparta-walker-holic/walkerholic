@@ -41,7 +41,7 @@ export const verifyJwtToken = async (token) => {
     return response.data;
   } catch (error) {
     console.log('verifyJwtToken', error);
-    // TODO: 토큰 인증기간 만료시, 알럿 노출
+    // alert(error.response.data.message);
   }
 };
 
@@ -52,7 +52,6 @@ export const createUser = async (userId, _nickname) => {
       nickname: _nickname,
       profile_img_url: '',
       favorite_posts: [],
-      my_posts: [],
     };
 
     await jsonserverInstance.post('/users', userInfo);
@@ -70,7 +69,7 @@ export const getUser = async (userId) => {
       throw new Error('계정을 불러오는데 오류가 발생하였습니다.');
     }
 
-    return response.data;
+    return response.data[0];
   } catch (error) {
     console.log('getUser', error);
     alert(error.message);

@@ -28,3 +28,12 @@ export const getPostsByLikes = async () => {
     return error.response.data;
   }
 };
+
+export const getPostById = async (postId) => {
+  try {
+    const response = await axios.get(`${API_URL}?id=${postId}`);
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};

@@ -10,9 +10,14 @@ const idRegex = /^[A-Za-z0-9]{6,}$/;
 (?=.*\d): 최소 한 개 이상의 숫자가 포함되어야 함.
 [A-Za-z\d]{8,}$: 영문 대소문자와 숫자로 이루어진 최소 8자리 이상의 문자열.
 영문 숫자 포함: [A-Za-z\d] 부분이 영문 대소문자와 숫자를 허용하며, 반드시 둘 다 포함되도록 요구.
-8자리 이상: {8,} 부분이 최소 8자리 이상. 
+8자리 이상: {8,} 부분이 최소 4자리 이상. 
 */
-const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/;
+
+/*
+"특수문자 제외 2자리 이상, 한글 포함가능"
+*/
+const nicknameRegex = /^[a-zA-Z0-9가-힣]{2,}$/;
 
 export const validateId = (input) => {
   return idRegex.test(input);
@@ -20,4 +25,8 @@ export const validateId = (input) => {
 
 export const validatePassword = (input) => {
   return passwordRegex.test(input);
+};
+
+export const validateNickname = (input) => {
+  return nicknameRegex.test(input);
 };
