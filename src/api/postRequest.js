@@ -25,7 +25,6 @@ export const getPostsByLikes = async () => {
     const response = await axios.get(`${API_URL}?_sort=-likes`);
     return response.data;
   } catch (error) {
-    console.log('axios error: ', error);
     return error.response.data;
   }
 };
