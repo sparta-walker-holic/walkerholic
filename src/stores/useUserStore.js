@@ -12,7 +12,7 @@ const useUserStore = create((set) => ({
   },
 
   update: (userInfo) =>
-    set(() => ({
+    set((state) => ({
       user: {
         isAuthenticated: true,
         ...userInfo,
