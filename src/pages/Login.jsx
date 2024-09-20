@@ -8,14 +8,14 @@ const Login = () => {
   const userIdRef = useRef(null);
   const passwordRef = useRef(null);
   const { setItem } = useAuthStorage();
-  const update = useUserStore((state) => state.update);
+  const login = useUserStore((state) => state.login);
   const navigate = useNavigate();
 
   const handleSignIn = async () => {
     const data = await signIn(userIdRef.current.value, passwordRef.current.value);
     await setItem('accessToken', data.accessToken);
     const userInfo = await getUser(data.userId);
-    update(userInfo);
+    login(userInfo);
 
     alert('성공적으로 로그인 되었습니다.');
     navigate('/');

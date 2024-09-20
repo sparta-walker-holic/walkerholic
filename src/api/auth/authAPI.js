@@ -41,7 +41,7 @@ export const verifyJwtToken = async (token) => {
     return response.data;
   } catch (error) {
     console.log('verifyJwtToken', error);
-    // TODO: 토큰 인증기간 만료시, 알럿 노출
+    // alert(error.response.data.message);
   }
 };
 
@@ -52,7 +52,6 @@ export const createUser = async (userId, _nickname) => {
       nickname: _nickname,
       profile_img_url: '',
       favorite_posts: [],
-      my_posts: [],
     };
 
     await jsonserverInstance.post('/users', userInfo);

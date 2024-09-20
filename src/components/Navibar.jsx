@@ -8,6 +8,7 @@ const Navibar = () => {
   const [isLoading, setLoading] = useState(true);
   const { isAuthenticated } = useUserStore((state) => state.user);
   const update = useUserStore((state) => state.update);
+  const login = useUserStore((state) => state.login);
   const logout = useUserStore((state) => state.logout);
   const { getItem, removeItem } = useAuthStorage();
   const navigate = useNavigate();
@@ -16,16 +17,16 @@ const Navibar = () => {
     const authenticate = async () => {
       setLoading(true);
       const token = await getItem('accessToken');
+      const data = await verifyJwtToken(token);
 
-      if (!token) {
+      if (!token || !data) {
         setLoading(false);
+        update();
         return; // 토큰이 없으면 함수 종료
       }
 
-      const { id } = await verifyJwtToken(token);
-      const userInfo = await getUser(id);
-      update(userInfo);
-
+      const userInfo = await getUser(data.id);
+      login(userInfo);
       setLoading(false);
     };
 
@@ -41,19 +42,48 @@ const Navibar = () => {
 
   if (isLoading) {
     return (
-      <nav className='fixed top-0 left-0 w-full h-[80px] centeredDiv flew-row justify-between px-[100px] bg-pink-300 z-10'>
-        <div className='centeredDiv w-[80px] h-full bg-white'></div>
+      <nav className='fixed top-0 left-0 w-full h-[80px] centeredDiv flew-row justify-between px-[100px] -bg--primary-green z-10'>
+        <div
+          onClick={() => {
+            navigate('/');
+          }}
+          className='centeredDiv w-[80px] h-full -bg--primary-green'
+        >
+          <img
+            onClick={() => {
+              navigate('/');
+            }}
+            className='h-[80px]'
+            src='https://i.ibb.co/jrNywn0/3.png'
+            alt='3'
+            border='0'
+          />
+        </div>
       </nav>
     );
   }
 
   return (
-    <nav className='fixed top-0 left-0 w-full h-[80px] centeredDiv flew-row justify-between px-[100px] bg-pink-300 z-10'>
-      <div className='centeredDiv w-[80px] h-full bg-white'></div>
-      <div className='centeredDiv flex-row gap-[20px]'>
+    <nav className='fixed top-0 left-0 w-full h-[80px] centeredDiv flew-row justify-between px-[100px] -bg--primary-green z-10'>
+      <div
+        onClick={() => {
+          navigate('/');
+        }}
+        className='centeredDiv w-[80px] h-full -bg--primary-green'
+      >
+        <img
+          src='https://i.ibb.co/jrNywn0/3.png'
+          alt='3'
+          border='0'
+        />
+        <p className='ml-[20px] text-white'>walkerholic</p>
+      </div>
+      <div className='text-white centeredDiv flex-row gap-[20px]'>
         {isAuthenticated ? (
           <>
-            <button onClick={() => navigate('/mypage')}>마이페이지</button>
+            <Link to='/mypage'>
+              <button>마이페이지</button>
+            </Link>
             <button onClick={handleLogOut}>로그아웃</button>
           </>
         ) : (

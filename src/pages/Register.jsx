@@ -1,13 +1,13 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { validateId, validatePassword } from '../services/validate';
+import { validateId, validatePassword, validateNickname } from '../services/validate';
 import { createUser, signUp } from '../api/auth/authAPI';
 import { useNavigate } from 'react-router-dom';
 
-const InputField = React.memo(({ placeholder, type, _ref, validation, onChange }) => {
+const InputField = React.memo(({ placeholder, textType, _ref, validation, onChange, type }) => {
   return (
     <div className='flex flex-col gap-[5px] w-full'>
       <input
-        type={type}
+        type={textType}
         placeholder={placeholder}
         ref={_ref}
         className='px-[10px] h-[30px] border-[1px] border-solid border-black'
@@ -17,9 +17,11 @@ const InputField = React.memo(({ placeholder, type, _ref, validation, onChange }
         <span className='text-[10px] pl-[5px] text-green-300'>유효한 값 입니다.</span>
       ) : (
         <span className='text-[10px] pl-[5px] text-red-600'>
-          {type === 'password'
-            ? '최소 한 개 이상의 영문 숫자포함 8자리 이상'
-            : '영문 숫자를 포함 6자리 이상(특수문자 제외)'}
+          {type === 'id'
+            ? '영문 숫자를 포함 6자리 이상(특수문자 제외)'
+            : type === 'password'
+              ? '최소 한 개 이상의 영문 숫자포함 4자리 이상'
+              : '특수문자를 제외하고 알파벳(대소문자), 숫자, 한글로만 구성된 2자리 이상'}
         </span>
       )}
     </div>
@@ -50,7 +52,7 @@ const Register = () => {
   }, []);
 
   const handleNicknameChange = useCallback(() => {
-    setNicknameValidation(validateId(nicknameRef.current.value));
+    setNicknameValidation(validateNickname(nicknameRef.current.value));
   }, []);
 
   const handleSignUp = useCallback(async () => {
@@ -66,24 +68,27 @@ const Register = () => {
       <div className='centeredDiv flex-col gap-[30px] py-[30px] px-[15px] w-1/6 border-[1px] border-solide border-black'>
         <InputField
           placeholder='아이디'
-          type='text'
+          textType='text'
           _ref={userIdRef}
           validation={idValidation}
           onChange={handleIdChange}
+          type='id'
         />
         <InputField
           placeholder='비밀번호'
-          type='password'
+          textType='password'
           _ref={passwordRef}
           validation={passwordValidation}
           onChange={handlePasswordChange}
+          type='password'
         />
         <InputField
           placeholder='닉네임'
-          type='text'
+          textType='text'
           _ref={nicknameRef}
           validation={nicknameValidation}
           onChange={handleNicknameChange}
+          type='nickname'
         />
         <button
           disabled={isEnabled}
