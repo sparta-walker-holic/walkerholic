@@ -17,15 +17,15 @@ const Navibar = () => {
     const authenticate = async () => {
       setLoading(true);
       const token = await getItem('accessToken');
-      const { id } = await verifyJwtToken(token);
+      const data = await verifyJwtToken(token);
 
-      if (!token || !id) {
+      if (!token || !data) {
         setLoading(false);
         update();
         return; // 토큰이 없으면 함수 종료
       }
 
-      const userInfo = await getUser(id);
+      const userInfo = await getUser(data.id);
       login(userInfo);
       setLoading(false);
     };

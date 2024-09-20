@@ -8,7 +8,6 @@ const useUserStore = create((set) => ({
     nickname: '',
     profile_img_url: '',
     favorite_posts: [],
-    my_posts: [],
   },
 
   update: () =>
@@ -28,12 +27,11 @@ const useUserStore = create((set) => ({
         nickname: '',
         profile_img_url: '',
         favorite_posts: [],
-        my_posts: [],
       },
     })),
 
   login: (userInfo) =>
-    set((state) => ({
+    set(() => ({
       user: {
         isAuthenticated: true,
         ...userInfo,
