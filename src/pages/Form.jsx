@@ -2,11 +2,12 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUserStore from '../stores/useUserStore';
+
 const Form = () => {
   const { kakao } = window;
   const API_URL = 'http://localhost:4000';
   const { user_id, nickname } = useUserStore((state) => state.user);
-  console.log('유저 아이디, 닉네임 => ', user_id, nickname);
+  console.log(user_id, nickname);
 
   const [posts, setPosts] = useState(null);
   const [post, setPost] = useState({
