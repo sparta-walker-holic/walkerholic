@@ -5,12 +5,21 @@
       "user_id": "testaccount1",
       "nickname": "testnickname",
       "profile_img_url": "",
-      "favorite_posts": ["32c7"]
+      "favorite_posts": [
+        "32c7"
+      ]
     },
     {
       "id": "8e3d",
       "user_id": "testaccount3",
       "nickname": "testaccount3",
+      "profile_img_url": "",
+      "favorite_posts": []
+    },
+    {
+      "id": "829e",
+      "user_id": "minmap",
+      "nickname": "산책",
       "profile_img_url": "",
       "favorite_posts": []
     }
@@ -24,7 +33,9 @@
       "created_at": "2024-9-20",
       "author_id": "testaccount1",
       "author_nickname": "testnickname",
-      "tag": ["활기찬"],
+      "tag": [
+        "활기찬"
+      ],
       "position": {
         "lat": 37.554794356182605,
         "lng": 126.97137870757092
@@ -40,7 +51,9 @@
       "created_at": "2024-9-20",
       "author_id": "testaccount3",
       "author_nickname": "testaccount3",
-      "tag": ["생동감있는"],
+      "tag": [
+        "생동감있는"
+      ],
       "position": {
         "lat": 37.54089527029388,
         "lng": 127.00581597989388
