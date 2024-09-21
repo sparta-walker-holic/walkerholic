@@ -32,9 +32,9 @@ const Form = () => {
     const mapContainer = document.getElementById('map');
     const mapOption = {
       // 지도 중심 좌표
-      center: new kakao.maps.LatLng(37.55468604177569, 126.97058654356819),
+      center: new kakao.maps.LatLng(36.55394824199359, 127.79884050517171),
       // 지도의 확대 레벨
-      level: 3,
+      level: 13,
     };
 
     // 지도 생성
@@ -65,7 +65,7 @@ const Form = () => {
             lat: latlng.getLat(),
             lng: latlng.getLng(),
           };
-
+          console.log(coordinate);
           setPost((prevPost) => ({
             ...prevPost,
             position: coordinate,
@@ -128,18 +128,18 @@ const Form = () => {
   return (
     <>
       <h1 className='text-3xl font-bold text-center'>좋아하는 장소를 추천해주세요!</h1>
-      <div className='rid my-8 place-items-center'>
+      <div className='grid my-8 place-items-center'>
         <form
-          className='grid my-8 place-items-center'
+          className='grid my-8 place-items-start '
           onSubmit={(e) => {
             e.preventDefault();
             onSubmitHandler(post);
           }}
         >
-          <labe>제목</labe>
+          <label>제목</label>
           <input
             required
-            className='w-[500px] py-2 my-2 border p-2'
+            className='w-[500px] py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
             placeholder='제목을 입력해주세요.'
             type='text'
             onChange={(e) => {
@@ -149,13 +149,13 @@ const Form = () => {
           <p>아래 지도에서 원하는 위치를 클릭해주세요!</p>
           <div
             id='map'
-            style={{ width: '1200px', height: '400px' }}
+            style={{ width: '500px', height: '400px' }}
           ></div>
 
           <label>태그</label>
           <input
             required
-            className='w-[500px] py-2 my-2 border p-2'
+            className='w-[500px] py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
             name='tag[]'
             placeholder='ex) 활기찬, 생동감있는'
             onChange={handleKeyDown}
@@ -163,7 +163,7 @@ const Form = () => {
           <label>내용</label>
           <textarea
             required
-            className='w-[500px] h-48 py-2 my-2 border p-2'
+            className='w-[500px] h-28 py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
             placeholder='내용을 입력해주세요.'
             onChange={(e) => {
               setPost({ ...post, description: e.target.value });
@@ -177,7 +177,7 @@ const Form = () => {
           />
           <div>
             <button
-              className='w-[500px] border h-14 -bg--primary-green text-white mb-10'
+              className='w-[500px] border h-14 -bg--primary-green text-white mb-10 rounded-lg'
               type='submit'
             >
               {' '}
