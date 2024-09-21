@@ -53,8 +53,7 @@ const Navibar = () => {
             onClick={() => {
               navigate('/');
             }}
-            className='h-[80px]'
-            src='https://i.ibb.co/jrNywn0/3.png'
+            src='https://i.ibb.co/wWNyqCz/3.png'
             alt='3'
             border='0'
           />
@@ -72,7 +71,10 @@ const Navibar = () => {
         className='centeredDiv w-[80px] h-full -bg--primary-green'
       >
         <img
-          src='https://i.ibb.co/jrNywn0/3.png'
+          onClick={() => {
+            navigate('/');
+          }}
+          src='https://i.ibb.co/wWNyqCz/3.png'
           alt='3'
           border='0'
         />
