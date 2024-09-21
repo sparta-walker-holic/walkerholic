@@ -39,4 +39,6 @@ const useUserStore = create((set) => ({
     })),
 }));
 
+// persist 사용해서 로컬스토리지에 받아오기 전에 초기값으로 될 수 밖에 없는 그 상황 방지..
+
 export default useUserStore;
