@@ -32,7 +32,7 @@ const Form = () => {
     const mapContainer = document.getElementById('map');
     const mapOption = {
       // 지도 중심 좌표
-      center: new kakao.maps.LatLng(36.55394824199359, 127.79884050517171),
+      center: new kakao.maps.LatLng(35.96316856652495, 127.82690202979383),
       // 지도의 확대 레벨
       level: 13,
     };
@@ -128,63 +128,70 @@ const Form = () => {
   return (
     <>
       <h1 className='text-3xl font-bold text-center'>좋아하는 장소를 추천해주세요!</h1>
-      <div className='grid my-8 place-items-center'>
-        <form
-          className='grid my-8 place-items-start '
-          onSubmit={(e) => {
-            e.preventDefault();
-            onSubmitHandler(post);
-          }}
-        >
-          <label>제목</label>
-          <input
-            required
-            className='w-[500px] py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
-            placeholder='제목을 입력해주세요.'
-            type='text'
-            onChange={(e) => {
-              setPost({ ...post, title: e.target.value });
+      <div>
+        <div className='grid my-8 place-items-center'>
+          <form
+            className='flex w-[1000px]'
+            onSubmit={(e) => {
+              e.preventDefault();
+              onSubmitHandler(post);
             }}
-          />
-          <p>아래 지도에서 원하는 위치를 클릭해주세요!</p>
-          <div
-            id='map'
-            style={{ width: '500px', height: '400px' }}
-          ></div>
+          >
+            <div className='mr-10'>
+              <p>아래 지도에서 원하는 위치를 클릭해주세요!</p>
+              <div
+                id='map'
+                style={{ width: '500px', height: '600px' }}
+              ></div>
+            </div>
 
-          <label>태그</label>
-          <input
-            required
-            className='w-[500px] py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
-            name='tag[]'
-            placeholder='ex) 활기찬, 생동감있는'
-            onChange={handleKeyDown}
-          />
-          <label>내용</label>
-          <textarea
-            required
-            className='w-[500px] h-28 py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
-            placeholder='내용을 입력해주세요.'
-            onChange={(e) => {
-              setPost({ ...post, description: e.target.value });
-            }}
-          />
-          <input
-            className='w-[500px] py-2 my-2'
-            type='file'
-            accept='image/jpg, image/png, image/jpeg, image/gif'
-            onChange={onChangeImageUpload}
-          />
-          <div>
-            <button
-              className='w-[500px] border h-14 -bg--primary-green text-white mb-10 rounded-lg'
-              type='submit'
-            >
-              {' '}
-              등록
-            </button>
-          </div>
-        </form>
+            <div className='grid my-8 place-items-start '>
+              <label>제목</label>
+              <input
+                required
+                className='w-[500px] py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
+                placeholder='제목을 입력해주세요.'
+                type='text'
+                onChange={(e) => {
+                  setPost({ ...post, title: e.target.value });
+                }}
+              />
+
+              <label>태그</label>
+              <input
+                required
+                className='w-[500px] py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
+                name='tag[]'
+                placeholder='ex) 활기찬, 생동감있는'
+                onChange={handleKeyDown}
+              />
+              <label>내용</label>
+              <textarea
+                required
+                className='w-[500px] h-28 py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
+                placeholder='내용을 입력해주세요.'
+                onChange={(e) => {
+                  setPost({ ...post, description: e.target.value });
+                }}
+              />
+              <input
+                className='w-[500px] py-2 my-2'
+                type='file'
+                accept='image/jpg, image/png, image/jpeg, image/gif'
+                onChange={onChangeImageUpload}
+              />
+              <div>
+                <button
+                  className='w-[500px] border h-14 -bg--primary-green text-white mb-10 rounded-lg'
+                  type='submit'
+                >
+                  {' '}
+                  등록
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );
