@@ -9,10 +9,12 @@ import Form from './../pages/Form';
 import Detail from './../pages/Detail';
 import NotAuthenticatedRoute from './NotAuthenticatedRoute.jsx';
 import AuthenticatedRoute from './AuthenticatedRoute.jsx';
+import ScrollToTop from './ScrollToTop.jsx';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route
           path='/'
