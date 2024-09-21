@@ -127,66 +127,79 @@ const Form = () => {
 
   return (
     <>
-      <h1 className='text-3xl font-bold text-center'>좋아하는 장소를 추천해주세요!</h1>
+      <h1 className='text-4xl mt-36 mb-14 pb-2 font-bold text-center -text--primary-green'>
+        <span className='border-b-2 p-2'>장소 추천하기</span>
+      </h1>
       <div>
-        <div className='grid my-8 place-items-center'>
+        <div className='grid m-10 place-items-center'>
           <form
-            className='flex w-[1000px]'
+            className='flex w-[1200px]'
             onSubmit={(e) => {
               e.preventDefault();
               onSubmitHandler(post);
             }}
           >
             <div className='mr-10'>
-              <p>아래 지도에서 원하는 위치를 클릭해주세요!</p>
+              <p className='mb-4'>아래 지도에서 원하는 위치를 클릭해주세요!</p>
               <div
                 id='map'
-                style={{ width: '500px', height: '600px' }}
+                className='w-[700px] h-[600px] rounded-lg'
               ></div>
             </div>
 
-            <div className='grid my-8 place-items-start '>
-              <label>제목</label>
+            <div className='place-items-start row-end-3 mt-8'>
+              <label className='mb-0 font-bold text-lg'>제목</label>
               <input
                 required
-                className='w-[500px] py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
+                className='w-[500px] mt-2 py-2 mb-5 border p-3 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
                 placeholder='제목을 입력해주세요.'
                 type='text'
                 onChange={(e) => {
                   setPost({ ...post, title: e.target.value });
                 }}
               />
-
-              <label>태그</label>
+              {/* TODO: 벨로그 태그 입력처럼 바꿔보기 */}
+              <label className='mb-0 font-bold text-lg'>태그</label>
               <input
                 required
-                className='w-[500px] py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
+                className='w-[500px] mt-2 py-2 mb-5  border p-3 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
                 name='tag[]'
                 placeholder='ex) 활기찬, 생동감있는'
                 onChange={handleKeyDown}
               />
-              <label>내용</label>
+              <label className='mb-0 font-bold text-lg'>내용</label>
               <textarea
                 required
-                className='w-[500px] h-28 py-2 my-2 border p-2 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg'
+                className='w-[500px] mt-2 h-48 py-2 mb-2 border p-3 focus:ring-2 focus:ring-inset focus:-ring--primary-green focus:outline-none rounded-lg resize-none'
                 placeholder='내용을 입력해주세요.'
                 onChange={(e) => {
                   setPost({ ...post, description: e.target.value });
                 }}
               />
+              <label className='mb-0 font-bold text-lg'>파일 첨부</label>
               <input
-                className='w-[500px] py-2 my-2'
+                required
+                className='w-[500px] mt-2 py-2 mb-5'
                 type='file'
                 accept='image/jpg, image/png, image/jpeg, image/gif'
                 onChange={onChangeImageUpload}
               />
-              <div>
+              <div className='mt-2'>
                 <button
-                  className='w-[500px] border h-14 -bg--primary-green text-white mb-10 rounded-lg'
+                  className='w-[240px] h-14 border -border--primary-green rounded-lg mr-4 -text--primary-green'
+                  type='button'
+                  onClick={() => {
+                    navigate('-1');
+                  }}
+                >
+                  취소하기
+                </button>
+                <button
+                  className='w-[240px] border h-14 -bg--primary-green text-white rounded-lg'
                   type='submit'
                 >
                   {' '}
-                  등록
+                  등록하기
                 </button>
               </div>
             </div>
