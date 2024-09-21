@@ -3,6 +3,7 @@ import { useGetPosts, useGetPostsByLikes } from '../../query/postQuery.js';
 
 const MiniPostCard = ({ postId }) => {
   const { data: posts } = useGetPostsByLikes();
+  // TODO: find에서 쿼리스트링으로 해당하는 post 정보 받아오는 방식으로  변경
   const post = posts?.find((post) => post.id === postId);
   const { title, author_nickname } = post;
   const navigate = useNavigate();

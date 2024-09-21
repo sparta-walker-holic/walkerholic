@@ -6,7 +6,7 @@ import { useGetPostsByLikes } from '../query/postQuery.js';
 import { Navigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import RegionButton from '../components/map/RegionButton.jsx';
-import CitiyButton from '../components/map/CitiyButton.jsx';
+import CityButton from '../components/map/CityButton.jsx';
 
 // TODO: 커스텀훅으로 분리해보기 -> 다정님 페이지랑 통합해서 쓸 수 있는지?
 const { kakao } = window;
@@ -125,7 +125,7 @@ const Map = () => {
           </div>
         ) : null}
         {mode === 'cities' ? (
-          <div className='flex flex-col w-full h-[150px] justify-center items-center gap-2 px-5'>
+          <div className='flex flex-col w-full h-[150px] justify-center items-center gap-2'>
             <div
               className='flex items-center gap-2 w-11/12 text-xl font-bold hover:cursor-pointer'
               onClick={handleBackToRegionSelection}
@@ -139,7 +139,7 @@ const Map = () => {
             >
               {cities[selectedRegion].map((city, index) => {
                 return (
-                  <CitiyButton
+                  <CityButton
                     key={index}
                     city={city}
                     selectedCity={selectedCity}

@@ -2,7 +2,7 @@ import MiniPostCard from './MiniPostCard.jsx';
 
 const PostListSideBar = ({ posts }) => {
   return (
-    <div className='flex flex-col gap-3 fixed right-28 bg-transparent w-[230px] h-full p-5 z-10'>
+    <div className='flex flex-col gap-3 fixed right-32 bg-transparent w-[230px] h-full p-5 z-10'>
       {posts.map((post) => {
         return (
           <MiniPostCard
