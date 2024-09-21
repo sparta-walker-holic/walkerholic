@@ -1,11 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-import { useGetPosts, useGetPostsByLikes } from '../../query/postQuery.js';
+import { useGetPostById, useGetPosts, useGetPostsByLikes } from '../../query/postQuery.js';
 
 const MiniPostCard = ({ postId }) => {
-  const { data: posts } = useGetPostsByLikes();
-  // TODO: find에서 쿼리스트링으로 해당하는 post 정보 받아오는 방식으로  변경
-  const post = posts?.find((post) => post.id === postId);
-  const { title, author_nickname } = post;
+  const { data: post, isSuccess } = useGetPostById(postId);
+
+  let title = null;
+  let author_nickname = null;
+
+  if (isSuccess) {
+    title = post[0].title;
+    author_nickname = post[0].author_nickname;
+  }
+
   const navigate = useNavigate();
   const handleMoveToDetail = () => {
     navigate(`/detail/${postId}`);
