@@ -22,7 +22,7 @@ const Main = () => {
 
   return (
     <>
-      <div className='font-omyu_pretty'>
+      <div className='font-HakgyoansimNadeuriTTF-B'>
         <div>
           <div
             className='grid place-items-center'
@@ -33,10 +33,12 @@ const Main = () => {
               backgroundImage: `url('https://i.ibb.co/GJSw9rH/Pngtree-park-landscape-photography-11743.jpg')`,
             }}
           >
-            <h1 className='   text-[100px] text--bg--primary-green ml-[350px] mt-[290px]'>Walkaholic</h1>
+            <h1 className=' font-semibold border-spacing-5 -text--primary-green text-[130px] text--bg--primary-green ml-[400px] mt-[265px]'>
+              Walkaholic
+            </h1>
 
             <div>
-              <div className='mt-[100px] ml-[70px]  '>
+              <div className='mt-[70px] ml-[70px]  '>
                 <input
                   className='drop-shadow-2xl text-center w-[800px] h-[60px] rounded-full border -border--primary-green hover:-border--secondary-green'
                   type='text'
