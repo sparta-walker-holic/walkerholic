@@ -3,7 +3,12 @@ import regions from '../data/regions.js';
 import cities from '../data/cities.js';
 import PostListSideBar from '../components/map/PostListSideBar.jsx';
 import { useGetPostsByLikes } from '../query/postQuery.js';
+import { Navigate } from 'react-router-dom';
+import { ChevronLeft } from 'lucide-react';
+import RegionButton from '../components/map/RegionButton.jsx';
+import CityButton from '../components/map/CityButton.jsx';
 
+// TODO: 커스텀훅으로 분리해보기 -> 다정님 페이지랑 통합해서 쓸 수 있는지?
 const { kakao } = window;
 const KOREA_LATLNG_CENTER = { lat: 36.2683, lng: 127.6358 };
 const INITIAL_MAP_OPTIONS = {
@@ -14,13 +19,24 @@ const INITIAL_MAP_OPTIONS = {
 const Map = () => {
   const mapRef = useRef(null);
   const { data: posts, isSuccess, isError } = useGetPostsByLikes();
+
+  const [mode, setMode] = useState('regions');
+  const [selectedRegion, setSelectedRegion] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [postsOnPostBar, setPostsOnPostBar] = useState([]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      const container = document.getElementById('map');
+      mapRef.current = new kakao.maps.Map(container, INITIAL_MAP_OPTIONS);
+      setMarkers();
+    }
+  }, [isSuccess]);
+
   if (isError) {
-    // TODO: 에러처리 추가
-    // useEffect가 경우에따라 실행되지 않으니 오류가 생기는데 보통 어떻게 처리하는지?!
-    // if (confirm('오류가 발생했습니다. 메인으로 이동합니다.')) {
-    // return <Link to='/' />;
-    // navigate('/');
-    // }
+    if (confirm('오류가 발생했습니다. 메인으로 이동합니다.')) {
+      return <Navigate to='/' />;
+    }
   }
 
   const setMarkers = () => {
@@ -58,19 +74,6 @@ const Map = () => {
     });
   };
 
-  if (isSuccess) {
-    setMarkers();
-  }
-
-  const [mode, setMode] = useState('regions');
-  const [selectedRegion, setSelectedRegion] = useState(null);
-  const [postsOnPostBar, setPostsOnPostBar] = useState([]);
-
-  useEffect(() => {
-    const container = document.getElementById('map');
-    mapRef.current = new kakao.maps.Map(container, INITIAL_MAP_OPTIONS);
-  }, []);
-
   const handleSelectRegion = (region) => {
     const { lat, lng } = region;
     const moveLatLng = new kakao.maps.LatLng(lat, lng);
@@ -84,12 +87,15 @@ const Map = () => {
   const handleBackToRegionSelection = () => {
     setMode('regions');
     setSelectedRegion(null);
+    setSelectedCity(null);
     setPostsOnPostBar([]);
     mapRef.current.setCenter(INITIAL_MAP_OPTIONS.center);
     mapRef.current.setLevel(INITIAL_MAP_OPTIONS.level, { animate: true });
   };
 
   const handleSelectCity = (city) => {
+    setSelectedCity(city);
+
     const { lat, lng } = city;
     const moveLatLng = new kakao.maps.LatLng(lat, lng);
     mapRef.current.setCenter(moveLatLng);
@@ -98,50 +104,49 @@ const Map = () => {
 
   return (
     <div className='flex h-full'>
-      <div className={`flex flex-col h-full ${postsOnPostBar.length > 0 ? 'w-[calc(100vw-230px)]' : 'w-full'}`}>
+      <div className='flex flex-col items-center h-full w-full'>
         {mode === 'regions' ? (
           <div
-            className='grid px-5 py-3 gap-x-3 gap-y-1'
+            className='grid items-center w-11/12 h-[150px] py-3 gap-x-3 gap-y-1'
             style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
           >
             {regions.map((region, index) => {
               return (
-                <button
+                <RegionButton
                   key={index}
-                  className='border border-gray-800 rounded-xl'
                   onClick={() => {
                     handleSelectRegion(region);
                   }}
                 >
                   {region.region}
-                </button>
+                </RegionButton>
               );
             })}
           </div>
         ) : null}
         {mode === 'cities' ? (
-          <div className='flex flex-col gap-2 px-5 my-5'>
-            <h3
-              className='font-bold hover:cursor-pointer'
+          <div className='flex flex-col w-full h-[150px] justify-center items-center gap-2'>
+            <div
+              className='flex items-center gap-2 w-11/12 text-xl font-bold hover:cursor-pointer'
               onClick={handleBackToRegionSelection}
             >
-              {'< ' + selectedRegion}
-            </h3>
+              <ChevronLeft />
+              {selectedRegion}
+            </div>
             <div
-              className='grid gap-x-3 gap-y-1'
+              className='grid items-center w-11/12 py-3 gap-x-3 gap-y-1'
               style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))' }}
             >
               {cities[selectedRegion].map((city, index) => {
                 return (
-                  <button
+                  <CityButton
                     key={index}
-                    className='border border-gray-800 rounded-xl'
+                    city={city}
+                    selectedCity={selectedCity}
                     onClick={() => {
                       handleSelectCity(city);
                     }}
-                  >
-                    {city.city}
-                  </button>
+                  />
                 );
               })}
             </div>
@@ -151,9 +156,10 @@ const Map = () => {
           <div
             id='map'
             className='w-11/12 h-full'
-          ></div>
+          >
+            <PostListSideBar posts={postsOnPostBar} />
+          </div>
         </div>
-        {postsOnPostBar.length > 0 ? <PostListSideBar posts={postsOnPostBar} /> : null}
       </div>
     </div>
   );

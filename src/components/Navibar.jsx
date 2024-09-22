@@ -42,16 +42,45 @@ const Navibar = () => {
 
   if (isLoading) {
     return (
-      <nav className='fixed top-0 left-0 w-full h-[80px] centeredDiv flew-row justify-between px-[100px] bg-pink-300 z-10'>
-        <div className='centeredDiv w-[80px] h-full bg-white'></div>
+      <nav className='fixed top-0 left-0 w-full h-[80px] centeredDiv flew-row justify-between px-[100px] -bg--primary-green z-10'>
+        <div
+          onClick={() => {
+            navigate('/');
+          }}
+          className='centeredDiv w-[80px] h-full -bg--primary-green'
+        >
+          <img
+            onClick={() => {
+              navigate('/');
+            }}
+            src='https://i.ibb.co/wWNyqCz/3.png'
+            alt='3'
+            border='0'
+          />
+        </div>
       </nav>
     );
   }
 
   return (
-    <nav className='fixed top-0 left-0 w-full h-[80px] centeredDiv flew-row justify-between px-[100px] bg-pink-300 z-10'>
-      <div className='centeredDiv w-[80px] h-full bg-white'></div>
-      <div className='centeredDiv flex-row gap-[20px]'>
+    <nav className='fixed top-0 left-0 w-full h-[80px] centeredDiv flew-row justify-between px-[100px] -bg--primary-green z-10'>
+      <div
+        onClick={() => {
+          navigate('/');
+        }}
+        className='centeredDiv w-[80px] h-full -bg--primary-green'
+      >
+        <img
+          onClick={() => {
+            navigate('/');
+          }}
+          src='https://i.ibb.co/wWNyqCz/3.png'
+          alt='3'
+          border='0'
+        />
+        <p className='ml-[20px] text-white'>walkerholic</p>
+      </div>
+      <div className='text-white centeredDiv flex-row gap-[20px]'>
         {isAuthenticated ? (
           <>
             <Link to='/mypage'>

@@ -1,10 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-import { useGetPosts, useGetPostsByLikes } from '../../query/postQuery.js';
+import { useGetPostById, useGetPosts, useGetPostsByLikes } from '../../query/postQuery.js';
 
 const MiniPostCard = ({ postId }) => {
-  const { data: posts } = useGetPostsByLikes();
-  const post = posts?.find((post) => post.id === postId);
-  const { title, author_nickname } = post;
+  const { data: post, isSuccess } = useGetPostById(postId);
+
+  let title = null;
+  let author_nickname = null;
+
+  if (isSuccess) {
+    title = post[0].title;
+    author_nickname = post[0].author_nickname;
+  }
+
   const navigate = useNavigate();
   const handleMoveToDetail = () => {
     navigate(`/detail/${postId}`);
@@ -12,7 +19,7 @@ const MiniPostCard = ({ postId }) => {
 
   return (
     <div
-      className='rounded bg-white h-[90px] p-1 hover:bg-gray-50 hover:shadow hover:shadow-gray-400/80'
+      className='rounded-xl bg-white w-[240px] h-[120px] p-3 hover:bg-gray-50 shadow shadow-gray-400/80'
       onClick={handleMoveToDetail}
     >
       <h3 className='font-bold'>{title}</h3>
