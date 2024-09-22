@@ -34,11 +34,9 @@ export const useToggleFavoritePost = ({ userId }) => {
     onError: (error, variables, context) => {
       console.log('error.response.data', error.response?.data);
       queryClient.setQueryData(['user', variables.userId], context.previousUserData);
-      alert('favorite error');
     },
     onSuccess: () => {
       queryClient.invalidateQueries(['user', userId]);
-      alert('favorite success');
     },
   });
 
