@@ -2,6 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { useDeletePostById, useGetPostsByUserId } from '../query/postQuery';
 import useUserStore from '../stores/useUserStore';
 import FavoriteButton from '../components/FavoriteButton';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
+
 const Mypage = () => {
   const { user } = useUserStore();
   const { user_id } = user;
@@ -24,6 +28,7 @@ const Mypage = () => {
   if (isPending) {
     return <div>로딩 중..</div>;
   }
+  // const settings = { slidesToShow: 1, slidesToScroll: 1, dots: true, arrows: true };
 
   return (
     <div className='flex flex-col'>
@@ -36,13 +41,14 @@ const Mypage = () => {
           </div>
         </div>
 
-        <div className='flex gap-5'>
+        <div className='flex gap-20'>
           <div className='flex flex-col gap-3'>
             <p className='text-xl font-omyu_pretty font-extrabold'>내 장소</p>
-            <div className='flex'>
+            {/* <Slider {...settings}> */}
+            <div className='flex gap-5 '>
               {data?.map((item) => (
                 <div
-                  className='flex w-1/6 flex-col relative'
+                  className='flex flex-col  w-48 relative'
                   key={item.id}
                   onClick={(e) => {
                     handleMoveToDetail(e, item.id);
@@ -71,13 +77,14 @@ const Mypage = () => {
                 </div>
               ))}
             </div>
+            {/* </Slider> */}
           </div>
           <div className='flex flex-col gap-3'>
             <p className='text-xl font-bold font-omyu_pretty'>좋아요한 장소</p>
             <div className='flex gap-5'>
               {data?.map((item) => (
                 <div
-                  className='flex w-1/6 flex-col relative'
+                  className='flex flex-col  w-48 relative'
                   key={item.id}
                   onClick={(e) => {
                     handleMoveToDetail(e, item.id);
