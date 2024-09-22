@@ -1,10 +1,22 @@
-import mockData from '../mock';
+import { useDeletePostById, useGetPostsByUserId } from '../query/postQuery';
+import useUserStore from '../stores/useUserStore';
 
 const Mypage = () => {
-  const { user } = useUserStore((state) => state.user);
+  const { user } = useUserStore();
+  const { user_id } = user;
 
-  const post = mockData.posts;
-  //포스트 맥돌리기
+  const { data, isError, isSuccess, isPending } = useGetPostsByUserId(user_id);
+  const { mutate } = useDeletePostById();
+
+  if (isSuccess) {
+    console.log(data);
+  }
+  if (isError) {
+    console.log('에러');
+  }
+  if (isPending) {
+    return <div>로딩 중..</div>;
+  }
 
   return (
     <div className='flex flex-col h-full'>
@@ -13,17 +25,17 @@ const Mypage = () => {
         <div className=' bg-neutral-200 w-7/12 h-48 mx-auto flex flex-col gap-5 justify-center items-center rounded-lg'>
           <div>
             <p className='text-lg '>닉네임</p>
-            <p>보영짱</p>
+            <p>{user.nickname}</p>
           </div>
           <div>
             <p className='text-lg '>아이디</p>
-            <p>qhdud7857</p>
+            <p>{user.user_id}</p>
           </div>
         </div>
         <div className='flex flex-col gap-5'>
           <p className='text-lg'>내장소</p>
           <div className='flex gap-5'>
-            {post.map((item) => (
+            {data?.map((item) => (
               <div
                 className='flex w-1/6 flex-col'
                 key={item.id}
@@ -33,11 +45,18 @@ const Mypage = () => {
                   src={item.img_url}
                 />
                 <div className=' bg-neutral-200 h-20 rounded-b-lg'>
-                  <p className='pl-2'>지역</p>
-                  <p className='pl-2'>구</p>
+                  <p className='pl-2'>{item.address.split(' ')[0]}</p>
+                  <p className='pl-2'>{item.address.split(' ')[1]}</p>
                   <div className='flex justify-around'>
-                    <div>{item.tag}</div>
-                    <button className='bg-blue-950 text-white w-12 rounded-md'>삭제</button>
+                    <div>{item.tag.join(', ')}</div>
+                    <button
+                      className='bg-blue-950 text-white w-12 rounded-md'
+                      onClick={() => {
+                        mutate({ postId: item.id, userId: user_id });
+                      }}
+                    >
+                      삭제
+                    </button>
                   </div>
                 </div>
               </div>
@@ -45,7 +64,7 @@ const Mypage = () => {
           </div>
           <p className='text-lg'>좋아요한 장소</p>
           <div className='flex gap-5'>
-            {post.map((item) => (
+            {data?.map((item) => (
               <div
                 className='flex w-1/6 flex-col'
                 key={item.id}
