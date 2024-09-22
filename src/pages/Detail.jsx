@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import useUserStore from '../stores/useUserStore';
 import { useGetPostById } from '../query/postQuery';
+import FavoriteButton from '../components/FavoriteButton.jsx';
 
 const Detail = () => {
   const { postId } = useParams();
@@ -39,8 +40,10 @@ const Detail = () => {
 
   return (
     <div className='bg-neutral-200  w-6/12 h-full flex mx-auto my-5 flex-col py-5 px-10 gap-5'>
-      <div className='flex justify-between'>
-        <div>하트</div>
+      <div className='flex justify-between items-center'>
+        <div className='relative w-[30px] h-[30px] top-[-0.25rem] right-[-0.25rem]'>
+          <FavoriteButton postId={postId} />
+        </div>
         <div
           onClick={() => navigate(-1)}
           className='cursor-pointer'
