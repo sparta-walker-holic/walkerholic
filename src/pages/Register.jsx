@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const InputField = React.memo(({ textType, _ref, validation, onChange, type }) => {
   return (
     <div className='flex flex-col gap-[10px] w-full'>
-      <label className='text-[18px] text-white tracking-[5px]'>
+      <label className='text-[24px] text-white tracking-[5px]'>
         {type === 'id' ? '아이디' : type === 'password' ? '비밀번호' : '닉네임'}
       </label>
       <input
@@ -76,7 +76,6 @@ const Register = () => {
             }}
             className='centeredDiv flex-col py-[30px] px-[15px] gap-[40px]'
           >
-            <h1 className='text-[20px] text-white tracking-[5px]'>회원가입</h1>
             <InputField
               textType='text'
               _ref={userIdRef}
