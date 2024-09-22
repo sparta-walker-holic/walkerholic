@@ -41,7 +41,7 @@ const Card = ({ type, searchTag }) => {
   };
 
   const handleOnClick = (e, postId) => {
-    if (e.target.classList.contains('favoriteButton')) return;
+    if (e.target.closest('.favoriteButton')) return;
     navigate(`/detail/${postId}`);
   };
 
