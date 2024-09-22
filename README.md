@@ -75,7 +75,22 @@
 
 로그인 기능 소개
 
-## 2. 검색
+## 2. 메인페이지
+
+![alt text](image-3.png)
+![alt text](image-4.png)
+
+### 2-1. 검색
+
+![alt text](image-5.png)
+![alt text](image-6.png)
+
+- 태그 기반 검색
+- 클릭으로 검색하기
+
+### 2-2. 게시물
+
+![alt text](image-7.png) -최신으로 추가된 장소 배열
 
 ## 3. 지도 보기
 

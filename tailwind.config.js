@@ -3,7 +3,7 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     fontFamily: {
-      omyu_pretty: ['omyu_pretty'],
+      'HakgyoansimNadeuriTTF-B': ['HakgyoansimNadeuriTTF-B'],
     },
     extend: {
       colors: {
