@@ -81,6 +81,28 @@
 
 ## 4. 장소 추천하기
 
+![image](https://github.com/user-attachments/assets/0e29202f-4eae-4bb7-bccc-6a6533f3ec79)
+
+- 로그인한 회원에 한해서 게시글을 작성할 수 있습니다.
+
+### 4-1. 위치 선택
+
+![image](https://github.com/user-attachments/assets/ab8152f4-f90a-429c-85d3-ab2a09547e9a)
+
+- 지도에서 자유롭게 확대, 축소하며 원하는 장소를 지정할 수 있습니다. 지정한 장소의 위도, 경도 및 주소가 글 작성 시 `db.json-server`로 전송됩니다.
+
+### 4-2. 게시글 작성
+
+![image](https://github.com/user-attachments/assets/9273ddc0-f971-4e5d-a8ff-c69156bd657e)
+
+- 제목, 태그, 내용을 작성할 수 있으며 이미지 첨부도 가능합니다.
+
+### 4-3. 게시글 작성 완료
+
+![image](https://github.com/user-attachments/assets/09b33dc2-cdfb-42b7-903a-7893c63b0dc0)
+
+- `등록하기` 버튼 클릭 시 메인으로 이동하며 작성한 글을 확인할 수 있습니다.
+
 ## 5. 상세페이지
 
 ## 6. 마이페이지
