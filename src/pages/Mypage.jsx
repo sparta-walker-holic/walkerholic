@@ -10,8 +10,8 @@ const Mypage = () => {
   const { mutate } = useDeletePostById();
   const navigate = useNavigate();
   const handleMoveToDetail = (e, postId) => {
-    if (e.target.classList.contains('deleteButton')) return;
-    if (e.target.classList.contains('favoriteButton')) return;
+    if (e.target.closest('.deleteButton')) return;
+    if (e.target.closest('.favoriteButton')) return;
     navigate(`/detail/${postId}`);
   };
 
