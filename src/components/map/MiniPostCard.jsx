@@ -14,7 +14,8 @@ const MiniPostCard = ({ postId }) => {
   }
 
   const navigate = useNavigate();
-  const handleMoveToDetail = () => {
+  const handleMoveToDetail = (e) => {
+    if (e.target !== e.currentTarget) return;
     navigate(`/detail/${postId}`);
   };
 
