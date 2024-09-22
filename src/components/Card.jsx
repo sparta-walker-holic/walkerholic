@@ -19,13 +19,6 @@ const Card = ({ type, searchTag }) => {
       )
     : latestPosts;
 
-  const infinite = () => {
-    if (isLatestSuccess) {
-      return latestPosts > 4 || type === 'MAIN' ? true : false;
-    } else {
-      return true;
-    }
-  };
   const arrows = () => {
     if (isLatestSuccess) {
       return latestPosts > 4 || type === 'MAIN' ? true : false;
@@ -36,7 +29,7 @@ const Card = ({ type, searchTag }) => {
   //Slick 설정.
   const settings = {
     dots: true, // 슬라이드 아래 점 표시
-    infinite, // 무한 슬라이드
+    infinite: filteredLatestPosts?.length > 4 ? true : false, // 무한 슬라이드
     speed: 1500, // 슬라이드 속도
     slidesToShow: 4 > filteredLatestPosts?.length ? filteredLatestPosts?.length : 4, // 개씩 보여줌
     slidesToScroll: 1, // 한번에 하나의 슬라이드만 넘김
@@ -48,9 +41,7 @@ const Card = ({ type, searchTag }) => {
   };
 
   const handleOnClick = (e, postId) => {
-    // if (e.target.id === 'favoriteButton') return;
-    console.log(e.currentTarget.id);
-    console.log(e.target.id);
+    if (e.target.classList.contains('favoriteButton')) return;
     navigate(`/detail/${postId}`);
   };
 
@@ -65,14 +56,14 @@ const Card = ({ type, searchTag }) => {
             ? filteredLatestPosts.map((post, index) => (
                 <div
                   key={index}
-                  className=' relative snap-center shrink-0  h-[600px]:  min-w-[100%] max-w-[100%]   '
+                  className=' relative snap-center shrink-0 p-4 h-[600px] min-w-[300px] max-w-[400px]  '
                 >
-                  <div className='p-4 min-w-[100%] '>
+                  <div>
                     <div
                       className='relative h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60'
                       id='cardContainer'
-                      onClick={() => {
-                        handleOnClick(post.id);
+                      onClick={(e) => {
+                        handleOnClick(e, post.id);
                       }}
                     >
                       <FavoriteButton postId={post.id} />

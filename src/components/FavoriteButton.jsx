@@ -33,8 +33,7 @@ const FavoriteButton = ({ postId }) => {
   return (
     <Heart
       onClick={handleClick}
-      id='favoriteButton'
-      className={`absolute top-2 right-2 text-red-400 ${isSelected ? 'fill-red-400' : null}`}
+      className={`favoriteButton absolute top-2 right-2 text-red-400 ${isSelected ? 'fill-red-400' : null}`}
     />
   );
 };
