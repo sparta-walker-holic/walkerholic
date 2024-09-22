@@ -16,7 +16,7 @@ const FavoriteButton = ({ postId }) => {
     if (isSuccess && isAuthenticated) {
       setIsSelected(favoritePosts.includes(postId));
     }
-  }, [isSuccess]);
+  }, [favoritePosts, isSuccess]);
 
   const { mutateFavoritePosts } = useToggleFavoritePost({ userId: id, postId });
   const handleClick = () => {
