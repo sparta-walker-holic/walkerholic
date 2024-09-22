@@ -8,7 +8,6 @@ const Layout = () => {
       <main className='mt-[80px] flex-1'>
         <Outlet />
       </main>
-      <footer>푸터</footer>
     </div>
   );
 };
