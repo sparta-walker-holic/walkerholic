@@ -3,6 +3,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { useGetPostsByDate } from '../query/postQuery';
+import FavoriteButton from './FavoriteButton';
 
 const Card = ({ type, searchTag }) => {
   const navigate = useNavigate();
@@ -46,6 +47,13 @@ const Card = ({ type, searchTag }) => {
     prevArrow: <PrevArrow />,
   };
 
+  const handleOnClick = (e, postId) => {
+    // if (e.target.id === 'favoriteButton') return;
+    console.log(e.currentTarget.id);
+    console.log(e.target.id);
+    navigate(`/detail/${postId}`);
+  };
+
   return (
     <>
       <div className='container mx-auto '>
@@ -57,15 +65,17 @@ const Card = ({ type, searchTag }) => {
             ? filteredLatestPosts.map((post, index) => (
                 <div
                   key={index}
-                  className='snap-center shrink-0  h-[600px]:  min-w-[100%] max-w-[100%]   '
+                  className=' relative snap-center shrink-0  h-[600px]:  min-w-[100%] max-w-[100%]   '
                 >
                   <div className='p-4 min-w-[100%] '>
                     <div
-                      className='h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60'
+                      className='relative h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60'
+                      id='cardContainer'
                       onClick={() => {
-                        navigate(`/detail/${post.id}`);
+                        handleOnClick(post.id);
                       }}
                     >
+                      <FavoriteButton postId={post.id} />
                       <img
                         className='object-cover object-center w-full h-[300px] '
                         src={post.img_url}
@@ -76,7 +86,6 @@ const Card = ({ type, searchTag }) => {
                         <p className='mb-3 leading-relaxed h-[65px]'>{post.description}</p>
                         <div className='flex flex-wrap items-center mt-6 -text--secondary-green'>
                           {new Date(post.created_at).toLocaleDateString()}
-                          <div className=' text-[15px]  text-gray-600 ml-[170px]'>❤️ {post.likes}</div>
                         </div>
 
                         <div className='flex flex-wrap items-center mt-2 '>
