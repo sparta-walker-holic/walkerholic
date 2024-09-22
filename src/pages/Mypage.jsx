@@ -96,10 +96,10 @@ const Mypage = () => {
                     src={item.img_url}
                   />
                   <div className=' bg-neutral-200 h-20 rounded-b-lg'>
-                    <p className='pl-2'>지역</p>
-                    <p className='pl-2'>구</p>
+                    <p className='pl-2'>{item.address.split(' ')[0]}</p>
+                    <p className='pl-2'>{item.address.split(' ')[1]}</p>
                     <div className='flex justify-around'>
-                      <div>{item.tag}</div>
+                      <div>{item.tag.join(', ')}</div>
                       <button
                         className='bg-blue-950 text-white w-12 rounded-md deleteButton'
                         onClick={() => {
