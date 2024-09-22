@@ -76,13 +76,27 @@
 로그인 기능 소개
 
 ## 2. 메인페이지
+<<<<<<< HEAD
+=======
+![image](https://github.com/user-attachments/assets/4d399eea-1165-47c2-bc7d-2fecbf33a4f8)
+![image](https://github.com/user-attachments/assets/71f3e65e-c430-4931-8a6c-987276da1071)
+>>>>>>> de8b1f1fcdd6726c0978f1c781061cd5535007d4
 
 ### 2-1. 검색
+![image](https://github.com/user-attachments/assets/08afb0d3-0ae7-4b62-9a27-7783c710ccc6)
+![image](https://github.com/user-attachments/assets/cbf97ef8-eb3e-4080-8e1e-05eb27da1890)
+![image](https://github.com/user-attachments/assets/8615e4fc-59c7-40e7-b7c2-eeccc3024d34)
 
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> de8b1f1fcdd6726c0978f1c781061cd5535007d4
 - 태그 기반 검색
 - 클릭으로 검색하기
 
 ### 2-2. 게시물
+![image](https://github.com/user-attachments/assets/817f3d88-bb9c-4aa6-bcad-0909927f82ec)
 
 -최신으로 추가된 장소 배열
 
