@@ -1,7 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDeletePostById, useGetPostsByUserId } from '../query/postQuery';
 import useUserStore from '../stores/useUserStore';
-
+import FavoriteButton from '../components/FavoriteButton';
 const Mypage = () => {
   const { user } = useUserStore();
   const { user_id } = user;
@@ -9,7 +9,9 @@ const Mypage = () => {
   const { data, isError, isSuccess, isPending } = useGetPostsByUserId(user_id);
   const { mutate } = useDeletePostById();
   const navigate = useNavigate();
-  const handleMoveToDetail = (postId) => {
+  const handleMoveToDetail = (e, postId) => {
+    if (e.target.classList.contains('deleteButton')) return;
+    if (e.target.classList.contains('favoriteButton')) return;
     navigate(`/detail/${postId}`);
   };
 
@@ -40,12 +42,13 @@ const Mypage = () => {
             <div className='flex'>
               {data?.map((item) => (
                 <div
-                  className='flex w-1/6 flex-col'
+                  className='flex w-1/6 flex-col relative'
                   key={item.id}
-                  onClick={() => {
-                    handleMoveToDetail(item.id);
+                  onClick={(e) => {
+                    handleMoveToDetail(e, item.id);
                   }}
                 >
+                  <FavoriteButton postId={item.id} />
                   <img
                     className=' bg-neutral-200  rounded-t-lg'
                     src={item.img_url}
@@ -56,7 +59,7 @@ const Mypage = () => {
                     <div className='flex justify-around'>
                       <div>{item.tag.join(', ')}</div>
                       <button
-                        className='bg-blue-950 text-white w-12 rounded-md'
+                        className='bg-blue-950 text-white w-12 rounded-md deleteButton'
                         onClick={() => {
                           mutate({ postId: item.id, userId: user_id });
                         }}
@@ -74,9 +77,13 @@ const Mypage = () => {
             <div className='flex gap-5'>
               {data?.map((item) => (
                 <div
-                  className='flex w-1/6 flex-col'
+                  className='flex w-1/6 flex-col relative'
                   key={item.id}
+                  onClick={(e) => {
+                    handleMoveToDetail(e, item.id);
+                  }}
                 >
+                  <FavoriteButton postId={item.id} />
                   <img
                     className=' bg-neutral-200 rounded-t-lg'
                     src={item.img_url}
@@ -86,7 +93,14 @@ const Mypage = () => {
                     <p className='pl-2'>구</p>
                     <div className='flex justify-around'>
                       <div>{item.tag}</div>
-                      <button className='bg-blue-950 text-white w-12 rounded-md'>삭제</button>
+                      <button
+                        className='bg-blue-950 text-white w-12 rounded-md deleteButton'
+                        onClick={() => {
+                          mutate({ postId: item.id, userId: user_id });
+                        }}
+                      >
+                        삭제
+                      </button>
                     </div>
                   </div>
                 </div>
