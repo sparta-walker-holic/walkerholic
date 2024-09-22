@@ -78,7 +78,7 @@ const Navibar = () => {
           alt='3'
           border='0'
         />
-        <p className='ml-[20px] text-white'>walkerholic</p>
+        <p className='ml-[20px] text-white'>walkaholic</p>
       </div>
       <div className='text-white centeredDiv flex-row gap-[20px]'>
         {isAuthenticated ? (

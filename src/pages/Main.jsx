@@ -23,8 +23,15 @@ const Main = () => {
   return (
     <>
       <div>
-        <div className='grid place-items-center'>
-          <h1 className='text-[100px] text--bg--primary-green ml-[70px] mt-[150px]'>Walker-holic</h1>
+        <div
+          className='grid place-items-center'
+          style={{
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundImage: `url('https://i.ibb.co/SR8fPGw/nicki-eliza-schinow-mg3n-B1l2-Kd-M-unsplash.jpg')`,
+          }}
+        >
+          <h1 className='text-[100px] text--bg--primary-green ml-[70px] mt-[150px]'>Walkaholic</h1>
           <div>
             <div className='mt-[100px] ml-[70px] '>
               <input
