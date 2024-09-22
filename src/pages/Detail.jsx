@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import useUserStore from '../stores/useUserStore';
 import { useGetPostById } from '../query/postQuery';
@@ -7,7 +7,7 @@ const Detail = () => {
   const { postId } = useParams();
   const { user } = useUserStore((state) => state.user); //좋아요한 사용자 구별위해
   const { data, isError, isSuccess, isPending } = useGetPostById(postId);
-
+  const navigate = useNavigate();
   if (isSuccess) {
     console.log(data);
   }
@@ -41,7 +41,12 @@ const Detail = () => {
     <div className='bg-neutral-200  w-6/12 h-full flex mx-auto my-5 flex-col py-5 px-10 gap-5'>
       <div className='flex justify-between'>
         <div>하트</div>
-        <div>닫기</div>
+        <div
+          onClick={() => navigate(-1)}
+          className='cursor-pointer'
+        >
+          닫기
+        </div>
       </div>
       <div className='flex justify-between'>
         <div className='flex flex-col w-4/6 gap-12'>
