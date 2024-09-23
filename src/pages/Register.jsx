@@ -3,20 +3,22 @@ import { validateId, validatePassword, validateNickname } from '../services/vali
 import { createUser, signUp } from '../api/auth/authAPI';
 import { useNavigate } from 'react-router-dom';
 
-const InputField = React.memo(({ placeholder, textType, _ref, validation, onChange, type }) => {
+const InputField = React.memo(({ textType, _ref, validation, onChange, type }) => {
   return (
-    <div className='flex flex-col gap-[5px] w-full'>
+    <div className='flex flex-col gap-[10px] w-full'>
+      <label className='text-[17px] text-white tracking-[5px]'>
+        {type === 'id' ? '아이디' : type === 'password' ? '비밀번호' : '닉네임'}
+      </label>
       <input
         type={textType}
-        placeholder={placeholder}
         ref={_ref}
-        className='px-[10px] h-[30px] border-[1px] border-solid border-black'
+        className='bg-bg-input leading-[40px] rounded-[15px] border-none px-[20px] h-[40px] text-white enabled:hover:-border--primary-green'
         onChange={onChange}
       />
       {validation === null ? null : validation ? (
-        <span className='text-[10px] pl-[5px] text-green-300'>유효한 값 입니다.</span>
+        <span className='text-[12px] pl-[5px] text-green-300'>유효한 값 입니다.</span>
       ) : (
-        <span className='text-[10px] pl-[5px] text-red-600'>
+        <span className='text-[12px] pl-[5px] text-red-600'>
           {type === 'id'
             ? '영문 숫자를 포함 6자리 이상(특수문자 제외)'
             : type === 'password'
@@ -65,38 +67,46 @@ const Register = () => {
 
   return (
     <div className='centeredDiv'>
-      <div className='centeredDiv flex-col gap-[30px] py-[30px] px-[15px] w-1/6 border-[1px] border-solide border-black'>
-        <InputField
-          placeholder='아이디'
-          textType='text'
-          _ref={userIdRef}
-          validation={idValidation}
-          onChange={handleIdChange}
-          type='id'
-        />
-        <InputField
-          placeholder='비밀번호'
-          textType='password'
-          _ref={passwordRef}
-          validation={passwordValidation}
-          onChange={handlePasswordChange}
-          type='password'
-        />
-        <InputField
-          placeholder='닉네임'
-          textType='text'
-          _ref={nicknameRef}
-          validation={nicknameValidation}
-          onChange={handleNicknameChange}
-          type='nickname'
-        />
-        <button
-          disabled={isEnabled}
-          onClick={handleSignUp}
-          className={`border-[1px] border-solid border-black w-full ${!isEnabled ? 'text-black' : 'text-gray-400'}`}
-        >
-          가입하기
-        </button>
+      <div className='bg-bg-walk bg-cover bg-center w-1/4 h-auto overflow-hidden rounded-[20px] shadow-default my-[50px]'>
+        <div className='backdrop-opacity-10 backdrop-invert bg-black/20'>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSignUp();
+            }}
+            className='centeredDiv flex-col py-[30px] px-[15px] gap-[40px]'
+          >
+            <h1 className='text-[20px] text-white tracking-[5px]'>회원가입</h1>
+            <InputField
+              textType='text'
+              _ref={userIdRef}
+              validation={idValidation}
+              onChange={handleIdChange}
+              type='id'
+            />
+            <InputField
+              textType='password'
+              _ref={passwordRef}
+              validation={passwordValidation}
+              onChange={handlePasswordChange}
+              type='password'
+            />
+            <InputField
+              textType='text'
+              _ref={nicknameRef}
+              validation={nicknameValidation}
+              onChange={handleNicknameChange}
+              type='nickname'
+            />
+            <button
+              disabled={isEnabled}
+              type='submit'
+              className={`mt-[30px] h-[40px] leading-[40px] rounded-[20px] w-full ${!isEnabled ? 'text-white -bg--primary-green' : 'text-gray-400 border-[1px] border-gray-400'}`}
+            >
+              가입하기
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
