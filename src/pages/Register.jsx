@@ -12,7 +12,7 @@ const InputField = React.memo(({ textType, _ref, validation, onChange, type }) =
       <input
         type={textType}
         ref={_ref}
-        className='bg-bg-input leading-[40px] rounded-[15px] border-none px-[20px] h-[40px] text-white enabled:hover:-border--primary-green'
+        className='bg-bg-input leading-[40px] rounded-[15px] border-none px-[20px] h-[40px] text-white'
         onChange={onChange}
       />
       {validation === null ? null : validation ? (
