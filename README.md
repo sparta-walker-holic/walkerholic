@@ -19,6 +19,7 @@
   - 좋아요 기능
   - 라우트 가드
 - 김병엽
+  - 로그인, 회원가입
 - 이보영
 
 ## 🕰️ 개발 기간
@@ -80,11 +81,15 @@
 
 ### 1-1. 회원 가입
 
-회원 가입 기능 소개
+<img width="1440" alt="스크린샷 2024-09-23 오전 9 47 54" src="https://github.com/user-attachments/assets/5aaf7552-5edd-4edf-bb2e-0bc401aac01c">
+<img width="1440" alt="스크린샷 2024-09-23 오전 9 56 53" src="https://github.com/user-attachments/assets/d248048c-90d3-45cf-8cd2-a7a6c60c3620">
+
+- 유효성 검사
 
 ### 1-2. 로그인
 
-로그인 기능 소개
+<img width="1440" alt="스크린샷 2024-09-23 오전 9 48 02" src="https://github.com/user-attachments/assets/393cdd9c-d903-42b2-8647-83dd563c8451">
+
 
 ## 2. 메인페이지
 
