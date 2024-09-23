@@ -13,14 +13,21 @@
 ## 🖥️ 주요 담당 기능
 
 - 김태흔
+  - 메인페이지
+  - 태그 기반 검색 기능
 - 권다정
+  - 게시글(산책로) 작성 페이지 및 데이터 등록
 - 김민영
   - 등록된 게시글 목록을 지도에서 확인할 수 있는 Map 페이지
   - 좋아요 기능
   - 라우트 가드
 - 김병엽
   - 로그인, 회원가입
+  - 유저 상태 관리
 - 이보영
+  - 마이페이지
+  - 게시글(산책로) 상세페이지
+  - 게시글 삭제
 
 ## 🕰️ 개발 기간
 
@@ -177,10 +184,6 @@
   
   - usemutation을 이용하여 게시물을 삭제 시켜주고 invalidation을 통해 새로운 데이터를 서버로 부터 가져온다.
 
-### 6-1. 정보 조회
-
-### 6-2. 내가 쓴 게시글 삭제
-
 ## 7. 좋아요
 
 ![좋아요버튼](https://github.com/user-attachments/assets/92cc15ac-9a0c-4e7d-8e66-1c73408b67fe)
@@ -194,16 +197,13 @@
 
 ## 🚨 트러블 슈팅
 
+### 1. 캐러셀 중복 카드 렌더링 해결
 
+#### 1) 발생한 이슈
 
+- 게시물이 4개 이하일 때 중복된 카드가 세로로 나옴
 
-- 슬라이드 라이브러리로 4개씩 게시물을 보여주기
-
-### 2. 발생한 이슈
-
-- 게시물이 4개 이하면 이미지가 중복된것이 새로로 나옴
-
-#### 3) 해결 방법
+#### 2) 해결 방법
 라이브러리의 게시물 보여지는 갯수와 무한반복에 조건을 걸어줌
 ```js
 infinite: filteredLatestPosts?.length > 4 ? true : false
@@ -211,7 +211,7 @@ slidesToShow: 4 > filteredLatestPosts?.length ? filteredLatestPosts?.length
 ```
 
 
-### 1. Map 페이지에 이동시 마커 세팅 오류
+### 2. Map 페이지에 이동시 마커 세팅 오류
 
 #### 1) 발생한 이슈
 
@@ -221,7 +221,7 @@ slidesToShow: 4 > filteredLatestPosts?.length ? filteredLatestPosts?.length
 
 - 로그를 찍어 새로고침 하는 경우와 navigate로 페이지에 진입한 경우의 실행 순서를 확인
 
-### 4. 해결 방법
+#### 3) 해결 방법
 - 카카오맵 API의 map이 표시될 컨테이너와 등록된 산책로 데이터를 모두 받아왔음이 보장됐을 때 마커를 세팅할 수 있도록 useEffect를 활용
 
 ```js
@@ -235,9 +235,6 @@ useEffect(() => {
   }
 }, [isSuccess]);
 ```
-
-infinite: filteredLatestPosts?.length > 4 ? true : false,
-slidesToShow: 4 > filteredLatestPosts?.length ? filteredLatestPosts?.length : 4,
 
 # 📝Technologies & Tools
 
@@ -253,7 +250,6 @@ slidesToShow: 4 > filteredLatestPosts?.length ? filteredLatestPosts?.length : 4,
 ![vscode](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 ![notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
