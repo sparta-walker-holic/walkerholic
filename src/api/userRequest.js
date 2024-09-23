@@ -1,10 +1,8 @@
-import axios from 'axios';
-
-const API_URL = import.meta.env.VITE_JSON_SERVER_API + '/users';
+import jsonserverInstance from './jsonserver/jsonserverInstance.js';
 
 export const getFavoritePost = async (userId) => {
   try {
-    const response = await axios.get(`${API_URL}?id=${userId}`);
+    const response = await jsonserverInstance.get(`/users?id=${userId}`);
     return response.data[0].favorite_posts;
   } catch (error) {
     return error.response.data;
@@ -13,7 +11,7 @@ export const getFavoritePost = async (userId) => {
 
 export const toggleFavoritePost = async ({ userId, postId }) => {
   try {
-    const response = await axios.get(`${API_URL}?id=${userId}`);
+    const response = await jsonserverInstance.get(`/users?id=${userId}`);
     const userData = response.data[0];
 
     let updatedFavoritePosts;
@@ -23,7 +21,7 @@ export const toggleFavoritePost = async ({ userId, postId }) => {
       updatedFavoritePosts = [...userData.favorite_posts, postId];
     }
 
-    await axios.patch(`${API_URL}/${userId}`, { favorite_posts: updatedFavoritePosts });
+    await jsonserverInstance.patch(`users/${userId}`, { favorite_posts: updatedFavoritePosts });
   } catch (error) {
     return error.response.data;
   }

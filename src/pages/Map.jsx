@@ -154,7 +154,7 @@ const Map = () => {
         ) : null}
         <div className='flex items-center justify-center flex-grow w-full h-full'>
           <div
-            id='map'
+            id='map' // 커스텀 훅 매개변수로 ID sjaru넘겨주고 공유하..
             className='w-11/12 h-full'
           >
             <PostListSideBar posts={postsOnPostBar} />
