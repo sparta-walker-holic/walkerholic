@@ -94,15 +94,17 @@
 ## 2. 메인페이지
 
 ![image](https://github.com/user-attachments/assets/4d399eea-1165-47c2-bc7d-2fecbf33a4f8)
-![image](https://github.com/user-attachments/assets/71f3e65e-c430-4931-8a6c-987276da1071)
+![image](https://github.com/user-attachments/assets/71f3e65e-c430-4931-8a6c-987276da1071) -전체 지도, 장소추천 네비게이트
 
 ### 2-1. 검색
 
 ![image](https://github.com/user-attachments/assets/08afb0d3-0ae7-4b62-9a27-7783c710ccc6)
 ![image](https://github.com/user-attachments/assets/cbf97ef8-eb3e-4080-8e1e-05eb27da1890)
-![image](https://github.com/user-attachments/assets/8615e4fc-59c7-40e7-b7c2-eeccc3024d34)
 
 - 태그 기반 검색
+
+
+  ![image](https://github.com/user-attachments/assets/8615e4fc-59c7-40e7-b7c2-eeccc3024d34)
 - 클릭으로 검색하기
 
 ### 2-2. 게시물
@@ -180,6 +182,23 @@
 
 ## 🚨 트러블 슈팅
 
+
+
+
+- 슬라이드 라이브러리로 4개씩 게시물을 보여주기
+
+### 2. 발생한 이슈
+
+- 게시물이 4개 이하면 이미지가 중복된것이 새로로 나옴
+
+#### 3) 해결 방법
+라이브러리의 게시물 보여지는 갯수와 무한반복에 조건을 걸어줌
+```js
+infinite: filteredLatestPosts?.length > 4 ? true : false
+slidesToShow: 4 > filteredLatestPosts?.length ? filteredLatestPosts?.length 
+```
+
+
 ### 1. Map 페이지에 이동시 마커 세팅 오류
 
 #### 1) 발생한 이슈
@@ -190,11 +209,10 @@
 
 - 로그를 찍어 새로고침 하는 경우와 navigate로 페이지에 진입한 경우의 실행 순서를 확인
 
-#### 3) 해결 방법
-
+### 4. 해결 방법
 - 카카오맵 API의 map이 표시될 컨테이너와 등록된 산책로 데이터를 모두 받아왔음이 보장됐을 때 마커를 세팅할 수 있도록 useEffect를 활용
 
-```
+```js
 const { data: posts, isSuccess, isError } = useGetPostsByLikes();
 
 useEffect(() => {
@@ -205,6 +223,9 @@ useEffect(() => {
   }
 }, [isSuccess]);
 ```
+
+infinite: filteredLatestPosts?.length > 4 ? true : false,
+slidesToShow: 4 > filteredLatestPosts?.length ? filteredLatestPosts?.length : 4,
 
 # 📝Technologies & Tools
 
