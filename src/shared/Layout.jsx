@@ -3,12 +3,11 @@ import Navibar from '../components/Navibar';
 
 const Layout = () => {
   return (
-    <div className='h-full'>
+    <div className='flex flex-col h-full'>
       <Navibar />
-      <main className='h-full mt-[100px]'>
+      <main className='mt-[80px] flex-1'>
         <Outlet />
       </main>
-      <footer />
     </div>
   );
 };

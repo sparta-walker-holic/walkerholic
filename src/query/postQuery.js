@@ -1,5 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
-import { getPostById, getPosts, getPostsByDate, getPostsByLikes } from '../api/postRequest.js';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  deletePostById,
+  getPostById,
+  getPosts,
+  getPostsByDate,
+  getPostsByLikes,
+  getPostsByUserId,
+} from '../api/postRequest.js';
 
 export const useGetPosts = () => {
   const { data, isPending, isError, isSuccess } = useQuery({
@@ -36,4 +43,26 @@ export const useGetPostById = (postId) => {
 
   return { data, isPending, isError, isSuccess };
 };
-// 쿼리키, stale time, cache time -> 이 아이디로 가녀왔으면 계속 쿼리키에 캐싱해둠 qeuryKey가 기준인데
+
+export const useGetPostsByUserId = (userId) => {
+  console.log('userId@@@@', userId);
+  const { data, isPending, isError, isSuccess } = useQuery({
+    queryKey: ['postsByUserId', userId],
+    queryFn: () => getPostsByUserId(userId),
+  });
+
+  return { data, isPending, isError, isSuccess };
+};
+
+export const useDeletePostById = () => {
+  const queryClient = useQueryClient();
+  const { mutate, isPending } = useMutation({
+    mutationFn: deletePostById,
+    onSuccess: (data, variable) => {
+      console.log('data', data);
+      console.log('variable', variable);
+      queryClient.invalidateQueries({ queryKey: ['postsByUserId', variable.userId] });
+    },
+  });
+  return { mutate, isPending };
+};
