@@ -23,25 +23,40 @@ const Login = () => {
 
   return (
     <div className='centeredDiv'>
-      <div className='centeredDiv flex-col gap-[30px] py-[30px] px-[15px] w-1/6 border-[1px] border-solide border-black'>
-        <input
-          type='text'
-          placeholder='아이디'
-          ref={userIdRef}
-          className='px-[10px] h-[30px] border-[1px] border-solid border-black'
-        />
-        <input
-          type='password'
-          placeholder='비밀번호'
-          ref={passwordRef}
-          className='px-[10px] h-[30px] border-[1px] border-solid border-black'
-        />
-        <button
-          onClick={handleSignIn}
-          className='border-[1px] border-solid border-black w-full '
-        >
-          로그인
-        </button>
+      <div className='bg-bg-walk bg-cover bg-center w-1/4 h-auto overflow-hidden rounded-[20px] shadow-default my-[50px]'>
+        <div className='backdrop-opacity-10 backdrop-invert bg-black/20'>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSignIn();
+            }}
+            className='centeredDiv flex-col py-[30px] px-[15px] gap-[40px]'
+          >
+            <h1 className='text-[20px] text-white tracking-[5px]'>로그인</h1>
+            <div className='flex flex-col gap-[10px] w-full'>
+              <label className='text-[17px] text-white tracking-[5px]'>아이디</label>
+              <input
+                type='text'
+                ref={userIdRef}
+                className='bg-bg-input leading-[40px] rounded-[15px] border-none px-[20px] h-[40px] text-white'
+              />
+            </div>
+            <div className='flex flex-col gap-[10px] w-full'>
+              <label className='text-[17px] text-white tracking-[5px]'>비밀번호</label>
+              <input
+                type='password'
+                ref={passwordRef}
+                className='bg-bg-input leading-[40px] rounded-[15px] border-none px-[20px] h-[40px] text-white'
+              />
+            </div>
+            <button
+              type='submit'
+              className='mt-[30px] h-[40px] leading-[40px] rounded-[20px] w-full text-white -bg--primary-green'
+            >
+              로그인
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
