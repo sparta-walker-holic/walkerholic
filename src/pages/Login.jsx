@@ -15,6 +15,12 @@ const Login = () => {
     const data = await signIn(userIdRef.current.value, passwordRef.current.value);
     await setItem('accessToken', data.accessToken);
     const userInfo = await getUser(data.userId);
+
+    if (!userInfo) {
+      alert('해당 계정이 존재하지 않습니다.');
+      return;
+    }
+
     login(userInfo);
 
     alert('성공적으로 로그인 되었습니다.');
