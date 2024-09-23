@@ -67,7 +67,7 @@ const Register = () => {
 
   return (
     <div className='centeredDiv'>
-      <div className='bg-bg-walk bg-cover bg-center w-1/4 h-auto overflow-hidden rounded-[20px] shadow-default'>
+      <div className='bg-bg-walk bg-cover bg-center w-1/4 h-auto overflow-hidden rounded-[20px] shadow-default mt-[50px]'>
         <div className='backdrop-opacity-20 backdrop-invert bg-black/30'>
           <form
             onSubmit={(e) => {
