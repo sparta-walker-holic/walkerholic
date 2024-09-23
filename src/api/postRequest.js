@@ -1,10 +1,8 @@
-import axios from 'axios';
-
-const API_URL = import.meta.env.VITE_JSON_SERVER_API + '/posts';
+import jsonserverInstance from './jsonserver/jsonserverInstance.js';
 
 export const getPosts = async () => {
   try {
-    const response = await axios.get(API_URL);
+    const response = await jsonserverInstance.get('/posts');
     return response.data;
   } catch (error) {
     return error.response.data;
@@ -13,7 +11,7 @@ export const getPosts = async () => {
 
 export const getPostsByDate = async () => {
   try {
-    const response = await axios.get(`${API_URL}?_sort=-created_at`);
+    const response = await jsonserverInstance.get(`/posts?_sort=-created_at`);
     return response.data;
   } catch (error) {
     return error.response.data;
@@ -22,7 +20,7 @@ export const getPostsByDate = async () => {
 
 export const getPostsByLikes = async () => {
   try {
-    const response = await axios.get(`${API_URL}?_sort=-likes`);
+    const response = await jsonserverInstance.get(`/posts?_sort=-likes`);
     return response.data;
   } catch (error) {
     return error.response.data;
@@ -31,7 +29,7 @@ export const getPostsByLikes = async () => {
 
 export const getPostById = async (postId) => {
   try {
-    const response = await axios.get(`${API_URL}?id=${postId}`);
+    const response = await jsonserverInstance.get(`/posts?id=${postId}`);
     return response.data;
   } catch (error) {
     return error.response.data;
@@ -40,7 +38,7 @@ export const getPostById = async (postId) => {
 
 export const getPostsByUserId = async (userId) => {
   try {
-    const response = await axios.get(`${API_URL}?author_id=${userId}`);
+    const response = await jsonserverInstance.get(`/posts?author_id=${userId}`);
     return response.data;
   } catch (error) {
     return error.response.date;
@@ -50,7 +48,7 @@ export const getPostsByUserId = async (userId) => {
 export const deletePostById = async ({ postId }) => {
   console.log('postId', postId);
   try {
-    const response = await axios.delete(`${API_URL}/${postId}`);
+    const response = await jsonserverInstance.delete(`/posts/${postId}`);
     return response.data;
   } catch (error) {
     return error.response.date;

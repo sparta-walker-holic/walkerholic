@@ -99,7 +99,6 @@
 
 <img width="1440" alt="스크린샷 2024-09-23 오전 9 48 02" src="https://github.com/user-attachments/assets/393cdd9c-d903-42b2-8647-83dd563c8451">
 
-
 ## 2. 메인페이지
 
 ![image](https://github.com/user-attachments/assets/4d399eea-1165-47c2-bc7d-2fecbf33a4f8)
@@ -112,8 +111,8 @@
 
 - 태그 기반 검색
 
-
   ![image](https://github.com/user-attachments/assets/8615e4fc-59c7-40e7-b7c2-eeccc3024d34)
+
 - 클릭으로 검색하기
 
 ### 2-2. 게시물
@@ -201,30 +200,32 @@
 
 ### 1. 캐러셀 중복 카드 렌더링 해결
 
-#### 1) 발생한 이슈
+#### 1-1. 발생한 이슈
 
 - 게시물이 4개 이하일 때 중복된 카드가 세로로 나옴
 
-#### 2) 해결 방법
+#### 1-2. 해결 방법
+
 라이브러리의 게시물 보여지는 갯수와 무한반복에 조건을 걸어줌
+
 ```js
 infinite: filteredLatestPosts?.length > 4 ? true : false
-slidesToShow: 4 > filteredLatestPosts?.length ? filteredLatestPosts?.length 
+slidesToShow: 4 > filteredLatestPosts?.length ? filteredLatestPosts?.length
 ```
-
 
 ### 2. Map 페이지에 이동시 마커 세팅 오류
 
-#### 1) 발생한 이슈
+#### 2-1. 발생한 이슈
 
-- 새로고침 없이 navigate를 이용해 Map 페이지로 이동하는 경우 마커가 활성화되지 않음
+- 새로고침 없이 `navigate`를 이용해 Map 페이지로 이동하는 경우 마커가 활성화되지 않음
 
-#### 2) 시도한 방법
+#### 2-2. 시도한 방법
 
-- 로그를 찍어 새로고침 하는 경우와 navigate로 페이지에 진입한 경우의 실행 순서를 확인
+- 로그를 찍어 새로고침 하는 경우와 `navigate`로 페이지에 진입한 경우의 실행 순서를 확인
 
-#### 3) 해결 방법
-- 카카오맵 API의 map이 표시될 컨테이너와 등록된 산책로 데이터를 모두 받아왔음이 보장됐을 때 마커를 세팅할 수 있도록 useEffect를 활용
+#### 2-3. 해결 방법
+
+- 카카오맵 API의 map이 표시될 컨테이너와 등록된 산책로 데이터를 모두 받아왔음이 보장됐을 때 마커를 세팅할 수 있도록 `useEffect`를 활용
 
 ```js
 const { data: posts, isSuccess, isError } = useGetPostsByLikes();
@@ -237,6 +238,20 @@ useEffect(() => {
   }
 }, [isSuccess]);
 ```
+
+### 3. 이미지 업로드 관련 이슈
+
+#### 3-1. 발생한 이슈
+
+- 따로 데이터베이스를 사용하지 않는 상황에서 이미지 업로드 기능을 구현해야 하는 상황
+
+#### 3-2. 채택한 방법
+
+- `바이너리 데이터(파일의 데이터)` 전달 과정 중 `아스키 코드`에 포함되지 않는 데이터가 있는 경우 데이터의 손실이 발생하므로 `바이너리 데이터`를 인코딩해서 텍스트 기반 데이터로 다룰 수 있는 Base64를 사용하는 것을 채택함
+
+#### 3-3. 후기
+
+- 데이터베이스 서버가 따로 존재하지 않아 채택한 방법이긴 하나 게시글 작성 테스트를 해야 되는 입장으로서 변환된 이미지 url이 길어도 너무 길어 `db.json`의 가독성이 매우 떨어져 관리하기 힘들었음
 
 # 📝Technologies & Tools
 
