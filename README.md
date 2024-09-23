@@ -1,5 +1,7 @@
 # Walkaholic
 
+🏃 [사용해보기] (https://walkaholic.vercel.app/)
+
 ## 🖥️ 프로젝트 소개
 
 카카오 맵 API를 활용하여 유저 간의 산책 장소를 추천해주는 서비스
