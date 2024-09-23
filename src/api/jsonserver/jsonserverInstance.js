@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const jsonserverInstance = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: import.meta.env.VITE_JSON_SERVER_API,
 });
 
 export default jsonserverInstance;

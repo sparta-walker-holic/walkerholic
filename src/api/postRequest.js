@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:4000/posts';
+const API_URL = import.meta.env.VITE_JSON_SERVER_API + '/posts';
 
 export const getPosts = async () => {
   try {
@@ -35,5 +35,24 @@ export const getPostById = async (postId) => {
     return response.data;
   } catch (error) {
     return error.response.data;
+  }
+};
+
+export const getPostsByUserId = async (userId) => {
+  try {
+    const response = await axios.get(`${API_URL}?author_id=${userId}`);
+    return response.data;
+  } catch (error) {
+    return error.response.date;
+  }
+};
+
+export const deletePostById = async ({ postId }) => {
+  console.log('postId', postId);
+  try {
+    const response = await axios.delete(`${API_URL}/${postId}`);
+    return response.data;
+  } catch (error) {
+    return error.response.date;
   }
 };

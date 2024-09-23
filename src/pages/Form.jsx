@@ -5,7 +5,7 @@ import useUserStore from '../stores/useUserStore';
 
 const Form = () => {
   const { kakao } = window;
-  const API_URL = 'http://localhost:4000';
+  const API_URL = import.meta.env.VITE_JSON_SERVER_API;
   const { user_id, nickname } = useUserStore((state) => state.user);
 
   const [post, setPost] = useState({

@@ -7,7 +7,7 @@ const AuthenticatedRoute = () => {
   const { pathname } = useLocation();
 
   // 로그인이 안돼있으면
-  if (isAuthenticated === false) {
+  if (!isAuthenticated) {
     return (
       // 로그인 페이지로 보냄
       <Navigate
@@ -16,8 +16,6 @@ const AuthenticatedRoute = () => {
         state={{ redirectedForm: pathname }}
       />
     );
-  } else if (isAuthenticated === null) {
-    return;
   }
 
   return <Outlet />;
