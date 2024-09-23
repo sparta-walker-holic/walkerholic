@@ -53,10 +53,19 @@ const Detail = () => {
       </div>
       <div className='flex justify-between'>
         <div className='flex flex-col w-4/6 gap-12'>
-          <h1 className='font-bold text-xl '>{post.title}</h1>
-          <p>닉네임:{post.author_nickname}</p>
-          <p>설명:{post.description}</p>
-          <p>장소:{post.address}</p>
+          <h1 className=' text-3xl font-omyu_pretty font-extrabold '>{post.title}</h1>
+          <div className='flex gap-2'>
+            <p className='text-xl font-omyu_pretty font-extrabold'>닉네임 :</p>
+            <p className='text-lg font-omyu_pretty'>{post.author_nickname}</p>
+          </div>
+          <div className='flex gap-2'>
+            <p className='text-xl font-omyu_pretty font-extrabold'>소개 : </p>
+            <p className='text-lg font-omyu_pretty w-80 h-28 overflow-auto'>{post.description}</p>
+          </div>
+          <div className='flex gap-2'>
+            <p className='text-xl font-omyu_pretty font-extrabold'>장소 : </p>
+            <p className='text-lg font-omyu_pretty'>{post.address}</p>
+          </div>
         </div>
         <img
           className='bg-neutral-400 w-2/6 h-80'
