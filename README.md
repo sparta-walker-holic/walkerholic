@@ -163,7 +163,19 @@
 
 ## 5. 상세페이지
 
+<img width="1440" alt="스크린샷 2024-09-23 오전 9 33 41" src="https://github.com/user-attachments/assets/74b5bdc1-ddb6-4f61-be9d-ccfdaf523e87">
+  
+  - 모든 페이지에서 url로 보내주는 postid를 사용하여 tanstack query로 json-server에서 해당되는 포스트 데이터 찾아서 가져와 화면에 뿌려줍니다.
+  
+  - 닫기 누르면 디테일 페이지 들어오기전 페이지로 돌아갑니다.
+
 ## 6. 마이페이지
+
+<img width="1440" alt="스크린샷 2024-09-23 오전 8 51 25" src="https://github.com/user-attachments/assets/4fe9f5e2-8ada-4948-a0bc-13ef07ffd27e">
+  
+  - zustand에서 user데이터를 가져와서 프로필에 적용시켜주고 user데이터안에 유저 아이디를 사용하여 tanstack query로 해당하는 유저의 게시물을 가져와 준다.
+  
+  - usemutation을 이용하여 게시물을 삭제 시켜주고 invalidation을 통해 새로운 데이터를 서버로 부터 가져온다.
 
 ### 6-1. 정보 조회
 
